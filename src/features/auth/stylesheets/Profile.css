@@ -1,0 +1,12 @@
+.account {
+  text-align: center;
+}
+.account .name {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+}
+.account img {
+  width: clamp(50px, 10vw, 100px);
+  height: clamp(50px, 10vw, 100px);
+  border-radius: 50%;
+}

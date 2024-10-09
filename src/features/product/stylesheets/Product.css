@@ -1,0 +1,19 @@
+.product-buy-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: var(--fs-m);
+  color: var(--main-color);
+}
+.product-buy-page > * {
+  padding: var(--space);
+  background: var(--primary-bg-gradient);
+  border-radius: 20px;
+  flex: 1 0 350px;
+}
+
+@media only screen and (max-width: 600px) {
+  .product-buy-page > * {
+    flex: 1;
+  }
+}

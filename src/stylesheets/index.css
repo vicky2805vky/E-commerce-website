@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-size: var(--fz-m);
+  scrollbar-width: none;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: capitalize;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  padding: 5vh 5vw;
+  color: var(--main-color);
+  overflow-x: hidden;
+  background: var(--main-bg-gradient);
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 0.5;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+::placeholder {
+  font-size: var(--fs-s);
+}
+input[type="checkbox"] {
+  accent-color: var(--main-color);
+  margin-right: var(--gap);
+  cursor: pointer;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+select {
+  cursor: pointer;
+}

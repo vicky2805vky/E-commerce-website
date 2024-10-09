@@ -1,0 +1,73 @@
+.login-page {
+  background-color: #ffffff33;
+  width: clamp(300px, 50%, 450px);
+  padding: 20px;
+  gap: 30px;
+  border-radius: 20px;
+  color: var(--main-color);
+  overflow: hidden;
+}
+
+.login-page .title {
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  height: 1.5em;
+}
+.login-page .title-text {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.login-page .title-text:first-child {
+  position: relative;
+  top: 30px;
+}
+.login-page .title-text:nth-child(3) {
+  position: relative;
+  bottom: 150px;
+}
+.login-page .title-text:nth-child(3).form-active {
+  position: relative;
+  transform: translateY(120px);
+}
+.login-page .switch {
+  position: relative;
+  border-radius: 3em;
+  background: #ffffff44;
+  overflow: hidden;
+}
+.login-page .switch-indicator {
+  position: absolute;
+  inset: 0 0 0 50%;
+  background: #ffffff44;
+  z-index: -1;
+  transition: inset 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.login-page .switch div {
+  font-size: var(--fs-l);
+  padding: 1em;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+.login-page .switch div:first-child {
+  border-right: 1px solid var(--main-color);
+}
+
+.login-page .form-container {
+  position: relative;
+  display: flex;
+  height: 300px;
+  overflow: hidden;
+  transition: height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.login-page .form-container > * {
+  display: flex;
+  position: absolute;
+  width: 100%;
+}
+
+.title-text:nth-child(2).form-active {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translate(500px);
+}

@@ -1,0 +1,37 @@
+.delete-account.confirm > strong {
+  font-size: var(--fs-xl);
+  color: rgb(247, 54, 54);
+  margin-top: -20px;
+}
+.delete-account.confirm .content-wrapper {
+  height: 50vh;
+  overflow: scroll;
+  outline: 1px solid var(--main-color);
+  padding: var(--space);
+  border-radius: 20px;
+  scroll-behavior: smooth !important;
+}
+.delete-account.confirm .content-wrapper * {
+  margin-bottom: var(--gap);
+}
+.delete-account.confirm h6 {
+  font-size: var(--fs-l);
+  color: rgb(247, 54, 54);
+}
+.delete-account.confirm li {
+  font-size: var(--fs-m);
+}
+.delete-account.confirm li strong {
+  font-style: italic;
+}
+.delete-account.confirm label {
+  font-size: var(--fs-s);
+  font-weight: var(--fw-bold);
+}
+.delete-account.confirm div:has(button) {
+  display: flex;
+  justify-content: space-around;
+  & .icon {
+    color: red;
+  }
+}

@@ -1,0 +1,21 @@
+.delete-account {
+  background-color: #ffffff33;
+  width: clamp(300px, 50%, 450px);
+  padding: 20px;
+  gap: 30px;
+  border-radius: 20px;
+  color: var(--main-color);
+  margin: auto;
+}
+.trash-icon {
+  font-size: var(--fs-xxl);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: red;
+  margin: 0px auto 20px;
+  color: white;
+}
+input[type="checkbox"] ~ label {
+  cursor: pointer;
+}

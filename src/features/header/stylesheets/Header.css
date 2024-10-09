@@ -1,0 +1,87 @@
+header {
+  margin-bottom: 20px;
+  font-size: var(--fs-m);
+  color: var(--main-color);
+}
+
+nav {
+  justify-content: space-between;
+  background: var(--primary-bg-gradient);
+  border-radius: 30px;
+  padding: 5px var(--gap);
+}
+
+nav section {
+  padding: 1%;
+  flex-grow: 2;
+  gap: clamp(20px, 5vw, 60px);
+}
+
+.logo {
+  font-size: var(--fs-l);
+  font-weight: var(--fw-bold);
+  width: clamp(60px, 10vw, 100px);
+}
+
+header ul {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+header li {
+  position: relative;
+}
+header li:not(.theme-switch)::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  border-radius: 10px;
+  background-color: var(--main-color);
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  inset: auto 0 -5px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease-in-out;
+}
+header li:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.header-icon {
+  font-size: var(--fs-m);
+  position: relative;
+  margin-right: 5px;
+}
+
+.cart-icon::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--fs-s);
+  width: var(--fs-s);
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-weight: 900;
+  border-radius: 50%;
+  font-size: var(--fs-xs);
+}
+
+#toggle-theme {
+  position: absolute;
+  top: -9999px;
+}
+
+@media only screen and (max-width: 700px) {
+  .header-label {
+    display: none;
+  }
+}

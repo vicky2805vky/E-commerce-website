@@ -1,0 +1,31 @@
+.product-buy-page :is(.image-box, .image) {
+  width: clamp(150px, 70%, 300px);
+  transition: none;
+}
+.product-buy-page .image .button-box {
+  justify-content: space-around;
+  gap: 20px;
+}
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider div {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55) !important;
+  margin-bottom: 10px;
+}
+.slick-dots {
+  display: flex !important;
+  justify-content: space-evenly;
+  bottom: 0 !important;
+}
+.slick-dots li button::before {
+  font-size: var(--fs-xs);
+  transition: 0.5s ease-in !important;
+  color: var(--main-color) !important;
+}
+.slick-dots li.slick-active button::before {
+  font-size: var(--fs-s);
+}
