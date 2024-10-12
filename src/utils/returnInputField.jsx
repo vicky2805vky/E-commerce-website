@@ -1,6 +1,12 @@
+import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
+import { addProductActions } from "features/admin/services/reducers/addProductReducer";
+
 export const returnInputField = (type, label, optionalParameters = {}) => {
   const inputStyle =
     "py-2 px-4 rounded-lg bg-transparent border-solid border text-[--main-color] border-[--main-color] w-full";
+
+  const { state, dispatch } = useAddProductContext();
+  const { formData } = state;
 
   const { options = [], ref, onChange, value } = optionalParameters;
 
@@ -8,11 +14,28 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
     className: inputStyle,
     name: label,
     required: true,
+    value: label in formData ? formData[label] : value,
+    onChange:
+      label in formData
+        ? (e) => {
+            formData[label] = parseFloat(e.target.value) || e.target.value;
+            dispatch({
+              type: addProductActions.setFormData,
+              payload: formData,
+            });
+          }
+        : onChange,
   };
 
   switch (type) {
     case "text-area":
-      return <textarea placeholder={label} {...inputProps}></textarea>;
+      return (
+        <textarea
+          placeholder={label}
+          {...inputProps}
+          className={inputStyle + " h-40"}
+        ></textarea>
+      );
 
     case "select":
       return (
@@ -32,7 +55,6 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
           id="file"
           accept=".png,.jpg,.jpeg"
           multiple
-          required
           className="absolute opacity-1 pointer-events-none -top-20 opacity-0"
           ref={ref}
           onChange={onChange}

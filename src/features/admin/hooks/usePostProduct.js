@@ -1,66 +1,74 @@
 import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
-import { FORM_ELEMENTS } from "constants/constants";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "configs/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { pushNotification } from "utils/pushNotification";
+import { useNavigate } from "react-router-dom";
 
 const usePostProduct = () => {
   const { state } = useAddProductContext();
-  const { imageVariations, uploadedImageFiles } = state;
+  const { imageVariations, uploadedImageFiles, formData } = state;
+  const navigate = useNavigate();
 
-  return (e) => {
+  return async (e) => {
     e.preventDefault();
-
-    let formData = {};
-    FORM_ELEMENTS.map((element) => {
-      if (element.type !== "number") {
-        formData[element.name] = e.target.elements[element.name].value;
-      } else {
-        formData[element.name] = parseFloat(
-          e.target.elements[element.name].value
-        );
-      }
-    });
 
     formData.description = formData.description
       .split("\n")
-      .map((sentence) => sentence.trim()) //removing extra spaces in front and back
-      .filter((sentence) => sentence && sentence); //removing empty strings
+      .map((sentence) => sentence.trim())
+      .filter(Boolean);
 
-    let imageData = [];
-    imageVariations.map((variation, i) => {
-      imageData[i] = { ...variation, imageURLs: uploadedImageFiles[i] };
-    });
+    try {
+      const imageData = await Promise.all(
+        uploadedImageFiles.map(async (uploadedImage, i) => {
+          const imageURLs = await Promise.all(
+            uploadedImage.map(async (url) => {
+              if (url instanceof File) {
+                const storageRef = ref(
+                  storage,
+                  `${formData.category}/${formData.name}/${formData.name}_${imageVariations[i].color}/${url.name}`
+                );
+                await uploadBytes(storageRef, url);
+                return await getDownloadURL(storageRef);
+              }
+              return url;
+            })
+          );
 
-    for (let i = 0; i < Object.keys(imageData).length; i++) {
-      imageData[i].imageURLs.map((url, urlIndex) => {
-        const storageRef = ref(
-          storage,
-          `${formData.category}/${formData.name}/${formData.name}_${imageData[i].color}/${url.name}`
-        );
-        uploadBytes(storageRef, url).then(() => {
-          getDownloadURL(storageRef).then((res) => {
-            imageData[i].imageURLs[urlIndex] = res;
-          });
-        });
-      });
-    }
-    setDoc(
-      doc(db, "S-mart-products", formData.name.replaceAll(" ", "-")),
-      formData
-    );
-    imageData.map((data, i) => {
-      console.log(data);
-      setDoc(
-        doc(
-          db,
-          `S-mart-products/${formData.name.replaceAll(" ", "-")}/images/${i}`
-        ),
-        data
+          return {
+            ...imageVariations[i],
+            imageURLs: imageURLs.filter(Boolean),
+          };
+        })
       );
-    });
-    pushNotification("product added successfully", true);
+
+      await setDoc(
+        doc(db, "S-mart-products", formData.name.replaceAll(" ", "-")),
+        formData
+      );
+
+      await Promise.all(
+        imageData.map((data, i) =>
+          setDoc(
+            doc(
+              db,
+              `S-mart-products/${formData.name.replaceAll(
+                " ",
+                "-"
+              )}/images/${i}`
+            ),
+            data
+          )
+        )
+      );
+
+      navigate("/admin/products");
+      pushNotification("Product added successfully", true);
+    } catch (error) {
+      console.error("Error adding product:", error);
+      pushNotification("Error adding product. Please try again.", false);
+    }
   };
 };
+
 export default usePostProduct;

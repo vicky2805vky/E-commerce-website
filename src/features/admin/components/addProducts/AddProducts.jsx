@@ -8,16 +8,19 @@ import usePostProduct from "features/admin/hooks/usePostProduct";
 import { useRef } from "react";
 import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
 import { addProductActions } from "features/admin/services/reducers/addProductReducer";
+import useInitForm from "features/admin/hooks/useInitForm";
 
 const AddProducts = () => {
   const formRef = useRef();
 
   const { dispatch } = useAddProductContext();
 
+  useInitForm();
+
   const postProduct = usePostProduct();
 
-  const handleSubmit = (e) => {
-    postProduct(e);
+  const handleSubmit = async (e) => {
+    await postProduct(e);
     formRef.current.reset();
     dispatch({ type: addProductActions.resetState });
   };

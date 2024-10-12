@@ -5,6 +5,14 @@ const addProductContext = createContext();
 
 const AddProductContextProvider = ({ children }) => {
   const initialState = {
+    formData: {
+      name: "",
+      category: "",
+      description: "",
+      mrp: "",
+      price: "",
+      rating: "",
+    },
     imageVariations: [
       {
         id: 0,

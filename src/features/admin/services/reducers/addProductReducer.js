@@ -8,6 +8,9 @@ export const addProductActions = {
 
 const addProductReducer = (state, action) => {
   switch (action.type) {
+    case addProductActions.setFormData:
+      return { ...state, formData: action.payload };
+
     case addProductActions.setImageVariations:
       return { ...state, imageVariations: action.payload };
 
@@ -19,6 +22,14 @@ const addProductReducer = (state, action) => {
 
     case addProductActions.resetState:
       return {
+        formData: {
+          name: "",
+          category: "",
+          description: "",
+          mrp: "",
+          price: "",
+          rating: "",
+        },
         imageVariations: [
           {
             id: 0,

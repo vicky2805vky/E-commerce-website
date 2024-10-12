@@ -57,6 +57,7 @@ function App() {
                 path="/admin/products/:id/edit"
                 element={<AddProducts />}
               />
+              <Route path="/admin/products/add" element={<AddProducts />} />
             </Route>
             {isLoggedIn && <Route path="/delete" element={<DeleteAccount />} />}
             <Route path="/delete-confirmation" element={<DeleteConfirm />} />
