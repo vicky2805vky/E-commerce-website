@@ -22,17 +22,14 @@ export const deleteThumbnail = ({ imageVariations }, dispatch, id) => {
   const updatedImageVariation =
     imageVariations.length > 1
       ? imageVariations
-          .filter((variation) => {
-            return variation.id !== id;
-          })
-          .map((variation, i) => {
-            variation["id"] = i;
-            return variation;
-          })
+          .filter((variation) => variation.id !== id)
+          .map((variation, i) => ({ ...variation, id: i }))
       : imageVariations;
+
   dispatch({
     type: addProductActions.setImageVariations,
     payload: updatedImageVariation,
   });
+
   dispatch({ type: addProductActions.setCurrentImageSet, payload: 0 });
 };
