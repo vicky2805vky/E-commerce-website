@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { addProductActions } from "../services/reducers/addProductReducer";
 
 function useInitForm() {
-  const { id } = useParams();
   const { dispatch } = useAddProductContext();
   const { products } = useReduxData();
 

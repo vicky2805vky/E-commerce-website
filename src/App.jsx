@@ -19,7 +19,7 @@ import DeleteAccount from "features/auth/components/profile/DeleteAccount";
 import DeleteConfirm from "features/auth/components/profile/DeleteConfirm";
 import Admin from "features/admin/Admin";
 import AddProducts from "features/admin/components/addProducts/AddProducts";
-import ViewProducts from "features/admin/components/viewProducts/ViewProducts";
+import ProductManager from "features/admin/components/viewProducts/ProductManager";
 
 function App() {
   const { products, error, isLoggedIn } = useReduxData();
@@ -52,7 +52,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/profile" element={<Account />} />
             <Route path="/admin" element={<Admin />}>
-              <Route path="/admin/products" element={<ViewProducts />} />
+              <Route path="/admin/products" element={<ProductManager />} />
               <Route
                 path="/admin/products/:id/edit"
                 element={<AddProducts />}

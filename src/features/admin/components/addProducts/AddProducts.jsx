@@ -7,12 +7,8 @@ import {
 import usePostProduct from "features/admin/hooks/usePostProduct";
 import { useRef } from "react";
 
-import useInitForm from "features/admin/hooks/useInitForm";
-
 const AddProducts = () => {
   const formRef = useRef();
-
-  useInitForm();
 
   const postProduct = usePostProduct();
 

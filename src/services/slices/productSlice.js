@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getProducts } from "../api/productsApi";
+import { deleteProduct, getProducts } from "../api/productsApi";
 import {
   postCartProduct,
   decrementCartProduct,
@@ -143,6 +143,20 @@ const productSlice = createSlice({
         state.error = { hasError: false, statusCode: 404 };
       })
       .addCase(deleteCartProduct.rejected, (state, action) => {
+        console.error({
+          error: action.payload.message,
+          type: action.payload.name,
+          code: action.payload.code,
+        });
+        state.error = { hasError: true, statusCode: 500 };
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.products = state.products.filter(
+          (item) => item.id != action.payload
+        );
+        state.error = { hasError: false, statusCode: 404 };
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
         console.error({
           error: action.payload.message,
           type: action.payload.name,

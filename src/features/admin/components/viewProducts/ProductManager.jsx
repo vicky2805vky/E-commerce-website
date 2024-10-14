@@ -1,10 +1,13 @@
 import { FLEX_CENTER, FLEX_CENTER_COL } from "constants/tailwindConstants";
 import useReduxData from "hooks/useReduxData";
 import { FaRegEdit, FaTrash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteProduct } from "services/api/productsApi";
 
-const ViewProducts = () => {
+const ProductManager = () => {
   const { products } = useReduxData();
+  const dispatch = useDispatch();
 
   const rowStyle =
     "cart-product-card flex justify-between items-center w-11/12 [&_*]:flex-1 p-3";
@@ -37,7 +40,12 @@ const ViewProducts = () => {
                 </Link>
               </div>
               <div>
-                <div className={"bg-red-400" + buttonStyle}>
+                <div
+                  className={"bg-red-400" + buttonStyle}
+                  onClick={() => {
+                    dispatch(deleteProduct(product.id));
+                  }}
+                >
                   <FaTrash />
                 </div>
               </div>
@@ -49,4 +57,4 @@ const ViewProducts = () => {
   );
 };
 
-export default ViewProducts;
+export default ProductManager;
