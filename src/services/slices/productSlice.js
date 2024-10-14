@@ -152,7 +152,7 @@ const productSlice = createSlice({
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.products = state.products.filter(
-          (item) => item.id != action.payload
+          (item) => item.id != action.payload.id
         );
         state.error = { hasError: false, statusCode: 404 };
       })

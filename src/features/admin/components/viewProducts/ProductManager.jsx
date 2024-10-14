@@ -1,6 +1,6 @@
 import { FLEX_CENTER, FLEX_CENTER_COL } from "constants/tailwindConstants";
 import useReduxData from "hooks/useReduxData";
-import { FaRegEdit, FaTrash } from "react-icons/fa";
+import { FaPlus, FaRegEdit, FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteProduct } from "services/api/productsApi";
@@ -17,6 +17,9 @@ const ProductManager = () => {
 
   return (
     <div className={"flex flex-col items-center w-full gap-0 h-full "}>
+      <Link to={"add"} className={buttonStyle + " bg-green-400 mb-3"}>
+        <FaPlus />
+      </Link>
       <div className={rowStyle}>
         <p>name</p>
         <p>category</p>
@@ -43,7 +46,7 @@ const ProductManager = () => {
                 <div
                   className={"bg-red-400" + buttonStyle}
                   onClick={() => {
-                    dispatch(deleteProduct(product.id));
+                    dispatch(deleteProduct(product));
                   }}
                 >
                   <FaTrash />

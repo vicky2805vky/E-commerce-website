@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
-import { db } from "configs/firebase";
+import { db, storage } from "configs/firebase";
+import { deleteObject, listAll, ref } from "firebase/storage";
 
 const productsCollection = "S-mart-products";
 
@@ -42,10 +43,26 @@ export const getProducts = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
   "product/delete",
-  async (id, thunkApi) => {
+  async (product, thunkApi) => {
     try {
-      await deleteDoc(doc(db, productsCollection, id));
-      return id;
+      await deleteDoc(doc(db, productsCollection, product.id));
+      const storageRef = ref(storage, `${product.category}/${product.name}/`);
+      const imageFolderRef = await listAll(storageRef);
+      imageFolderRef.prefixes.map(async (folder) => {
+        const imageRef = await listAll(
+          ref(storage, `${product.category}/${product.name}/${folder.name}`)
+        );
+        imageRef.items.map((item) =>
+          deleteObject(
+            ref(
+              storage,
+              `${product.category}/${product.name}/${folder.name}/${item.name}`
+            )
+          )
+        );
+      });
+
+      return product;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }

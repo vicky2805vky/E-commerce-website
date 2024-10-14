@@ -4,14 +4,24 @@ import { db, storage } from "configs/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { pushNotification } from "utils/pushNotification";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import useReduxData from "hooks/useReduxData";
+import { setProducts } from "services/slices/productSlice";
 
 const usePostProduct = () => {
   const { state } = useAddProductContext();
   const { imageVariations, uploadedImageFiles, formData } = state;
+  const { products } = useReduxData();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return async (e) => {
     e.preventDefault();
+
+    if (imageVariations.length !== uploadedImageFiles.length) {
+      pushNotification("please upload an image");
+      return;
+    }
 
     formData.description = formData.description
       .split("\n")
@@ -60,6 +70,17 @@ const usePostProduct = () => {
             data
           )
         )
+      );
+
+      dispatch(
+        setProducts([
+          ...products,
+          {
+            id: formData.name.replaceAll(" ", "-"),
+            ...formData,
+            images: imageData,
+          },
+        ])
       );
 
       navigate("/admin/products");
