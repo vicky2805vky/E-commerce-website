@@ -8,7 +8,7 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
   const { state, dispatch } = useAddProductContext();
   const { formData } = state;
 
-  const { options = [], ref, onChange, value } = optionalParameters;
+  const { options, ref, onChange, value } = optionalParameters;
 
   const inputProps = {
     className: inputStyle,
@@ -41,7 +41,7 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
       return (
         <select {...inputProps}>
           {options.map((option, i) => (
-            <option value={option} key={i}>
+            <option value={option !== "select" ? option : ""} key={i}>
               {option}
             </option>
           ))}

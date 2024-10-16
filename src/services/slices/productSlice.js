@@ -157,11 +157,7 @@ const productSlice = createSlice({
         state.error = { hasError: false, statusCode: 404 };
       })
       .addCase(deleteProduct.rejected, (state, action) => {
-        console.error({
-          error: action.payload.message,
-          type: action.payload.name,
-          code: action.payload.code,
-        });
+        console.error(action.payload);
         state.error = { hasError: true, statusCode: 500 };
       });
   },

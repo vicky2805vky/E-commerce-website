@@ -16,8 +16,8 @@ const AddProducts = () => {
     <form
       className={`w-full flex h-full gap-4 p-5 flex-wrap overflow-scroll ${TYPOGRAPHY_XS}`}
       onSubmit={async (e) => {
-        await postProduct(e);
-        dispatch({ type: addProductActions.resetState });
+        const postStatus = await postProduct(e);
+        postStatus && dispatch({ type: addProductActions.resetState });
       }}
     >
       <UploadImages style={ADD_PRODUCTS_CHILDREN} />

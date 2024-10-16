@@ -45,22 +45,39 @@ export const deleteProduct = createAsyncThunk(
   "product/delete",
   async (product, thunkApi) => {
     try {
-      await deleteDoc(doc(db, productsCollection, product.id));
+      const imageDeletePromises = product.images.map((image) =>
+        deleteDoc(
+          doc(db, `${productsCollection}/${product.id}/images/${image.id}`)
+        )
+      );
+
+      const productDeletePromise = deleteDoc(
+        doc(db, `${productsCollection}/${product.id}`)
+      );
+
+      await Promise.all([...imageDeletePromises, productDeletePromise]);
+
       const storageRef = ref(storage, `${product.category}/${product.name}/`);
       const imageFolderRef = await listAll(storageRef);
-      imageFolderRef.prefixes.map(async (folder) => {
-        const imageRef = await listAll(
-          ref(storage, `${product.category}/${product.name}/${folder.name}`)
-        );
-        imageRef.items.map((item) =>
-          deleteObject(
-            ref(
-              storage,
-              `${product.category}/${product.name}/${folder.name}/${item.name}`
+
+      const folderDeletePromises = imageFolderRef.prefixes.map(
+        async (folder) => {
+          const imageRef = await listAll(
+            ref(storage, `${product.category}/${product.name}/${folder.name}`)
+          );
+          const itemDeletePromises = imageRef.items.map((item) =>
+            deleteObject(
+              ref(
+                storage,
+                `${product.category}/${product.name}/${folder.name}/${item.name}`
+              )
             )
-          )
-        );
-      });
+          );
+          await Promise.all(itemDeletePromises);
+        }
+      );
+
+      await Promise.all(folderDeletePromises);
 
       return product;
     } catch (error) {

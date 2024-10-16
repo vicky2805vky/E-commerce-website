@@ -20,9 +20,8 @@ const usePostProduct = () => {
 
     if (imageVariations.length !== uploadedImageFiles.length) {
       pushNotification("please upload an image");
-      return;
+      return false;
     }
-
     formData.description = formData.description
       .split("\n")
       .map((sentence) => sentence.trim())
@@ -85,6 +84,7 @@ const usePostProduct = () => {
 
       navigate("/admin/products");
       pushNotification("Product added successfully", true);
+      return true;
     } catch (error) {
       console.error("Error adding product:", error);
       pushNotification("Error adding product. Please try again.", false);
