@@ -18,7 +18,11 @@ export const changeThumbnailFocus = (
   });
 };
 
-export const deleteThumbnail = ({ imageVariations }, dispatch, id) => {
+export const deleteThumbnail = (
+  { imageVariations, uploadedImageFiles },
+  dispatch,
+  id
+) => {
   const updatedImageVariation =
     imageVariations.length > 1
       ? imageVariations
@@ -29,6 +33,16 @@ export const deleteThumbnail = ({ imageVariations }, dispatch, id) => {
   dispatch({
     type: addProductActions.setImageVariations,
     payload: updatedImageVariation,
+  });
+
+  const updatedImages =
+    uploadedImageFiles.length > 1
+      ? uploadedImageFiles.filter((_, i) => id !== i)
+      : uploadedImageFiles;
+
+  dispatch({
+    type: addProductActions.setUploadedImages,
+    payload: updatedImages,
   });
 
   dispatch({ type: addProductActions.setCurrentImageSet, payload: 0 });

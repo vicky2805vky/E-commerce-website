@@ -25,7 +25,13 @@ function useInitForm() {
         price: filteredProduct.price,
         rating: filteredProduct.rating,
       };
-      const initialImageVariations = filteredProduct.images;
+      const initialImageVariations = filteredProduct.images.map(
+        (imageDetails) => {
+          const newImageDetails = { ...imageDetails };
+          newImageDetails.imageURLs && delete newImageDetails.imageURLs;
+          return newImageDetails;
+        }
+      );
       const initialImages = filteredProduct.images.map(
         (image) => image.imageURLs
       );

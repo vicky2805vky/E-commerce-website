@@ -14,7 +14,7 @@ const ImageFileInput = () => {
     >
       <BsCloudUpload className="text-9xl text-blue-500" />
       <div className="absolute flex gap-1 overflow-scroll top-2 w-full h-3/6 ">
-        {uploadedImageFiles[currentImageSet]?.map((file, mapIndex) => {
+        {uploadedImageFiles[currentImageSet]?.map?.((file, mapIndex) => {
           return (
             <ImagePreview key={mapIndex} file={file} mapIndex={mapIndex} />
           );
