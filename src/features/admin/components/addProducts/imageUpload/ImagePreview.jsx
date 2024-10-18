@@ -11,7 +11,7 @@ const ImagePreview = ({ file, mapIndex }) => {
     <div className="min-w-[70%] flex bg-black/50 relative">
       <PhotoProvider>
         <PhotoView src={imageSrc}>
-          <img className="cursor-zoom-in" src={imageSrc} alt="" />
+          <img className="cursor-zoom-in mx-auto" src={imageSrc} alt="" />
         </PhotoView>
       </PhotoProvider>
       <IoIosRemoveCircle

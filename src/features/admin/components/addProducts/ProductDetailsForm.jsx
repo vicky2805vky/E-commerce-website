@@ -18,7 +18,7 @@ const ProductDetailsForm = ({ style }) => {
         type="submit"
         className="border border-solid px-4 py-2 rounded-full mx-auto block"
       >
-        Add Product
+        {window.location.href.split("/").at(-1)} Product
       </button>
     </div>
   );

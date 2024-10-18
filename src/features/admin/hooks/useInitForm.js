@@ -8,8 +8,12 @@ import { addProductActions } from "../services/reducers/addProductReducer";
 function useInitForm() {
   const { dispatch } = useAddProductContext();
   const { products } = useReduxData();
-
+  const { id } = useParams();
   useEffect(() => {
+    if (!id) {
+      dispatch({ type: addProductActions.resetState });
+      return;
+    }
     const filteredProduct = filterProductById(products, id);
 
     if (filteredProduct) {
@@ -38,7 +42,7 @@ function useInitForm() {
         payload: initialImages,
       });
     }
-  }, [id, products]);
+  }, [id]);
 }
 
 export default useInitForm;

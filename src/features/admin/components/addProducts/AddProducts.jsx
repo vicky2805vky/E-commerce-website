@@ -7,11 +7,12 @@ import {
 import usePostProduct from "features/admin/hooks/usePostProduct";
 import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
 import { addProductActions } from "features/admin/services/reducers/addProductReducer";
+import useInitForm from "features/admin/hooks/useInitForm";
 
 const AddProducts = () => {
   const { dispatch } = useAddProductContext();
   const postProduct = usePostProduct();
-
+  useInitForm();
   return (
     <form
       className={`w-full flex h-full gap-4 p-5 flex-wrap overflow-scroll ${TYPOGRAPHY_XS}`}
