@@ -9,6 +9,7 @@ import useAddToCart from "../../hooks/useAddToCart";
 import useReduxData from "hooks/useReduxData";
 import { useNavigate } from "react-router-dom";
 import { pushNotification } from "utils/pushNotification";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const ProductImage = ({ product, imageSet }) => {
   const addToCart = useAddToCart();
@@ -31,7 +32,17 @@ const ProductImage = ({ product, imageSet }) => {
       <div className="image-box">
         <Slider {...settings}>
           {product.images[imageSet]?.imageURLs?.map((imageURL, i) => {
-            return <img key={i} src={imageURL} alt={product.name} />;
+            return (
+              <PhotoProvider key={i}>
+                <PhotoView src={imageURL}>
+                  <img
+                    className="cursor-zoom-in !w-full"
+                    src={imageURL}
+                    alt={product.name}
+                  />
+                </PhotoView>
+              </PhotoProvider>
+            );
           })}
         </Slider>
       </div>
