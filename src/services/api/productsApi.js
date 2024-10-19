@@ -2,10 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db, storage } from "configs/firebase";
 import { deleteObject, listAll, ref } from "firebase/storage";
+import { PRODUCT_COLLECTION } from "constants/firebaseConstants";
 
-const productsCollection = "S-mart-products";
-
-const productsCollectionData = collection(db, productsCollection);
+const productsCollectionData = collection(db, PRODUCT_COLLECTION);
 
 export const getProducts = createAsyncThunk(
   "products/get",
@@ -21,7 +20,7 @@ export const getProducts = createAsyncThunk(
 
       for (let i = 0; i < data.length; i++) {
         const imageResponse = await getDocs(
-          collection(db, productsCollection, data[i].id, "images")
+          collection(db, PRODUCT_COLLECTION, data[i].id, "images")
         );
 
         const images = imageResponse.docs.map((doc, index) => {
@@ -47,12 +46,12 @@ export const deleteProduct = createAsyncThunk(
     try {
       const imageDeletePromises = product.images.map((image) =>
         deleteDoc(
-          doc(db, `${productsCollection}/${product.id}/images/${image.id}`)
+          doc(db, `${PRODUCT_COLLECTION}/${product.id}/images/${image.id}`)
         )
       );
 
       const productDeletePromise = deleteDoc(
-        doc(db, `${productsCollection}/${product.id}`)
+        doc(db, `${PRODUCT_COLLECTION}/${product.id}`)
       );
 
       await Promise.all([...imageDeletePromises, productDeletePromise]);

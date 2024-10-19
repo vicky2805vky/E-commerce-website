@@ -10,17 +10,14 @@ import {
   where,
 } from "firebase/firestore";
 import { db, auth } from "configs/firebase";
-
-const userCollection = "S-mart-users";
-
-const cartProductsCollection = "S-mart-cart";
+import { CART_COLLECTION, USER_COLLECTION } from "constants/firebaseConstants";
 
 export const getCartItems = createAsyncThunk(
   "cart/getCart",
   async (user, thunkApi) => {
     try {
       const response = await getDocs(
-        collection(db, userCollection, user?.uid, cartProductsCollection)
+        collection(db, USER_COLLECTION, user?.uid, CART_COLLECTION)
       );
       const data = response.docs.map((doc) => {
         return {
@@ -39,7 +36,7 @@ export const getCartQuantity = createAsyncThunk(
   async (user, thunkApi) => {
     try {
       const response = await getDocs(
-        collection(db, userCollection, user?.uid, cartProductsCollection)
+        collection(db, USER_COLLECTION, user?.uid, CART_COLLECTION)
       );
       const data = response.docs.map((doc) => {
         return {
@@ -61,7 +58,7 @@ export const postCartProduct = createAsyncThunk(
       await setDoc(
         doc(
           db,
-          `${userCollection}/${auth.currentUser.uid}/${cartProductsCollection}`,
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
           product.id
         ),
         product
@@ -79,7 +76,7 @@ export const incrementCartProduct = createAsyncThunk(
       await updateDoc(
         doc(
           db,
-          `${userCollection}/${auth.currentUser.uid}/${cartProductsCollection}`,
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
           product.id
         ),
         {
@@ -99,7 +96,7 @@ export const decrementCartProduct = createAsyncThunk(
       await updateDoc(
         doc(
           db,
-          `${userCollection}/${auth.currentUser.uid}/${cartProductsCollection}`,
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
           product.id
         ),
         {
@@ -119,7 +116,7 @@ export const deleteCartProduct = createAsyncThunk(
       await deleteDoc(
         doc(
           db,
-          `${userCollection}/${auth.currentUser.uid}/${cartProductsCollection}`,
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
           id
         )
       );

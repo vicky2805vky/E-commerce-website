@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { auth, db, googleAuthProvider } from "configs/firebase";
+import { CART_COLLECTION, USER_COLLECTION } from "constants/firebaseConstants";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -12,9 +13,6 @@ import {
   EmailAuthProvider,
 } from "firebase/auth";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
-
-const userCollection = "S-mart-users";
-const cartProductsCollection = "S-mart-cart";
 
 export const signUpUserWithEmail = createAsyncThunk(
   "auth/signup/email",
@@ -130,13 +128,13 @@ export const deleteAccount = createAsyncThunk(
     try {
       deleteUser(user);
       const documents = await getDocs(
-        collection(db, userCollection, user?.uid, cartProductsCollection)
+        collection(db, USER_COLLECTION, user?.uid, CART_COLLECTION)
       );
       documents.docs.map((document) => {
         deleteDoc(
           doc(
             db,
-            `${userCollection}/${user.uid}/${cartProductsCollection}`,
+            `${USER_COLLECTION}/${user.uid}/${CART_COLLECTION}`,
             document.id
           )
         );

@@ -3,6 +3,7 @@ import { db } from "configs/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { pushNotification } from "utils/pushNotification";
 import { setProducts } from "services/slices/productSlice";
+import { PRODUCT_COLLECTION } from "constants/firebaseConstants";
 
 export const validateForm = (formData, imageVariations, uploadedImageFiles) => {
   if (imageVariations.length !== uploadedImageFiles.length) {
@@ -47,20 +48,11 @@ export const uploadImages = async (
 };
 
 export const saveProductToFirestore = async (formData, imageData) => {
-  await setDoc(
-    doc(db, "S-mart-products", formData.name.replaceAll(" ", "-")),
-    formData
-  );
+  await setDoc(doc(db, PRODUCT_COLLECTION, formData.name), formData);
 
   await Promise.all(
     imageData.map((data, i) =>
-      setDoc(
-        doc(
-          db,
-          `S-mart-products/${formData.name.replaceAll(" ", "-")}/images/${i}`
-        ),
-        data
-      )
+      setDoc(doc(db, `${PRODUCT_COLLECTION}/${formData.name}/images/${i}`), data)
     )
   );
 };
@@ -70,7 +62,7 @@ export const addProductToRedux = (dispatch, products, formData, imageData) => {
     setProducts([
       ...products,
       {
-        id: formData.name.replaceAll(" ", "-"),
+        id: formData.name,
         ...formData,
         images: imageData,
       },
