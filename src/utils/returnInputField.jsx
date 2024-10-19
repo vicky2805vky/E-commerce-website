@@ -39,7 +39,11 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
 
     case "select":
       return (
-        <select {...inputProps}>
+        <select
+          {...inputProps}
+          disabled={window.location.href.split("/").at(-1) === "edit"}
+          className={`${inputStyle} disabled:opacity-65 disabled:cursor-not-allowed`}
+        >
           {options.map((option, i) => (
             <option value={option !== "select" ? option : ""} key={i}>
               {option}
