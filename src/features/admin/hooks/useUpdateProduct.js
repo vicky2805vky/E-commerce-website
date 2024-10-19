@@ -7,10 +7,11 @@ import {
   validateForm,
   uploadImages,
   saveProductToFirestore,
-} from "../utils/postImageUtils";
+} from "../utils/postProductUtils";
 import { pushNotification } from "utils/pushNotification";
 import {
   deleteAllImages,
+  deleteNonExistingImages,
   updateStoreProduct,
 } from "../utils/updateProductUtils";
 
@@ -44,9 +45,11 @@ const useUpdateProduct = () => {
 
       navigate("/admin/products");
       pushNotification("Product updated successfully", true);
+
+      deleteNonExistingImages(formData, imageData);
       return true;
     } catch (error) {
-      console.error("Error updating product:", error);
+      console.error("Error updating product: ", error);
       pushNotification("Error updating product. Please try again.", false);
       return false;
     }

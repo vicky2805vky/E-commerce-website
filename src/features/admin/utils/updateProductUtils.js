@@ -1,7 +1,8 @@
-import { db } from "configs/firebase";
+import { db, storage } from "configs/firebase";
 import { PRODUCT_COLLECTION } from "constants/firebaseConstants";
 import { removeProductById } from "features/product/utils/filterProductById";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { deleteObject, getDownloadURL, listAll, ref } from "firebase/storage";
 import { setProducts } from "services/slices/productSlice";
 
 export const deleteAllImages = async (formData) => {
@@ -40,6 +41,23 @@ export const updateStoreProduct = (
   dispatch(setProducts(newProducts));
 };
 
-export const deleteNonExistingImages = (formData) => {
-  //TODO: DELETE THE IMAGES ALONG WITH ITS DETAILS
+export const deleteNonExistingImages = async (formData, imageData) => {
+  imageData.map(async (imageSet) => {
+    const listRef = ref(
+      storage,
+      `${formData.category}/${formData.name}/${formData.name}_${imageSet.color}/`
+    );
+    const allImages = await listAll(listRef);
+
+    let allImageLinks = [];
+
+    allImages.items.map(async (item) => {
+      const itemRef = ref(storage, item.fullPath);
+      const link = await getDownloadURL(itemRef);
+      allImageLinks.push(link);
+      if (!imageSet.imageURLs.includes(link)) {
+        await deleteObject(itemRef);
+      }
+    });
+  });
 };

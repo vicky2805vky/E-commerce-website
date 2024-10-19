@@ -8,7 +8,7 @@ import {
   uploadImages,
   saveProductToFirestore,
   addProductToRedux,
-} from "../utils/postImageUtils";
+} from "../utils/postProductUtils";
 import { pushNotification } from "utils/pushNotification";
 
 const usePostProduct = () => {
