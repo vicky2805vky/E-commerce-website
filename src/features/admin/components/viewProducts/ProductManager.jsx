@@ -1,4 +1,5 @@
 import { FLEX_CENTER, FLEX_CENTER_COL } from "constants/tailwindConstants";
+import usePopup from "hooks/usePopup";
 import useReduxData from "hooks/useReduxData";
 import { FaPlus, FaRegEdit, FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -8,6 +9,7 @@ import { deleteProduct } from "services/api/productsApi";
 const ProductManager = () => {
   const { products } = useReduxData();
   const dispatch = useDispatch();
+  const popup = usePopup();
 
   const rowStyle =
     "cart-product-card flex justify-between items-center w-11/12 [&_*]:flex-1 p-3";
@@ -46,7 +48,10 @@ const ProductManager = () => {
                 <div
                   className={"bg-red-400" + buttonStyle}
                   onClick={() => {
-                    dispatch(deleteProduct(product));
+                    const popupFn = () => {
+                      dispatch(deleteProduct(product));
+                    };
+                    popup(popupFn);
                   }}
                 >
                   <FaTrash />

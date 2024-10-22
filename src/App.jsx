@@ -10,6 +10,7 @@ import useReduxData from "hooks/useReduxData";
 import useInitiateApp from "hooks/useInitiateApp";
 import useAuthState from "hooks/useAuthState";
 import AppRouter from "components/AppRouter";
+import Popup from "components/Popup";
 
 function App() {
   const { products, error } = useReduxData();
@@ -38,6 +39,7 @@ function App() {
         <div style={{ width: "100%", height: "calc(85vh - 51px)" }}>
           <AppRouter />
           <ToastNotification />
+          <Popup />
         </div>
       </div>
     );

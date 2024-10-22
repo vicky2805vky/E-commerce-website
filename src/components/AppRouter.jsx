@@ -15,6 +15,7 @@ import { Route, Routes } from "react-router-dom";
 
 const AppRouter = () => {
   const { isLoggedIn } = useReduxData();
+
   return (
     <Routes>
       <Route path="/" element={<ProductPage />} />
