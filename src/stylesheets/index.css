@@ -73,3 +73,7 @@ select {
 option {
   color: black !important;
 }
+
+.PhotoView-Slider__Counter {
+  opacity: 0;
+}

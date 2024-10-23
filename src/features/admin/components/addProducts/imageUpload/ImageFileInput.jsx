@@ -11,6 +11,13 @@ const ImageFileInput = () => {
   return (
     <div
       className={`border-dashed ${FLEX_CENTER_COL} gap-2 max-h-full relative`}
+      onDragOver={(e) => {
+        e.preventDefault();
+      }}
+      onDrop={(e) => {
+        e.preventDefault();
+        displayUploadedImage(e.dataTransfer.files, state, dispatch);
+      }}
     >
       <BsCloudUpload className="text-9xl text-blue-500" />
       <div className="absolute flex gap-1 overflow-scroll top-2 w-full h-3/6 ">
@@ -31,7 +38,7 @@ const ImageFileInput = () => {
         label={""}
         optionalParameters={{
           onChange: (e) => {
-            displayUploadedImage(e, state, dispatch);
+            displayUploadedImage(e.target.files, state, dispatch);
           },
         }}
       />

@@ -1,17 +1,21 @@
 import { addProductActions } from "../services/reducers/addProductReducer";
 
 export const displayUploadedImage = (
-  event,
+  files,
   { uploadedImageFiles, currentImageSet },
   dispatch
 ) => {
+  files = Array.from(files).filter((file) => {
+    return file.type.match(/image\/(jpeg|jpg|png|webp)/);
+  });
+
   if (uploadedImageFiles.length) {
     const newImageFiles = [
       ...uploadedImageFiles.slice(0, currentImageSet),
 
       uploadedImageFiles[currentImageSet]
-        ? [...uploadedImageFiles[currentImageSet], ...event.target.files]
-        : [...event.target.files],
+        ? [...uploadedImageFiles[currentImageSet], ...files]
+        : [...files],
 
       ...uploadedImageFiles.slice(
         currentImageSet + 1,
@@ -25,7 +29,7 @@ export const displayUploadedImage = (
   } else {
     dispatch({
       type: addProductActions.setUploadedImages,
-      payload: [[...event.target.files]],
+      payload: [[...files]],
     });
   }
 };
