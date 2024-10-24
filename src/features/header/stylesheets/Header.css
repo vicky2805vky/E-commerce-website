@@ -76,8 +76,7 @@ header li:hover::after {
 }
 
 #toggle-theme {
-  position: absolute;
-  top: -9999px;
+  display: none;
 }
 
 @media only screen and (max-width: 700px) {
