@@ -51,6 +51,9 @@ img {
 ::placeholder {
   font-size: var(--fs-s);
 }
+input {
+  text-transform: none;
+}
 input[type="checkbox"] {
   accent-color: var(--main-color);
   margin-right: var(--gap);

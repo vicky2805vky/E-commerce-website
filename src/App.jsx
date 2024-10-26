@@ -14,6 +14,7 @@ import Popup from "components/Popup";
 
 function App() {
   const { products, error } = useReduxData();
+
   useAuthState();
 
   useInitiateApp(auth.currentUser);

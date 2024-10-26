@@ -33,6 +33,7 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
         <textarea
           placeholder={label}
           {...inputProps}
+          spellCheck="false"
           className={inputStyle + " h-40"}
         ></textarea>
       );

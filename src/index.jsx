@@ -11,12 +11,15 @@ import "stylesheets/index.css";
 import "stylesheets/variables.css";
 import "stylesheets/utilities.css";
 import "stylesheets/buttons.css";
+import AddProductContextProvider from "features/admin/services/contexts/AddProductContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <AddProductContextProvider>
+        <App />
+      </AddProductContextProvider>
     </Provider>
   </BrowserRouter>
 );

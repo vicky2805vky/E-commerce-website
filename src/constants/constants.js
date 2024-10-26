@@ -1,4 +1,4 @@
-const CATEGORIES = [
+export const CATEGORIES = [
   "select",
   "mobile",
   "mobile accessories",
@@ -56,3 +56,5 @@ export const FORM_ELEMENTS = [
     },
   },
 ];
+
+export const ADMINS = ["DcC6ajUeFse5J6RF2x7Jy2xC5z42"];

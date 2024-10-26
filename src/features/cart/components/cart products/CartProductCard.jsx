@@ -21,7 +21,7 @@ const CartProductCard = ({ item }) => {
         <img src={item.images[item.imageSet]?.imageURLs[0]} alt={item.name} />
         <p>{item.name}</p>
       </div>
-      <div className="flex gap">
+      <div className="flex items-center gap">
         <CartProductQtyBtn
           condition={item.quantity < 5}
           onClick={() => {
@@ -48,8 +48,8 @@ const CartProductCard = ({ item }) => {
         <button className="button button-1">place&nbsp;order</button>
         <button
           className="button-1"
-          onClick={() => {
-            dispatch(deleteCartProduct(item.id));
+          onClick={async () => {
+            await dispatch(deleteCartProduct(item.id));
             pushNotification("Item Removed From Your Cart", true);
           }}
         >

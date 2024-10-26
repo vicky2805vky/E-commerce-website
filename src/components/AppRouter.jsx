@@ -1,6 +1,8 @@
+import { ADMINS } from "constants/constants";
 import Admin from "features/admin/Admin";
 import AddProducts from "features/admin/components/addProducts/AddProducts";
 import EditProducts from "features/admin/components/addProducts/EditProducts";
+import CategoryManager from "features/admin/components/categoryManager/CategoryManager";
 import ProductManager from "features/admin/components/viewProducts/ProductManager";
 import Account from "features/auth/Account";
 import DeleteAccount from "features/auth/components/profile/DeleteAccount";
@@ -14,7 +16,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 const AppRouter = () => {
-  const { isLoggedIn } = useReduxData();
+  const { isLoggedIn, user } = useReduxData();
 
   return (
     <Routes>
@@ -22,11 +24,17 @@ const AppRouter = () => {
       <Route path="/product/:id" element={<Product />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/profile" element={<Account />} />
-      <Route path="/admin" element={<Admin />}>
-        <Route path="/admin/products" element={<ProductManager />} />
-        <Route path="/admin/products/:id/edit" element={<EditProducts />} />
-        <Route path="/admin/products/add" element={<AddProducts />} />
-      </Route>
+
+      {ADMINS.includes(user?.uid) && (
+        <>
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/products" element={<ProductManager />} />
+          <Route path="/admin/products/:id/edit" element={<EditProducts />} />
+          <Route path="/admin/products/add" element={<AddProducts />} />
+          <Route path="/admin/categories" element={<CategoryManager />} />
+        </>
+      )}
+
       {isLoggedIn && <Route path="/delete" element={<DeleteAccount />} />}
       <Route path="/delete-confirmation" element={<DeleteConfirm />} />
       <Route path="*" element={<ErrorPage />} />
