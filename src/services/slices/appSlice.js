@@ -5,6 +5,7 @@ const initialState = {
     isVisible: false,
     task: () => {},
   },
+  theme: localStorage.getItem("theme") || "light",
 };
 
 const appSlice = createSlice({
@@ -17,9 +18,19 @@ const appSlice = createSlice({
     setPopupTask: (state, action) => {
       state.popup.task = action.payload;
     },
+    toggleTheme: (state) => {
+      if (state.theme === "light") {
+        state.theme = "dark";
+        localStorage.setItem("theme", "dark");
+      } else {
+        state.theme = "light";
+        localStorage.setItem("theme", "light");
+      }
+    },
   },
 });
 
 export default appSlice.reducer;
 
-export const { setPopupVisibility, setPopupTask } = appSlice.actions;
+export const { setPopupVisibility, setPopupTask, toggleTheme } =
+  appSlice.actions;

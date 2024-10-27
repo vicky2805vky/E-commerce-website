@@ -7,7 +7,6 @@ import {
   getDocs,
   setDoc,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import { db, auth } from "configs/firebase";
 import { CART_COLLECTION, USER_COLLECTION } from "constants/firebaseConstants";

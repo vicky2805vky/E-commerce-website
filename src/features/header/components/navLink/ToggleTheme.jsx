@@ -1,7 +1,7 @@
 import { FaSun } from "react-icons/fa6";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 
-import { toggleTheme } from "services/slices/productSlice";
+import { toggleTheme } from "services/slices/appSlice";
 
 import { useDispatch } from "react-redux";
 import useReduxData from "hooks/useReduxData";

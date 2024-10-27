@@ -33,6 +33,7 @@ const authSlice = createSlice({
     builder
       .addCase(signUpUserWithEmail.fulfilled, (state, action) => {
         state.isLoggedIn = true;
+        pushNotification("account created successfully", true);
       })
       .addCase(signUpUserWithEmail.rejected, (state, action) => {
         const errMessage = getFirebaseErrorMessage(action.payload);
@@ -41,10 +42,12 @@ const authSlice = createSlice({
       .addCase(signInUserWithEmail.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.user = action.payload;
+        pushNotification("logged in successfully", true);
       })
       .addCase(signInUserWithEmail.rejected, (state, action) => {
         const errMessage = getFirebaseErrorMessage(action.payload);
         pushNotification(errMessage);
+        pushNotification("logged in successfully", true);
       })
       .addCase(signInUserWithGoogle.fulfilled, (state, action) => {
         state.isLoggedIn = true;
@@ -64,6 +67,7 @@ const authSlice = createSlice({
       .addCase(signOutUser.fulfilled, (state, action) => {
         state.isLoggedIn = false;
         state.user = null;
+        pushNotification("logged out successfully", true);
       })
       .addCase(signOutUser.rejected, (state, action) => {
         const errMessage = getFirebaseErrorMessage(action.payload);
@@ -80,6 +84,7 @@ const authSlice = createSlice({
       .addCase(deleteAccount.fulfilled, (state, action) => {
         state.isLoggedIn = false;
         state.user = null;
+        pushNotification("account deleted successfully", true);
       })
       .addCase(deleteAccount.rejected, (state, action) => {
         const errMessage = getFirebaseErrorMessage(action.payload);

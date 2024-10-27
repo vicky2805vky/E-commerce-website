@@ -29,8 +29,6 @@ function App() {
       </>
     );
 
-  if (error.hasError) return <ErrorPage />;
-
   if (products.length === 0) return <LoadingScreen />;
 
   if (window.navigator.onLine)

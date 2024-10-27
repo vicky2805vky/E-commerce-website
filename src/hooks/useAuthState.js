@@ -1,7 +1,7 @@
 import { auth } from "configs/firebase";
 import { setIsLoggedIn, setUser } from "services/slices/authSlice";
 import { useDispatch } from "react-redux";
-import { resetCart } from "services/slices/productSlice";
+import { resetCart } from "services/slices/userCartSlice";
 
 const useAuthState = () => {
   const dispatch = useDispatch();

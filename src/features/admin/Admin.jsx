@@ -15,7 +15,7 @@ const Admin = () => {
   const { products } = useReduxData();
   return (
     <div className="h-full overflow-scroll">
-      <div className="flex [&>*]:flex-1 w-3/6 gap-3 h-36">
+      <div className="flex [&>*]:flex-1 [&>*]:min-w-[200px] [&>*]:max-w-[400px] flex-wrap gap-3 h-36">
         <Link
           to={"products"}
           className={` ${FLEX_BETWEEN} p-3 rounded-lg`}

@@ -3,7 +3,12 @@ import usePopup from "hooks/usePopup";
 import { FaPlus, FaRegEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ManagerLayout = ({ managerName, columns, managerData, popupFn }) => {
+const ManagerLayout = ({
+  managerName,
+  columns,
+  managerData,
+  deleteFunction,
+}) => {
   const popup = usePopup();
 
   const rowStyle =
@@ -46,7 +51,7 @@ const ManagerLayout = ({ managerName, columns, managerData, popupFn }) => {
                 <div
                   className={"bg-red-400" + buttonStyle}
                   onClick={() => {
-                    popup(() => popupFn(data));
+                    popup(() => deleteFunction(data));
                   }}
                 >
                   <FaTrash />

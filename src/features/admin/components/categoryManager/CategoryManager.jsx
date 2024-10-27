@@ -7,7 +7,7 @@ const CategoryManager = () => {
       managerName={"category"}
       managerData={CATEGORIES}
       columns={["category"]}
-      popupFn={() => {}}
+      deleteFunction={() => {}}
     />
   );
 };

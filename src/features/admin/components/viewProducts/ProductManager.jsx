@@ -12,7 +12,7 @@ const ProductManager = () => {
       managerName={"product"}
       columns={["name", "category"]}
       managerData={products}
-      popupFn={(product) => {
+      deleteFunction={(product) => {
         dispatch(deleteProduct(product));
       }}
     />
