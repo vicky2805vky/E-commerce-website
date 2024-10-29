@@ -31,28 +31,6 @@ header ul {
   gap: 10px;
 }
 
-header li {
-  position: relative;
-}
-header li:not(.theme-switch)::after {
-  content: "";
-  position: absolute;
-  height: 3px;
-  border-radius: 10px;
-  background-color: var(--main-color);
-  bottom: -5px;
-  left: 0;
-  right: 0;
-  inset: auto 0 -5px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s ease-in-out;
-}
-header li:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
 .header-icon {
   font-size: var(--fs-m);
   position: relative;

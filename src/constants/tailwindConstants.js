@@ -14,3 +14,8 @@ export const ADD_PRODUCTS_CHILDREN =
   "flex-1 p-5 bg-white/20 rounded-lg min-w-[250px] ";
 export const THUMBNAIL_STYLES =
   "border border-solid flex items-center p-3 rounded-lg cursor-pointer hover:bg-white/35 hover:text-black transition-colors";
+
+export const MANAGER_BUTTON =
+  " w-fit mx-auto p-2 rounded-full cursor-pointer " + FLEX_CENTER;
+export const MANAGER_ROW =
+  "cart-product-card flex justify-between items-center w-11/12 [&_*]:flex-1 p-3";

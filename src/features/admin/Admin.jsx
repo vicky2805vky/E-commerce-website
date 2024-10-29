@@ -18,8 +18,11 @@ const Admin = () => {
       <div className="flex [&>*]:flex-1 [&>*]:min-w-[200px] [&>*]:max-w-[400px] flex-wrap gap-3 h-36">
         <Link
           to={"products"}
-          className={` ${FLEX_BETWEEN} p-3 rounded-lg`}
-          style={{ background: "var(--primary-bg-gradient)" }}
+          className={` ${FLEX_BETWEEN} p-3 `}
+          style={{
+            background: "var(--primary-bg-gradient)",
+            borderRadius: "2em 0",
+          }}
         >
           <p className={TYPOGRAPHY_SM}>
             products <b className={TYPOGRAPHY_LG}>{products.length}</b>
@@ -28,8 +31,11 @@ const Admin = () => {
         </Link>
         <Link
           to={"categories"}
-          className={` ${FLEX_BETWEEN} p-3 rounded-lg`}
-          style={{ background: "var(--primary-bg-gradient)" }}
+          className={` ${FLEX_BETWEEN} p-3 `}
+          style={{
+            background: "var(--primary-bg-gradient)",
+            borderRadius: "2em 0",
+          }}
         >
           <p className={TYPOGRAPHY_SM}>
             categories <b className={TYPOGRAPHY_LG}>{CATEGORIES.length - 1}</b>

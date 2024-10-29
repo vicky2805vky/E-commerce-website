@@ -1,7 +1,6 @@
 import { auth } from "configs/firebase";
 
 import Header from "features/header/Header";
-import ErrorPage from "features/error/ErrorPage";
 import RedirectPage from "features/redirect/RedirectPage";
 import LoadingScreen from "components/LoadingScreen";
 import ToastNotification from "components/ToastNotification";
@@ -13,7 +12,7 @@ import AppRouter from "components/AppRouter";
 import Popup from "components/Popup";
 
 function App() {
-  const { products, error } = useReduxData();
+  const { products } = useReduxData();
 
   useAuthState();
 

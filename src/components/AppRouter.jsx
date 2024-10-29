@@ -35,8 +35,12 @@ const AppRouter = () => {
         </>
       )}
 
-      {isLoggedIn && <Route path="/delete" element={<DeleteAccount />} />}
-      <Route path="/delete-confirmation" element={<DeleteConfirm />} />
+      {isLoggedIn && (
+        <>
+          <Route path="/delete" element={<DeleteAccount />} />
+          <Route path="/delete-confirmation" element={<DeleteConfirm />} />
+        </>
+      )}
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

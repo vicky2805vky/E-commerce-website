@@ -1,7 +1,7 @@
 import useReduxData from "hooks/useReduxData";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "services/api/productsApi";
-import ManagerLayout from "../ui/ManagerLayout";
+import ManagerLayout from "../managerLayout/ManagerLayout";
 
 const ProductManager = () => {
   const { products } = useReduxData();

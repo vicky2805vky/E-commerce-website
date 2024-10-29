@@ -5,12 +5,14 @@ const useReduxData = () => {
   const authData = useSelector((store) => store.auth);
   const appData = useSelector((store) => store.app);
   const userCartData = useSelector((store) => store.userCart);
+  const categoryData = useSelector((store) => store.categories);
 
   return {
     ...appData,
     ...productsData,
     ...authData,
     ...userCartData,
+    ...categoryData,
   };
 };
 
