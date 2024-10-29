@@ -2,19 +2,27 @@ import React, { useEffect, useState } from "react";
 import { findIconWithName } from "features/admin/utils/categoryManagerUtils";
 import { LuFileWarning } from "react-icons/lu";
 
-const IconComponent = ({ iconName, iconPath }) => {
+const IconComponent = ({ iconName, library }) => {
   const [Icon, setIcon] = useState(null);
 
   useEffect(() => {
     const fetchIcon = async () => {
-      const icon = await findIconWithName(iconName, iconPath);
-      setIcon(() => icon);
+      if (!iconName || !library) return;
+
+      try {
+        const icon = await findIconWithName(iconName, library);
+        setIcon(() => icon);
+      } catch (error) {
+        setIcon(() => LuFileWarning);
+      }
     };
 
     fetchIcon();
-  }, [iconName]);
+  }, [iconName, library]);
 
-  return Icon ? <Icon /> : <LuFileWarning />;
+  if (!Icon) return <LuFileWarning />;
+
+  return <Icon />;
 };
 
 export default IconComponent;

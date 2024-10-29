@@ -91,15 +91,16 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
       );
 
     default:
+      const valueExceptions = ["color", "category", "icon", "icon library"];
       return (
         <input
+          {...inputProps}
           type={type}
           placeholder={label}
           id={label}
           ref={ref}
           onChange={onChange}
-          value={label === "color" ? value : undefined}
-          {...inputProps}
+          value={valueExceptions.includes(label) ? value || "" : undefined}
         />
       );
   }

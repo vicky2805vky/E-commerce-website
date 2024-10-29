@@ -1,7 +1,4 @@
-import {
-  ADD_PRODUCTS_CHILDREN,
-  TYPOGRAPHY_XS,
-} from "constants/tailwindConstants";
+import { GLASS_MORPH_BG, TYPOGRAPHY_XS } from "constants/tailwindConstants";
 import React from "react";
 import UploadImages from "./UploadImages";
 import ProductDetailsForm from "./ProductDetailsForm";
@@ -22,8 +19,8 @@ const EditProducts = () => {
         updateStatus && dispatch({ type: addProductActions.resetState });
       }}
     >
-      <UploadImages style={ADD_PRODUCTS_CHILDREN} />
-      <ProductDetailsForm style={ADD_PRODUCTS_CHILDREN} />
+      <UploadImages style={GLASS_MORPH_BG} />
+      <ProductDetailsForm style={GLASS_MORPH_BG} />
     </form>
   );
 };

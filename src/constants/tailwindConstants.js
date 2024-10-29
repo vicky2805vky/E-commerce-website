@@ -10,7 +10,7 @@ export const FLEX_CENTER = "flex justify-center items-center";
 export const FLEX_BETWEEN = "flex justify-between items-center";
 export const FLEX_CENTER_COL = "flex flex-col justify-center items-center";
 
-export const ADD_PRODUCTS_CHILDREN =
+export const GLASS_MORPH_BG =
   "flex-1 p-5 bg-white/20 rounded-lg min-w-[250px] ";
 export const THUMBNAIL_STYLES =
   "border border-solid flex items-center p-3 rounded-lg cursor-pointer hover:bg-white/35 hover:text-black transition-colors";

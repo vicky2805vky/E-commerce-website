@@ -1,9 +1,6 @@
 import UploadImages from "./UploadImages";
 import ProductDetailsForm from "./ProductDetailsForm";
-import {
-  ADD_PRODUCTS_CHILDREN,
-  TYPOGRAPHY_XS,
-} from "constants/tailwindConstants";
+import { GLASS_MORPH_BG, TYPOGRAPHY_XS } from "constants/tailwindConstants";
 import usePostProduct from "features/admin/hooks/usePostProduct";
 import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
 import { addProductActions } from "features/admin/services/reducers/addProductReducer";
@@ -21,8 +18,8 @@ const AddProducts = () => {
         postStatus && dispatch({ type: addProductActions.resetState });
       }}
     >
-      <UploadImages style={ADD_PRODUCTS_CHILDREN} />
-      <ProductDetailsForm style={ADD_PRODUCTS_CHILDREN} />
+      <UploadImages style={GLASS_MORPH_BG} />
+      <ProductDetailsForm style={GLASS_MORPH_BG} />
     </form>
   );
 };

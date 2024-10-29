@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const ManagerLayoutBody = ({ columns, data, deleteFunction }) => {
   const popup = usePopup();
+
   return (
     <div className={MANAGER_ROW}>
       {columns.map((column, i) => {
@@ -15,7 +16,7 @@ const ManagerLayoutBody = ({ columns, data, deleteFunction }) => {
             <IconComponent
               key={i}
               iconName={data.icon}
-              iconPath={data.iconPath}
+              library={data.library}
             />
           );
         }
