@@ -33,9 +33,22 @@ const iconLibraries = {
   wi: () => import("react-icons/wi"),
 };
 
+const librariesException = {
+  io: "io5",
+  hi: "hi2",
+};
+
 export const findIconWithName = async (name) => {
   try {
-    const icons = await iconLibraries[name.slice(0, 2).toLowerCase()]();
+    if (!name) return;
+    let library = name.slice(0, 2).toLowerCase();
+    let icons = await iconLibraries[library]();
+
+    if (Object.keys(librariesException).includes(library) && !icons[name]) {
+      library = librariesException[library];
+      icons = await iconLibraries[library]();
+    }
+
     return icons[name];
   } catch (error) {
     console.log(error);
