@@ -39,6 +39,18 @@ export const postCategory = createAsyncThunk(
   }
 );
 
+export const updateCategory = createAsyncThunk(
+  "category/update",
+  async (data, thunkApi) => {
+    try {
+      await setDoc(doc(db, CATEGORY_COLLECTION, data.category), data);
+      return data;
+    } catch (error) {
+      thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
 export const deleteCategory = createAsyncThunk(
   "category/delete",
   async (data, thunkApi) => {

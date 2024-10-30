@@ -2,8 +2,9 @@ import { ADMINS } from "constants/constants";
 import Admin from "features/admin/Admin";
 import AddProducts from "features/admin/components/addProducts/AddProducts";
 import EditProducts from "features/admin/components/addProducts/EditProducts";
-import CategoryForm from "features/admin/components/categoryManager/CategoryForm";
+import AddCategory from "features/admin/components/categoryManager/AddCategory";
 import CategoryManager from "features/admin/components/categoryManager/CategoryManager";
+import EditCategory from "features/admin/components/categoryManager/EditCategory";
 import ProductManager from "features/admin/components/viewProducts/ProductManager";
 import Account from "features/auth/Account";
 import DeleteAccount from "features/auth/components/profile/DeleteAccount";
@@ -33,7 +34,8 @@ const AppRouter = () => {
           <Route path="/admin/products/:id/edit" element={<EditProducts />} />
           <Route path="/admin/products/add" element={<AddProducts />} />
           <Route path="/admin/categories" element={<CategoryManager />} />
-          <Route path="/admin/categories/add" element={<CategoryForm />} />
+          <Route path="/admin/categories/add" element={<AddCategory />} />
+          <Route path="/admin/categories/:id/edit" element={<EditCategory />} />
         </>
       )}
 

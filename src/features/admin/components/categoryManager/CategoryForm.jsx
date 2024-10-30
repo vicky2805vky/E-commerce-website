@@ -6,27 +6,18 @@ import {
   THUMBNAIL_STYLES,
   TYPOGRAPHY_3XL,
 } from "constants/tailwindConstants";
-import usePostCategory from "features/admin/hooks/usePostCategory";
+
 import { useState } from "react";
 
-const CategoryForm = () => {
-  const [name, setName] = useState();
-  const [icon, setIcon] = useState();
-  const [library, setLibrary] = useState();
-  const postCategory = usePostCategory();
+const CategoryForm = ({ handleSubmit, category }) => {
+  const [name, setName] = useState(category?.category || "");
+  const [icon, setIcon] = useState(category?.icon || "");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      category: name,
-      icon,
-      library,
-    };
-    postCategory(e, data);
-  };
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        handleSubmit(e, name, icon);
+      }}
       className={GLASS_MORPH_BG + " max-w-[600px] mx-auto"}
     >
       <InputWithLabel
@@ -47,15 +38,6 @@ const CategoryForm = () => {
           },
         }}
       />
-      <InputWithLabel
-        label={"icon library"}
-        optionalParameters={{
-          value: library,
-          onChange: (e) => {
-            setLibrary(e.target.value);
-          },
-        }}
-      />
       <div className={FLEX_CENTER_COL + " gap-3 mt-6"}>
         <a
           href="https://react-icons.github.io/react-icons/"
@@ -66,11 +48,11 @@ const CategoryForm = () => {
         </a>
         <b>preview</b>
         <div className={TYPOGRAPHY_3XL + " border border-solid p-4 rounded-lg"}>
-          <IconComponent iconName={icon} library={library} />
+          <IconComponent iconName={icon} />
         </div>
       </div>
       <button type="submit" className={THUMBNAIL_STYLES + " mx-auto mt-6"}>
-        Add Category
+        {window.location.href.split("/").at(-1)} Category
       </button>
     </form>
   );

@@ -33,7 +33,11 @@ const iconLibraries = {
   wi: () => import("react-icons/wi"),
 };
 
-export const findIconWithName = async (name, library) => {
-  const icons = await iconLibraries[library]();
-  return icons[name];
+export const findIconWithName = async (name) => {
+  try {
+    const icons = await iconLibraries[name.slice(0, 2).toLowerCase()]();
+    return icons[name];
+  } catch (error) {
+    console.log(error);
+  }
 };

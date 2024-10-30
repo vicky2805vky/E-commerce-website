@@ -13,7 +13,7 @@ const ManagerLayout = ({
       <div
         className={"flex flex-col items-center w-full gap-0 overflow-scroll"}
       >
-        {managerData.map((data, i) => {
+        {managerData.map?.((data, i) => {
           return (
             <ManagerLayoutBody
               data={data}

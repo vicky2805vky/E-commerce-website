@@ -1,5 +1,4 @@
 export const CATEGORIES = [
-  "select",
   "mobile",
   "mobile accessories",
   "laptop",

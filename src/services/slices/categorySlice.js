@@ -3,6 +3,7 @@ import {
   deleteCategory,
   getCategories,
   postCategory,
+  updateCategory,
 } from "services/api/categoryApi";
 import { pushNotification } from "utils/pushNotification";
 
@@ -24,20 +25,31 @@ const categorySlice = createSlice({
         pushNotification(action.payload.message);
       })
       .addCase(postCategory.fulfilled, (state, action) => {
-        state.categories = state.categories.filter((category) => {
-          category.id !== action.payload;
+        state.categories.push({
+          ...action.payload,
+          id: action.payload.category,
         });
       })
       .addCase(postCategory.rejected, (state, action) => {
+        pushNotification(action.payload.message);
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        state.categories = [
+          ...state.categories.filter(
+            (category) => category.category !== action.payload.category
+          ),
+          action.payload,
+        ];
+      })
+      .addCase(updateCategory.rejected, (state, action) => {
         console.error(action.payload);
         pushNotification(action.payload.message);
       })
       .addCase(deleteCategory.fulfilled, (state, action) => {
-        console.log(action.payload);
-
         state.categories = state.categories.filter(
           (category) => category.id !== action.payload.id
         );
+        pushNotification("category deleted successfully", true);
       })
       .addCase(deleteCategory.rejected, (state, action) => {
         console.error(action.payload);

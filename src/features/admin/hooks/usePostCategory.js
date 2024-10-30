@@ -7,21 +7,18 @@ const usePostCategory = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const postProduct = async (e, data) => {
-    e.preventDefault();
-
+  const createCategory = async (data) => {
     try {
       dispatch(postCategory(data));
       navigate("/admin/categories");
       pushNotification("category added successfully", true);
-      return true;
     } catch (error) {
-      console.error("Error adding product:", error);
+      console.error("Error adding category:", error);
       pushNotification("Error adding category. Please try again.", false);
     }
   };
 
-  return postProduct;
+  return createCategory;
 };
 
 export default usePostCategory;

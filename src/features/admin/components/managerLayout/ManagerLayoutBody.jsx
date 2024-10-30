@@ -12,13 +12,7 @@ const ManagerLayoutBody = ({ columns, data, deleteFunction }) => {
     <div className={MANAGER_ROW}>
       {columns.map((column, i) => {
         if (column === "icon") {
-          return (
-            <IconComponent
-              key={i}
-              iconName={data.icon}
-              library={data.library}
-            />
-          );
+          return <IconComponent key={i} iconName={data.icon} />;
         }
         return <p key={i}>{data[column]}</p>;
       })}

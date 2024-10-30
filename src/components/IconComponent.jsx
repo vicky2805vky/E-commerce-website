@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { findIconWithName } from "features/admin/utils/categoryManagerUtils";
 import { LuFileWarning } from "react-icons/lu";
 
-const IconComponent = ({ iconName, library }) => {
+const IconComponent = ({ iconName }) => {
   const [Icon, setIcon] = useState(null);
 
   useEffect(() => {
     const fetchIcon = async () => {
-      if (!iconName || !library) return;
+      if (!iconName) return;
 
       try {
-        const icon = await findIconWithName(iconName, library);
+        const icon = await findIconWithName(iconName);
         setIcon(() => icon);
       } catch (error) {
         setIcon(() => LuFileWarning);
@@ -18,7 +18,7 @@ const IconComponent = ({ iconName, library }) => {
     };
 
     fetchIcon();
-  }, [iconName, library]);
+  }, [iconName]);
 
   if (!Icon) return <LuFileWarning />;
 
