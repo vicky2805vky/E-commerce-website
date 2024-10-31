@@ -45,7 +45,7 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
           disabled={window.location.href.split("/").at(-1) === "edit"}
           className={`${inputStyle} disabled:opacity-65 disabled:cursor-not-allowed`}
         >
-          <option value="">{"select"}</option>
+          <option value="">select</option>
           {options.map((option, i) => (
             <option value={option} key={i}>
               {option}
@@ -92,7 +92,7 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
       );
 
     default:
-      const valueExceptions = ["color", "category", "icon"];
+      const valueExceptions = ["color", "category", "icon", "name"];
       return (
         <input
           {...inputProps}
@@ -101,7 +101,11 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
           id={label}
           ref={ref}
           onChange={onChange}
-          value={valueExceptions.includes(label) ? value || "" : undefined}
+          value={
+            valueExceptions.includes(label)
+              ? formData[label] || value || ""
+              : undefined
+          }
         />
       );
   }

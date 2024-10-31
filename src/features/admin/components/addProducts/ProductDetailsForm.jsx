@@ -1,10 +1,29 @@
 import InputWithLabel from "components/InputWithLabel";
 import { FORM_ELEMENTS } from "constants/constants";
+import useReduxData from "hooks/useReduxData";
 
 const ProductDetailsForm = ({ style }) => {
+  const { categories } = useReduxData();
   return (
     <div className={`${style} max-h-full overflow-scroll`}>
       {FORM_ELEMENTS.map((element, i) => {
+        if (element.name === "category") {
+          return (
+            <InputWithLabel
+              key={i}
+              label={element.name}
+              type={element.type}
+              optionalParameters={
+                {
+                  ...element.optionalParameters,
+                  options: categories.map((category) => {
+                    return category.category;
+                  }),
+                } || {}
+              }
+            />
+          );
+        }
         return (
           <InputWithLabel
             key={i}
