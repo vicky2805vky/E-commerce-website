@@ -1,15 +1,3 @@
-export const CATEGORIES = [
-  "mobile",
-  "mobile accessories",
-  "laptop",
-  "smart wearables",
-  "gaming",
-  "computer accessories",
-  "speaker",
-  "camera",
-  "others",
-];
-
 export const FORM_ELEMENTS = [
   {
     name: "name",
@@ -23,7 +11,7 @@ export const FORM_ELEMENTS = [
     type: "select",
     optionalParameters: {
       value: "",
-      options: CATEGORIES,
+      options: [],
     },
   },
   {
