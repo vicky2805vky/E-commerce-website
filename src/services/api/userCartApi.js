@@ -57,8 +57,9 @@ export const postCartProduct = createAsyncThunk(
       await setDoc(
         doc(
           db,
-          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
-          product.id
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}/${
+            product.id
+          }-${product.images.color.replaceAll(" ", "-")}`
         ),
         product
       );
@@ -75,14 +76,15 @@ export const incrementCartProduct = createAsyncThunk(
       await updateDoc(
         doc(
           db,
-          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
-          product.id
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}/${
+            product.id
+          }-${product.images.color.replaceAll(" ", "-")}`
         ),
         {
           quantity: product.quantity + 1,
         }
       );
-      return product.id;
+      return product;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }
@@ -95,14 +97,15 @@ export const decrementCartProduct = createAsyncThunk(
       await updateDoc(
         doc(
           db,
-          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
-          product.id
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}/${
+            product.id
+          }-${product.images.color.replaceAll(" ", "-")}`
         ),
         {
           quantity: product.quantity - 1,
         }
       );
-      return product.id;
+      return product;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }
@@ -110,16 +113,17 @@ export const decrementCartProduct = createAsyncThunk(
 );
 export const deleteCartProduct = createAsyncThunk(
   "cart/delete",
-  async (id, thunkApi) => {
+  async (product, thunkApi) => {
     try {
       await deleteDoc(
         doc(
           db,
-          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}`,
-          id
+          `${USER_COLLECTION}/${auth.currentUser.uid}/${CART_COLLECTION}/${
+            product.id
+          }-${product.images.color.replaceAll(" ", "-")}`
         )
       );
-      return id;
+      return product;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }

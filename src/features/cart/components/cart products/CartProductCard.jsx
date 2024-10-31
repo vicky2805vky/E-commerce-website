@@ -18,7 +18,7 @@ const CartProductCard = ({ item }) => {
   return (
     <div className="a-i-c cart-product-card gap">
       <div>
-        <img src={item.images[item.imageSet]?.imageURLs[0]} alt={item.name} />
+        <img src={item.images.imageURLs[0]} alt={item.name} />
         <p>{item.name}</p>
       </div>
       <div className="flex items-center gap">
@@ -48,8 +48,8 @@ const CartProductCard = ({ item }) => {
         <button className="button button-1">place&nbsp;order</button>
         <button
           className="button-1"
-          onClick={async () => {
-            await dispatch(deleteCartProduct(item.id));
+          onClick={() => {
+            dispatch(deleteCartProduct(item));
             pushNotification("Item Removed From Your Cart", true);
           }}
         >

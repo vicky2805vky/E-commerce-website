@@ -56,7 +56,8 @@ const userCartSlice = createSlice({
       })
       .addCase(incrementCartProduct.fulfilled, (state, action) => {
         state.cartItems = state.cartItems.map((item) =>
-          item.id === action.payload
+          item.id === action.payload.id &&
+          item.images.color === action.payload.images.color
             ? {
                 ...item,
                 quantity: item.quantity < 5 ? item.quantity + 1 : item.quantity,
@@ -71,7 +72,8 @@ const userCartSlice = createSlice({
       })
       .addCase(decrementCartProduct.fulfilled, (state, action) => {
         state.cartItems = state.cartItems.map((item) =>
-          item.id === action.payload
+          item.id === action.payload.id &&
+          item.images.color === action.payload.images.color
             ? {
                 ...item,
                 quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity,
@@ -86,7 +88,9 @@ const userCartSlice = createSlice({
       })
       .addCase(deleteCartProduct.fulfilled, (state, action) => {
         state.cartItems = state.cartItems.filter(
-          (item) => item.id != action.payload
+          (item) =>
+            item.id !== action.payload.id ||
+            item.images.color !== action.payload.images.color
         );
         state.cartQuantity--;
       })

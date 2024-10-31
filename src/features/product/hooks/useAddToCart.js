@@ -12,14 +12,20 @@ const useAddToCart = () => {
   const dispatch = useDispatch();
 
   return (product, imageSet) => {
-    const itemIndexInCart = cartItems.findIndex(
-      (item) => item.id == product.id
-    );
+    const itemIndexInCart = cartItems.findIndex((item) => {
+      return (
+        item.id === product.id &&
+        item.images.color === product.images[imageSet].color
+      );
+    });
 
     if (itemIndexInCart === -1) {
       const productToAdd = {
-        ...product,
-        imageSet: imageSet,
+        id: product.id,
+        name: product.name,
+        mrp: product.mrp,
+        price: product.price,
+        images: product.images[imageSet],
         quantity: 1,
       };
       dispatch(postCartProduct(productToAdd));

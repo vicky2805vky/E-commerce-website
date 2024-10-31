@@ -16,10 +16,10 @@ const NonEmptyCart = () => {
   return (
     <div className="non-empty-cart w-100 gap f-column">
       <div className="cart-products-container">
-        {cartItems.map((item) => (
+        {cartItems.map((item, i) => (
           <CartProductCard
             item={item}
-            key={item.id}
+            key={i}
             removeCartItem={() => {
               dispatch(deleteCartProduct(item.id));
               dispatch(getCartItems());
