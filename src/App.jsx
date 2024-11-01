@@ -1,4 +1,5 @@
 import { auth } from "configs/firebase";
+RedirectPage;
 
 import Header from "features/header/Header";
 import RedirectPage from "features/redirect/RedirectPage";
@@ -22,7 +23,12 @@ function App() {
     return (
       <>
         <Header />
-        <RedirectPage image={"offline.png"} message={"retry"} destination={0}>
+        <RedirectPage
+          image={"offline"}
+          message={"retry"}
+          destination={0}
+          icon={"HiStatusOffline"}
+        >
           It seems you are offline
         </RedirectPage>
       </>

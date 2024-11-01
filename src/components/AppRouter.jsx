@@ -10,9 +10,9 @@ import Account from "features/auth/Account";
 import DeleteAccount from "features/auth/components/profile/DeleteAccount";
 import DeleteConfirm from "features/auth/components/profile/DeleteConfirm";
 import Cart from "features/cart/Cart";
-import ErrorPage from "features/error/ErrorPage";
 import Product from "features/product/components/productBuy/Product";
 import ProductPage from "features/product/ProductPage";
+import RedirectPage from "features/redirect/RedirectPage";
 import useReduxData from "hooks/useReduxData";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
@@ -42,10 +42,22 @@ const AppRouter = () => {
       {isLoggedIn && (
         <>
           <Route path="/delete" element={<DeleteAccount />} />
-          <Route path="/delete-confirmation" element={<DeleteConfirm />} />
         </>
       )}
-      <Route path="*" element={<ErrorPage />} />
+      <Route path="/delete-confirmation" element={<DeleteConfirm />} />
+      <Route
+        path="*"
+        element={
+          <RedirectPage
+            destination={"/"}
+            image={"404"}
+            message={"go home"}
+            icon={"TbError404"}
+          >
+            page not found
+          </RedirectPage>
+        }
+      />
     </Routes>
   );
 };

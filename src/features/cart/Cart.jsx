@@ -7,8 +7,13 @@ const Cart = () => {
   const { cartQuantity, isLoggedIn } = useReduxData();
   if (!isLoggedIn)
     return (
-      <RedirectPage destination="/profile" image="login.svg" message="login">
-        You have To login to access cart items
+      <RedirectPage
+        destination="/profile"
+        image="login"
+        icon={"RiLoginBoxLine"}
+        message="login"
+      >
+        please To login to access cart items
       </RedirectPage>
     );
 
@@ -17,7 +22,12 @@ const Cart = () => {
       {cartQuantity !== 0 && isLoggedIn ? (
         <NonEmptyCart />
       ) : (
-        <RedirectPage destination="/" image="empty-cart.png" message="shop now">
+        <RedirectPage
+          destination="/"
+          image="empty-cart"
+          icon={"TbShoppingCartExclamation"}
+          message="shop now"
+        >
           Your cart is empty
         </RedirectPage>
       )}

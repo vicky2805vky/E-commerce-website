@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { findIconWithName } from "features/admin/utils/categoryManagerUtils";
-import { LuFileWarning } from "react-icons/lu";
+import { IoMdWarning } from "react-icons/io";
 
-const IconComponent = ({ iconName }) => {
+const IconComponent = ({ iconName, className }) => {
   const [Icon, setIcon] = useState(null);
 
   useEffect(() => {
@@ -13,16 +13,16 @@ const IconComponent = ({ iconName }) => {
         const icon = await findIconWithName(iconName);
         setIcon(() => icon);
       } catch (error) {
-        setIcon(() => LuFileWarning);
+        setIcon(() => IoMdWarning);
       }
     };
 
     fetchIcon();
   }, [iconName]);
 
-  if (!Icon) return <LuFileWarning />;
+  if (!Icon) return <IoMdWarning className={className} />;
 
-  return <Icon />;
+  return <Icon className={className} />;
 };
 
 export default IconComponent;

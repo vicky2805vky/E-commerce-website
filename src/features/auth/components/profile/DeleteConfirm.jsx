@@ -101,7 +101,12 @@ const DeleteConfirm = () => {
       </div>
     </form>
   ) : (
-    <RedirectPage destination={"/"} image={"delete.png"} message={"Home Page"}>
+    <RedirectPage
+      destination={"/"}
+      image={"delete"}
+      icon={"RiUserUnfollowFill"}
+      message={"go home"}
+    >
       Your Account Deleted Successfully
     </RedirectPage>
   );

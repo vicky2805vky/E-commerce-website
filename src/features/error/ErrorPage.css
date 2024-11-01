@@ -1,7 +1,0 @@
-.error-page {
-  height: 80vh;
-}
-
-.error-page img {
-  width: clamp(300px, 80%, 700px);
-}
