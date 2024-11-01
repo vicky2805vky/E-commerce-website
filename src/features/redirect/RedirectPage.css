@@ -1,5 +1,4 @@
 .redirect-page {
-  height: 78vh;
   margin: auto;
   flex-wrap: wrap;
   gap: 50px;
@@ -12,4 +11,9 @@
 .redirect-page p {
   font-size: var(--fs-m);
   font-weight: 600;
+}
+@media only screen and (min-width: 400px) {
+  .redirect-page {
+    height: 78vh;
+  }
 }
