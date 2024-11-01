@@ -1,8 +1,8 @@
-import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
+import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
 import { storage } from "configs/firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import {
   validateForm,
   uploadImages,
@@ -16,9 +16,10 @@ import {
 } from "../utils/updateProductUtils";
 
 const useUpdateProduct = () => {
-  const { state } = useAddProductContext();
-  const { imageVariations, uploadedImageFiles, formData } = state;
-  const { products } = useReduxData();
+  const { state } = useProductManagerContext();
+  const { productImageVariants, uploadedProductImages, productFormData } =
+    state;
+  const { products } = useStoreData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -26,27 +27,33 @@ const useUpdateProduct = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
 
-    if (!validateForm(formData, imageVariations, uploadedImageFiles))
+    if (
+      !validateForm(
+        productFormData,
+        productImageVariants,
+        uploadedProductImages
+      )
+    )
       return false;
 
     try {
       const imageData = await uploadImages(
-        uploadedImageFiles,
-        formData,
-        imageVariations,
+        uploadedProductImages,
+        productFormData,
+        productImageVariants,
         storage
       );
 
-      deleteAllImages(formData);
+      deleteAllImages(productFormData);
 
-      await saveProductToFirestore(formData, imageData);
+      await saveProductToFirestore(productFormData, imageData);
 
-      updateStoreProduct(formData, imageData, products, id, dispatch);
+      updateStoreProduct(productFormData, imageData, products, id, dispatch);
 
       navigate("/admin/products");
       pushNotification("Product updated successfully", true);
 
-      deleteNonExistingImages(formData, imageData);
+      deleteNonExistingImages(productFormData, imageData);
       return true;
     } catch (error) {
       console.error("Error updating product: ", error);

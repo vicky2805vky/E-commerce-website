@@ -4,24 +4,27 @@ import ProductDetails from "./ProductDetails";
 import "../../stylesheets/Product.css";
 
 import { useParams } from "react-router-dom";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
-import { filterProductById } from "../../utils/filterProductById";
+import { findProductById } from "../../utils/findProductById";
 import { useState } from "react";
 
 const Product = () => {
   const { id } = useParams();
-  const { products } = useReduxData();
+  const { products } = useStoreData();
 
-  const product = filterProductById(products, id);
+  const product = findProductById(products, id);
 
-  const [imageSet, setImageSet] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (product) {
     return (
       <div className="product-buy-page">
-        <ProductImage product={product} imageSet={imageSet} />
-        <ProductDetails product={product} setImageSet={setImageSet} />
+        <ProductImage product={product} currentImageIndex={currentImageIndex} />
+        <ProductDetails
+          product={product}
+          setCurrentImageIndex={setCurrentImageIndex}
+        />
       </div>
     );
   }

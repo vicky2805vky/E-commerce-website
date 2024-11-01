@@ -1,38 +1,35 @@
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 import { pushNotification } from "utils/pushNotification";
 import { useDispatch } from "react-redux";
-import {
-  postCartProduct,
-  incrementCartProduct,
-} from "services/api/userCartApi";
+import { addCartItem, increaseProductQuantity } from "services/api/userCartApi";
 
 const useAddToCart = () => {
-  const { cartItems } = useReduxData();
+  const { cartItems } = useStoreData();
   const dispatch = useDispatch();
 
-  return (product, imageSet) => {
-    const itemIndexInCart = cartItems.findIndex((item) => {
+  return (product, selectedImageIndex) => {
+    const cartItemIndex = cartItems.findIndex((item) => {
       return (
         item.id === product.id &&
-        item.images.color === product.images[imageSet].color
+        item.images.color === product.images[selectedImageIndex].color
       );
     });
 
-    if (itemIndexInCart === -1) {
-      const productToAdd = {
+    if (cartItemIndex === -1) {
+      const newCartItem = {
         id: product.id,
         name: product.name,
         mrp: product.mrp,
         price: product.price,
-        images: product.images[imageSet],
+        images: product.images[selectedImageIndex],
         quantity: 1,
       };
-      dispatch(postCartProduct(productToAdd));
+      dispatch(addCartItem(newCartItem));
       pushNotification("Item Added To Your Cart", true);
     } else {
-      if (cartItems[itemIndexInCart].quantity < 5) {
-        dispatch(incrementCartProduct(cartItems[itemIndexInCart]));
+      if (cartItems[cartItemIndex].quantity < 5) {
+        dispatch(increaseProductQuantity(cartItems[cartItemIndex]));
         pushNotification("Item Added To Your Cart", true);
       } else {
         pushNotification("Maximum Quantity in cart");

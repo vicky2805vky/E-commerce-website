@@ -1,14 +1,14 @@
-import ImageSetColorInputs from "./imageUpload/ImageSetColorInputs";
-import ImageFileInput from "./imageUpload/ImageFileInput";
-import UploadedList from "./imageUpload/UploadedList";
+import ImageColorInputs from "./ImageColorInputs";
+import ImageFileInput from "./ImageFileInput";
+import UploadedProductsList from "./UploadedProductsList";
 
 const UploadImages = ({ style }) => {
   return (
     <div className={style + "max-h-full overflow-x-hidden overflow-y-auto"}>
-      <ImageSetColorInputs />
+      <ImageColorInputs />
       <div className="flex flex-wrap p-1  h-5/6 [&>*]:flex-1 gap-3 [&>*]:p-2">
         <ImageFileInput />
-        <UploadedList />
+        <UploadedProductsList />
       </div>
     </div>
   );

@@ -7,10 +7,10 @@ import CartSummary from "./cart summary/CartSummary";
 
 import "../stylesheets/NonEmptyCart.css";
 
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const NonEmptyCart = () => {
-  const { cartItems } = useReduxData();
+  const { cartItems } = useStoreData();
   const dispatch = useDispatch();
 
   return (

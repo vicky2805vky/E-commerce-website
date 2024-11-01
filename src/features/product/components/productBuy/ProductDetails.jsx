@@ -6,7 +6,7 @@ import "../../stylesheets/ProductDetails.css";
 import { getStars } from "../../utils/getStars.jsx";
 import ColorPicker from "../ui/ColorPicker";
 
-const ProductDetails = ({ product, setImageSet }) => {
+const ProductDetails = ({ product, setCurrentImageIndex }) => {
   const stars = getStars(product.rating);
 
   return (
@@ -17,7 +17,10 @@ const ProductDetails = ({ product, setImageSet }) => {
       </p>
       <PriceDetails product={product} />
       <div>
-        <ColorPicker images={product.images} setImageSet={setImageSet} />
+        <ColorPicker
+          images={product.images}
+          setCurrentImageIndex={setCurrentImageIndex}
+        />
         <div className="product-info">
           <p>Product Details</p>
           <div className="details">

@@ -1,7 +1,7 @@
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const useCartCalculation = () => {
-  const { cartItems } = useReduxData();
+  const { cartItems } = useStoreData();
 
   const subTotal =
     cartItems.length &&

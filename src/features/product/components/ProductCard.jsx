@@ -9,7 +9,10 @@ const ProductCard = ({ product }) => {
   return (
     <section className="product-card" key={product.id}>
       <div className="image-box flex justify-center items-center">
-        <img src={product.images[0].imageURLs[0]} alt="" />
+        <img
+          src={product.images[0].imageURLs[0]}
+          alt={product.name + "image"}
+        />
       </div>
       <section className="product-details f-column">
         <p className="product-name">{product.name}</p>

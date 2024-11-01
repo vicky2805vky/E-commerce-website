@@ -5,11 +5,11 @@ import { deleteAccount, signOutUser } from "services/api/authApi";
 import "../../stylesheets/Profile.css";
 
 import { useDispatch } from "react-redux";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import { auth } from "configs/firebase";
 
 const Profile = () => {
-  const { user } = useReduxData();
+  const { user } = useStoreData();
   const dispatch = useDispatch();
 
   return (

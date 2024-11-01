@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
-  postCartProduct,
-  decrementCartProduct,
+  addCartItem,
+  decreaseProductQuantity,
   deleteCartProduct,
   getCartItems,
   getCartQuantity,
-  incrementCartProduct,
+  increaseProductQuantity,
 } from "services/api/userCartApi";
 import { pushNotification } from "utils/pushNotification";
 
@@ -19,7 +19,7 @@ const userCartSlice = createSlice({
   name: "userCart",
   initialState,
   reducers: {
-    resetCart: (state) => {
+    clearCart: (state) => {
       state.cartItems.length = 0;
       state.cartQuantity = 0;
     },
@@ -32,7 +32,7 @@ const userCartSlice = createSlice({
       .addCase(getCartItems.fulfilled, (state, action) => {
         state.cartItems = [...action.payload];
       })
-      .addCase(getCartItems.rejected, (state, action) => {
+      .addCase(getCartItems.rejected, (_, action) => {
         pushNotification(
           `${action.payload.name || "error"}: ${action.payload.message}`
         );
@@ -40,21 +40,21 @@ const userCartSlice = createSlice({
       .addCase(getCartQuantity.fulfilled, (state, action) => {
         state.cartQuantity = action.payload;
       })
-      .addCase(getCartQuantity.rejected, (state, action) => {
+      .addCase(getCartQuantity.rejected, (_, action) => {
         pushNotification(
           `${action.payload.name || "error"}: ${action.payload.message}`
         );
       })
-      .addCase(postCartProduct.fulfilled, (state, action) => {
+      .addCase(addCartItem.fulfilled, (state, action) => {
         state.cartItems = [...state.cartItems, action.payload];
         state.cartQuantity++;
       })
-      .addCase(postCartProduct.rejected, (state, action) => {
+      .addCase(addCartItem.rejected, (_, action) => {
         pushNotification(
           `${action.payload.name || "error"}: ${action.payload.message}`
         );
       })
-      .addCase(incrementCartProduct.fulfilled, (state, action) => {
+      .addCase(increaseProductQuantity.fulfilled, (state, action) => {
         state.cartItems = state.cartItems.map((item) =>
           item.id === action.payload.id &&
           item.images.color === action.payload.images.color
@@ -65,12 +65,12 @@ const userCartSlice = createSlice({
             : item
         );
       })
-      .addCase(incrementCartProduct.rejected, (state, action) => {
+      .addCase(increaseProductQuantity.rejected, (state, action) => {
         pushNotification(
           `${action.payload.name || "error"}: ${action.payload.message}`
         );
       })
-      .addCase(decrementCartProduct.fulfilled, (state, action) => {
+      .addCase(decreaseProductQuantity.fulfilled, (state, action) => {
         state.cartItems = state.cartItems.map((item) =>
           item.id === action.payload.id &&
           item.images.color === action.payload.images.color
@@ -81,7 +81,7 @@ const userCartSlice = createSlice({
             : item
         );
       })
-      .addCase(decrementCartProduct.rejected, (state, action) => {
+      .addCase(decreaseProductQuantity.rejected, (_, action) => {
         pushNotification(
           `${action.payload.name || "error"}: ${action.payload.message}`
         );
@@ -104,4 +104,4 @@ const userCartSlice = createSlice({
 
 export default userCartSlice.reducer;
 
-export const { resetCart, setCartQuantity } = userCartSlice.actions;
+export const { clearCart, setCartQuantity } = userCartSlice.actions;

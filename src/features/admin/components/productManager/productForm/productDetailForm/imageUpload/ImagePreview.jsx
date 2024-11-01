@@ -1,11 +1,11 @@
-import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
+import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
 import { deletePreviewImage } from "features/admin/utils/imageFileInputUtils";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 
 const ImagePreview = ({ file, mapIndex }) => {
-  const { state, dispatch } = useAddProductContext();
+  const { state, dispatch } = useProductManagerContext();
   const imageSrc = typeof file === "object" ? URL.createObjectURL(file) : file;
   return (
     <div className="min-w-[90%] object-cover flex bg-black/50 relative">

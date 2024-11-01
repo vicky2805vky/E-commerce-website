@@ -1,13 +1,13 @@
 import InputWithLabel from "components/InputWithLabel";
 import { FLEX_CENTER_COL, THUMBNAIL_STYLES } from "constants/tailwindConstants";
-import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
+import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
 import { BsCloudUpload } from "react-icons/bs";
 import ImagePreview from "./ImagePreview";
 import { displayUploadedImage } from "features/admin/utils/imageFileInputUtils";
 
 const ImageFileInput = () => {
-  const { state, dispatch } = useAddProductContext();
-  const { currentImageSet, uploadedImageFiles } = state;
+  const { state, dispatch } = useProductManagerContext();
+  const { currentImageIndex, uploadedProductImages } = state;
   return (
     <div
       className={`border-dashed ${FLEX_CENTER_COL} gap-2 max-h-full relative`}
@@ -21,7 +21,7 @@ const ImageFileInput = () => {
     >
       <BsCloudUpload className="text-9xl text-blue-500" />
       <div className="absolute flex gap-1 overflow-scroll top-2 w-full h-3/6 ">
-        {uploadedImageFiles[currentImageSet]?.map?.((file, mapIndex) => {
+        {uploadedProductImages[currentImageIndex]?.map?.((file, mapIndex) => {
           return (
             <ImagePreview key={mapIndex} file={file} mapIndex={mapIndex} />
           );

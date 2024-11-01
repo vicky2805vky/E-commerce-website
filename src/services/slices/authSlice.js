@@ -14,7 +14,7 @@ import { pushNotification } from "utils/pushNotification";
 import { auth } from "configs/firebase";
 
 const initialState = {
-  isLoggedIn: false,
+  isUserLoggedIn: false,
   user: auth?.currentUser || null,
 };
 
@@ -22,8 +22,8 @@ const authSlice = createSlice({
   name: "authSlice",
   initialState,
   reducers: {
-    setIsLoggedIn: (state, action) => {
-      state.isLoggedIn = action.payload;
+    updateLoginStatus: (state, action) => {
+      state.isUserLoggedIn = action.payload;
     },
     setUser: (state, action) => {
       state.user = action.payload;
@@ -32,7 +32,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signUpUserWithEmail.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
+        state.isUserLoggedIn = true;
         pushNotification("account created successfully", true);
       })
       .addCase(signUpUserWithEmail.rejected, (state, action) => {
@@ -40,7 +40,7 @@ const authSlice = createSlice({
         pushNotification(errMessage);
       })
       .addCase(signInUserWithEmail.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
+        state.isUserLoggedIn = true;
         state.user = action.payload;
         pushNotification("logged in successfully", true);
       })
@@ -50,7 +50,7 @@ const authSlice = createSlice({
         pushNotification("logged in successfully", true);
       })
       .addCase(signInUserWithGoogle.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
+        state.isUserLoggedIn = true;
         state.user = action.payload;
       })
       .addCase(signInUserWithGoogle.rejected, (state, action) => {
@@ -65,7 +65,7 @@ const authSlice = createSlice({
         pushNotification(errMessage);
       })
       .addCase(signOutUser.fulfilled, (state, action) => {
-        state.isLoggedIn = false;
+        state.isUserLoggedIn = false;
         state.user = null;
         pushNotification("logged out successfully", true);
       })
@@ -82,7 +82,7 @@ const authSlice = createSlice({
         pushNotification(errMessage);
       })
       .addCase(deleteAccount.fulfilled, (state, action) => {
-        state.isLoggedIn = false;
+        state.isUserLoggedIn = false;
         state.user = null;
         pushNotification("account deleted successfully", true);
       })
@@ -93,5 +93,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setIsLoggedIn, setUser } = authSlice.actions;
+export const { updateLoginStatus, setUser } = authSlice.actions;
 export default authSlice.reducer;

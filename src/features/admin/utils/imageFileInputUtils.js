@@ -1,54 +1,59 @@
-import { addProductActions } from "../services/reducers/addProductReducer";
+import { productManagerActions } from "../services/reducers/productManagerReducer";
 
 export const displayUploadedImage = (
   files,
-  { uploadedImageFiles, currentImageSet },
+  { uploadedProductImages, currentImageIndex },
   dispatch
 ) => {
   files = Array.from(files).filter((file) => {
     return file.type.match(/image\/(jpeg|jpg|png|webp)/);
   });
 
-  if (uploadedImageFiles.length) {
+  if (uploadedProductImages.length) {
     const newImageFiles = [
-      ...uploadedImageFiles.slice(0, currentImageSet),
+      ...uploadedProductImages.slice(0, currentImageIndex),
 
-      uploadedImageFiles[currentImageSet]
-        ? [...uploadedImageFiles[currentImageSet], ...files]
+      uploadedProductImages[currentImageIndex]
+        ? [...uploadedProductImages[currentImageIndex], ...files]
         : [...files],
 
-      ...uploadedImageFiles.slice(
-        currentImageSet + 1,
-        uploadedImageFiles.length
+      ...uploadedProductImages.slice(
+        currentImageIndex + 1,
+        uploadedProductImages.length
       ),
     ];
     dispatch({
-      type: addProductActions.setUploadedImages,
+      type: productManagerActions.setUploadedImages,
       payload: newImageFiles,
     });
   } else {
     dispatch({
-      type: addProductActions.setUploadedImages,
+      type: productManagerActions.setUploadedImages,
       payload: [[...files]],
     });
   }
 };
 
 export const deletePreviewImage = (
-  { uploadedImageFiles, currentImageSet },
+  { uploadedProductImages, currentImageIndex },
   dispatch,
   mapIndex
 ) => {
-  const filteredFiles = uploadedImageFiles[currentImageSet].filter((file) => {
-    return file !== uploadedImageFiles[currentImageSet][mapIndex];
-  });
+  const filteredFiles = uploadedProductImages[currentImageIndex].filter(
+    (file) => {
+      return file !== uploadedProductImages[currentImageIndex][mapIndex];
+    }
+  );
   const newImageFiles = [
-    ...uploadedImageFiles.slice(0, currentImageSet),
+    ...uploadedProductImages.slice(0, currentImageIndex),
     filteredFiles,
-    ...uploadedImageFiles.slice(currentImageSet + 1, uploadedImageFiles.length),
+    ...uploadedProductImages.slice(
+      currentImageIndex + 1,
+      uploadedProductImages.length
+    ),
   ];
   dispatch({
-    type: addProductActions.setUploadedImages,
+    type: productManagerActions.setUploadedImages,
     payload: newImageFiles,
   });
 };

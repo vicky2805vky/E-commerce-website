@@ -1,7 +1,7 @@
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const CartAfterStyle = () => {
-  const { cartQuantity } = useReduxData();
+  const { cartQuantity } = useStoreData();
   return (
     <style
       dangerouslySetInnerHTML={{

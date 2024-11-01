@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import CategoryForm from "./CategoryForm";
 import useUpdateCategory from "features/admin/hooks/useUpdateCategory";
 const EditCategory = () => {
-  const { categories } = useReduxData();
+  const { categories } = useStoreData();
   const { id } = useParams();
   const [category] = categories.filter((category) => category.id === id);
 

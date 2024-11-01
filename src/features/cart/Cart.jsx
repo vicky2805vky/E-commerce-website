@@ -1,17 +1,17 @@
 import NonEmptyCart from "./components/NonEmptyCart";
 import RedirectPage from "features/redirect/RedirectPage";
 
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const Cart = () => {
-  const { cartQuantity, isLoggedIn } = useReduxData();
-  if (!isLoggedIn)
+  const { cartQuantity, isUserLoggedIn } = useStoreData();
+  if (!isUserLoggedIn)
     return (
       <RedirectPage
         destination="/profile"
-        image="login"
-        icon={"RiLoginBoxLine"}
-        message="login"
+        imageName="login"
+        iconName={"RiLoginBoxLine"}
+        buttonText="login"
       >
         please To login to access cart items
       </RedirectPage>
@@ -19,14 +19,14 @@ const Cart = () => {
 
   return (
     <div className="cart ">
-      {cartQuantity !== 0 && isLoggedIn ? (
+      {cartQuantity !== 0 && isUserLoggedIn ? (
         <NonEmptyCart />
       ) : (
         <RedirectPage
           destination="/"
-          image="empty-cart"
-          icon={"TbShoppingCartExclamation"}
-          message="shop now"
+          imageName="empty-cart"
+          iconName={"TbShoppingCartExclamation"}
+          buttonText="shop now"
         >
           Your cart is empty
         </RedirectPage>

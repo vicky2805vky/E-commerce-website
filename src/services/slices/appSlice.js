@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  popup: {
+  modal: {
     isVisible: false,
     task: () => {},
   },
@@ -12,11 +12,11 @@ const appSlice = createSlice({
   name: "appSlice",
   initialState: initialState,
   reducers: {
-    setPopupVisibility: (state) => {
-      state.popup.isVisible = !state.popup.isVisible;
+    setModalVisibility: (state) => {
+      state.modal.isVisible = !state.modal.isVisible;
     },
-    setPopupTask: (state, action) => {
-      state.popup.task = action.payload;
+    setModalTask: (state, action) => {
+      state.modal.task = action.payload;
     },
     toggleTheme: (state) => {
       if (state.theme === "light") {
@@ -32,5 +32,5 @@ const appSlice = createSlice({
 
 export default appSlice.reducer;
 
-export const { setPopupVisibility, setPopupTask, toggleTheme } =
+export const { setModalVisibility, setModalTask, toggleTheme } =
   appSlice.actions;

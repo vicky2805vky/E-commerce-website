@@ -1,8 +1,8 @@
-import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
+import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
 import { storage } from "configs/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import {
   validateForm,
   uploadImages,
@@ -12,27 +12,34 @@ import {
 import { pushNotification } from "utils/pushNotification";
 
 const usePostProduct = () => {
-  const { state } = useAddProductContext();
-  const { imageVariations, uploadedImageFiles, formData } = state;
-  const { products } = useReduxData();
+  const { state } = useProductManagerContext();
+  const { productImageVariants, uploadedProductImages, productFormData } =
+    state;
+  const { products } = useStoreData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const postProduct = async (e) => {
     e.preventDefault();
 
-    if (!validateForm(formData, imageVariations, uploadedImageFiles))
+    if (
+      !validateForm(
+        productFormData,
+        productImageVariants,
+        uploadedProductImages
+      )
+    )
       return false;
 
     try {
       const imageData = await uploadImages(
-        uploadedImageFiles,
-        formData,
-        imageVariations,
+        uploadedProductImages,
+        productFormData,
+        productImageVariants,
         storage
       );
-      await saveProductToFirestore(formData, imageData);
-      addProductToRedux(dispatch, products, formData, imageData);
+      await saveProductToFirestore(productFormData, imageData);
+      addProductToRedux(dispatch, products, productFormData, imageData);
 
       navigate("/admin/products");
       pushNotification("Product added successfully", true);

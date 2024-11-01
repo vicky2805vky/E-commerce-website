@@ -9,14 +9,14 @@ import { auth } from "configs/firebase";
 import "../../stylesheets/DeleteAccount.css";
 import "../../stylesheets/DeleteConfirm.css";
 
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import RedirectPage from "features/redirect/RedirectPage";
 
 const DeleteConfirm = () => {
-  const { isLoggedIn } = useReduxData();
+  const { isUserLoggedIn } = useStoreData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  return isLoggedIn ? (
+  return isUserLoggedIn ? (
     <form
       className="delete-account confirm f-column"
       onSubmit={(e) => {
@@ -103,9 +103,9 @@ const DeleteConfirm = () => {
   ) : (
     <RedirectPage
       destination={"/"}
-      image={"delete"}
-      icon={"RiUserUnfollowFill"}
-      message={"go home"}
+      imageName={"delete"}
+      iconName={"RiUserUnfollowFill"}
+      buttonText={"go home"}
     >
       Your Account Deleted Successfully
     </RedirectPage>

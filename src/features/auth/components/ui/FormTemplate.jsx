@@ -15,10 +15,10 @@ import {
 
 import "../../stylesheets/FormTemplate.css";
 
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const FormTemplate = ({ children, className, method, onSubmit }) => {
-  const { user } = useReduxData();
+  const { user } = useStoreData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const nameRef = useRef();

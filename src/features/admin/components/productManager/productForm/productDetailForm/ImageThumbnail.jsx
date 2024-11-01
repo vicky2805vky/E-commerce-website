@@ -1,5 +1,5 @@
 import { THUMBNAIL_STYLES } from "constants/tailwindConstants";
-import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
+import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
 import {
   changeThumbnailFocus,
   deleteThumbnail,
@@ -7,13 +7,13 @@ import {
 import { FaImages, FaTrash } from "react-icons/fa";
 
 const ImageThumbnail = ({ thisImage }) => {
-  const { state, dispatch, colorRef } = useAddProductContext();
+  const { state, dispatch, colorInputRef } = useProductManagerContext();
 
   return (
     <div
       className="flex gap-1"
       onClick={() => {
-        colorRef.current.focus();
+        colorInputRef.current.focus();
       }}
     >
       <div

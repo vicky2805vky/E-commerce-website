@@ -2,10 +2,10 @@ import ProductCard from "./components/ProductCard";
 
 import "./stylesheets/ProductPage.css";
 
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const ProductPage = () => {
-  const { filteredProducts } = useReduxData();
+  const { filteredProducts } = useStoreData();
   return (
     <main>
       {filteredProducts.map((product) => {

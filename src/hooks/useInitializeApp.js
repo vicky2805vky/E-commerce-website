@@ -3,13 +3,13 @@ import { useDispatch } from "react-redux";
 
 import { getProducts } from "services/api/productsApi";
 
-import useReduxData from "./useReduxData";
+import useStoreData from "./useStoreData";
 import { setFilteredProducts } from "services/slices/productSlice";
 import { getCartItems, getCartQuantity } from "services/api/userCartApi";
 import { getCategories } from "services/api/categoryApi";
 
-const useInitiateApp = () => {
-  const { theme, products, user } = useReduxData();
+const useInitializeApp = () => {
+  const { theme, products, user } = useStoreData();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,4 +31,4 @@ const useInitiateApp = () => {
   }, [theme]);
 };
 
-export default useInitiateApp;
+export default useInitializeApp;

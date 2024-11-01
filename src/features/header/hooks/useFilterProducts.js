@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 
 import { setFilteredProducts } from "services/slices/productSlice";
 
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const useFilterProducts = () => {
-  const { products } = useReduxData();
+  const { products } = useStoreData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

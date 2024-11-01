@@ -6,28 +6,28 @@ import RedirectPage from "features/redirect/RedirectPage";
 import LoadingScreen from "components/LoadingScreen";
 import ToastNotification from "components/ToastNotification";
 
-import useReduxData from "hooks/useReduxData";
-import useInitiateApp from "hooks/useInitiateApp";
-import useAuthState from "hooks/useAuthState";
+import useStoreData from "hooks/useStoreData";
+import useInitializeApp from "hooks/useInitializeApp";
+import useAuthListener from "hooks/useAuthListener";
 import AppRouter from "components/AppRouter";
-import Popup from "components/Popup";
+import Modal from "components/Modal";
 
 function App() {
-  const { products } = useReduxData();
+  const { products } = useStoreData();
 
-  useAuthState();
+  useAuthListener();
 
-  useInitiateApp(auth.currentUser);
+  useInitializeApp(auth.currentUser);
 
   if (!window.navigator.onLine)
     return (
       <>
         <Header />
         <RedirectPage
-          image={"offline"}
-          message={"retry"}
+          imageName={"offline"}
+          buttonText={"retry"}
           destination={0}
-          icon={"HiStatusOffline"}
+          iconName={"HiStatusOffline"}
         >
           It seems you are offline
         </RedirectPage>
@@ -43,7 +43,7 @@ function App() {
         <div style={{ width: "100%", height: "calc(85vh - 51px)" }}>
           <AppRouter />
           <ToastNotification />
-          <Popup />
+          <Modal />
         </div>
       </div>
     );

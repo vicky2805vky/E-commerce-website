@@ -1,12 +1,12 @@
-import { useAddProductContext } from "features/admin/services/contexts/AddProductContext";
-import { addProductActions } from "features/admin/services/reducers/addProductReducer";
+import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
+import { productManagerActions } from "features/admin/services/reducers/productManagerReducer";
 
 export const returnInputField = (type, label, optionalParameters = {}) => {
   const inputStyle =
     "py-2 px-4 rounded-lg bg-transparent border-solid border text-[--main-color] border-[--main-color] w-full";
 
-  const { state, dispatch } = useAddProductContext();
-  const { formData } = state;
+  const { state, dispatch } = useProductManagerContext();
+  const { productFormData } = state;
 
   const { options, ref, onChange, value } = optionalParameters;
 
@@ -14,14 +14,15 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
     className: inputStyle,
     name: label,
     required: true,
-    value: label in formData ? formData[label] : value,
+    value: label in productFormData ? productFormData[label] : value,
     onChange:
-      label in formData
+      label in productFormData
         ? (e) => {
-            formData[label] = parseFloat(e.target.value) || e.target.value;
+            productFormData[label] =
+              parseFloat(e.target.value) || e.target.value;
             dispatch({
-              type: addProductActions.setFormData,
-              payload: formData,
+              type: productManagerActions.setFormData,
+              payload: productFormData,
             });
           }
         : onChange,
@@ -100,10 +101,10 @@ export const returnInputField = (type, label, optionalParameters = {}) => {
           placeholder={label}
           id={label}
           ref={ref}
-          onChange={onChange}
+          onChange={inputProps.onChange || onChange}
           value={
             valueExceptions.includes(label)
-              ? formData[label] || value || ""
+              ? productFormData[label] || value || ""
               : undefined
           }
         />

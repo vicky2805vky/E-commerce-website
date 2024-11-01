@@ -1,12 +1,12 @@
 import IconComponent from "components/IconComponent";
 import { MANAGER_BUTTON, MANAGER_ROW } from "constants/tailwindConstants";
-import usePopup from "hooks/usePopup";
+import useModal from "hooks/useModal";
 import React from "react";
 import { FaRegEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ManagerLayoutBody = ({ columns, data, deleteFunction }) => {
-  const popup = usePopup();
+  const modal = useModal();
 
   return (
     <div className={MANAGER_ROW}>
@@ -26,7 +26,7 @@ const ManagerLayoutBody = ({ columns, data, deleteFunction }) => {
         <div
           className={"bg-red-400" + MANAGER_BUTTON}
           onClick={() => {
-            popup(() => deleteFunction(data));
+            modal(() => deleteFunction(data));
           }}
         >
           <FaTrash />

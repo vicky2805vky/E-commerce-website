@@ -1,6 +1,6 @@
 import React from "react";
 
-const ColorPicker = ({ images, setImageSet }) => {
+const ColorPicker = ({ images, setCurrentImageIndex }) => {
   return (
     <div className="a-i-c gap-2">
       {images.map((image) => (
@@ -13,7 +13,7 @@ const ColorPicker = ({ images, setImageSet }) => {
           title={image.color}
           key={image.id}
           onClick={(e) => {
-            setImageSet(image.id);
+            setCurrentImageIndex(image.id);
             document.querySelectorAll("#color").forEach((color) => {
               color.classList.remove("border-solid");
             });

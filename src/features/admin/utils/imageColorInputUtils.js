@@ -1,38 +1,38 @@
-import { addProductActions } from "../services/reducers/addProductReducer";
+import { productManagerActions } from "../services/reducers/productManagerReducer";
 
 export const changeColorName = (
-  { imageVariations, currentImageSet },
+  { productImageVariants, currentImageIndex },
   dispatch,
-  colorRef
+  colorInputRef
 ) => {
-  const updatedImageVariation = imageVariations.map((variation) => {
-    if (variation.id === currentImageSet) {
-      return { ...variation, color: colorRef.current.value };
+  const updatedImageVariation = productImageVariants.map((variation) => {
+    if (variation.id === currentImageIndex) {
+      return { ...variation, color: colorInputRef.current.value };
     } else {
       return variation;
     }
   });
 
   dispatch({
-    type: addProductActions.setImageVariations,
+    type: productManagerActions.setImageVariations,
     payload: updatedImageVariation,
   });
 };
 
 export const changeColorCode = (
-  { imageVariations, currentImageSet },
+  { productImageVariants, currentImageIndex },
   dispatch,
-  colorCodeRef
+  colorCodeInputRef
 ) => {
-  const updatedImageVariation = imageVariations.map((variation) => {
-    if (variation.id === currentImageSet) {
-      return { ...variation, code: colorCodeRef.current.value };
+  const updatedImageVariation = productImageVariants.map((variation) => {
+    if (variation.id === currentImageIndex) {
+      return { ...variation, code: colorCodeInputRef.current.value };
     } else {
       return variation;
     }
   });
   dispatch({
-    type: addProductActions.setImageVariations,
+    type: productManagerActions.setImageVariations,
     payload: updatedImageVariation,
   });
 };

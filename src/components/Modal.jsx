@@ -1,18 +1,18 @@
 import { FLEX_CENTER, FLEX_CENTER_COL } from "constants/tailwindConstants";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import { useDispatch } from "react-redux";
-import { setPopupTask, setPopupVisibility } from "services/slices/appSlice";
+import { setModalTask, setModalVisibility } from "services/slices/appSlice";
 
-const Popup = () => {
-  const { popup } = useReduxData();
+const Modal = () => {
+  const { modal } = useStoreData();
   const dispatch = useDispatch();
 
-  if (!popup.isVisible) return null;
+  if (!modal.isVisible) return null;
 
-  const showPopup = (response) => {
-    dispatch(setPopupVisibility());
-    response && popup.task();
-    dispatch(setPopupTask(() => {}));
+  const showModal = (response) => {
+    dispatch(setModalVisibility());
+    response && modal.task();
+    dispatch(setModalTask(() => {}));
   };
 
   return (
@@ -25,7 +25,7 @@ const Popup = () => {
           <button
             className="button-1"
             onClick={() => {
-              showPopup(true);
+              showModal(true);
             }}
           >
             continue
@@ -33,7 +33,7 @@ const Popup = () => {
           <button
             className="button-1"
             onClick={() => {
-              showPopup(false);
+              showModal(false);
             }}
           >
             cancel
@@ -44,4 +44,4 @@ const Popup = () => {
   );
 };
 
-export default Popup;
+export default Modal;

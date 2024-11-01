@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 import {
-  decrementCartProduct,
+  decreaseProductQuantity,
   deleteCartProduct,
-  incrementCartProduct,
+  increaseProductQuantity,
 } from "services/api/userCartApi";
 
 import CartProductQtyBtn from "./CartProductQtyBtn";
@@ -25,7 +25,7 @@ const CartProductCard = ({ item }) => {
         <CartProductQtyBtn
           condition={item.quantity < 5}
           onClick={() => {
-            dispatch(incrementCartProduct(item));
+            dispatch(increaseProductQuantity(item));
           }}
           className={"button-4 flex"}
         >
@@ -36,7 +36,7 @@ const CartProductCard = ({ item }) => {
         <CartProductQtyBtn
           condition={item.quantity > 1}
           onClick={() => {
-            dispatch(decrementCartProduct(item));
+            dispatch(decreaseProductQuantity(item));
           }}
           className={"button-4 flex"}
         >

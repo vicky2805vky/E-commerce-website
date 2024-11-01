@@ -1,49 +1,49 @@
-import { addProductActions } from "features/admin/services/reducers/addProductReducer";
+import { productManagerActions } from "features/admin/services/reducers/productManagerReducer";
 import { pushNotification } from "utils/pushNotification";
 
 export const changeThumbnailFocus = (
-  { imageVariations, uploadedImageFiles, currentImageSet },
+  { productImageVariants, uploadedProductImages, currentImageIndex },
   dispatch,
   id
 ) => {
   if (
-    imageVariations.length !== uploadedImageFiles.length &&
-    id !== imageVariations[currentImageSet].id
+    productImageVariants.length !== uploadedProductImages.length &&
+    id !== productImageVariants[currentImageIndex].id
   ) {
     return pushNotification("please upload an image");
   }
   dispatch({
-    type: addProductActions.setCurrentImageSet,
+    type: productManagerActions.setCurrentImageSet,
     payload: id,
   });
 };
 
 export const deleteThumbnail = (
-  { imageVariations, uploadedImageFiles },
+  { productImageVariants, uploadedProductImages },
   dispatch,
   id
 ) => {
   const updatedImageVariation =
-    imageVariations.length > 1
-      ? imageVariations
+    productImageVariants.length > 1
+      ? productImageVariants
           .filter((variation) => variation.id !== id)
           .map((variation, i) => ({ ...variation, id: i }))
-      : imageVariations;
+      : productImageVariants;
 
   dispatch({
-    type: addProductActions.setImageVariations,
+    type: productManagerActions.setImageVariations,
     payload: updatedImageVariation,
   });
 
   const updatedImages =
-    uploadedImageFiles.length > 1
-      ? uploadedImageFiles.filter((_, i) => id !== i)
-      : uploadedImageFiles;
+    uploadedProductImages.length > 1
+      ? uploadedProductImages.filter((_, i) => id !== i)
+      : uploadedProductImages;
 
   dispatch({
-    type: addProductActions.setUploadedImages,
+    type: productManagerActions.setUploadedImages,
     payload: updatedImages,
   });
 
-  dispatch({ type: addProductActions.setCurrentImageSet, payload: 0 });
+  dispatch({ type: productManagerActions.setCurrentImageSet, payload: 0 });
 };

@@ -7,11 +7,11 @@ import {
   TYPOGRAPHY_LG,
   TYPOGRAPHY_SM,
 } from "constants/tailwindConstants";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import { BiSolidCategory } from "react-icons/bi";
 
 const Admin = () => {
-  const { products, categories } = useReduxData();
+  const { products, categories } = useStoreData();
   return (
     <div className="h-full overflow-scroll">
       <div className="flex [&>*]:flex-1 [&>*]:min-w-[200px] [&>*]:max-w-[400px] flex-wrap gap-3 h-36">

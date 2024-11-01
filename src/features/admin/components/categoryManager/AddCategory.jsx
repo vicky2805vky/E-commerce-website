@@ -1,10 +1,10 @@
 import usePostCategory from "features/admin/hooks/usePostCategory";
 import CategoryForm from "./CategoryForm";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import { pushNotification } from "utils/pushNotification";
 
 const AddCategory = () => {
-  const { categories } = useReduxData();
+  const { categories } = useStoreData();
   const postCategory = usePostCategory();
 
   const handleSubmit = (e, name, icon) => {

@@ -50,7 +50,7 @@ export const getCartQuantity = createAsyncThunk(
     }
   }
 );
-export const postCartProduct = createAsyncThunk(
+export const addCartItem = createAsyncThunk(
   "cart/post",
   async (product, thunkApi) => {
     try {
@@ -69,7 +69,7 @@ export const postCartProduct = createAsyncThunk(
     }
   }
 );
-export const incrementCartProduct = createAsyncThunk(
+export const increaseProductQuantity = createAsyncThunk(
   "cart/increment",
   async (product, thunkApi) => {
     try {
@@ -90,7 +90,7 @@ export const incrementCartProduct = createAsyncThunk(
     }
   }
 );
-export const decrementCartProduct = createAsyncThunk(
+export const decreaseProductQuantity = createAsyncThunk(
   "cart/decrement",
   async (product, thunkApi) => {
     try {

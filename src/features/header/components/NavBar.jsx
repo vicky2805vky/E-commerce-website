@@ -5,10 +5,10 @@ import SearchBar from "./SearchBar";
 import NavigationLink from "./navLink/NavigationLink";
 import ToggleTheme from "./navLink/ToggleTheme";
 
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const NavBar = () => {
-  const { isLoggedIn, theme } = useReduxData();
+  const { isUserLoggedIn, theme } = useStoreData();
 
   return (
     <nav className="a-i-c">
@@ -26,7 +26,7 @@ const NavBar = () => {
           <NavigationLink
             destination={"/profile"}
             icon={<FaUser />}
-            label={isLoggedIn ? "Account" : "login"}
+            label={isUserLoggedIn ? "Account" : "login"}
           />
         </li>
         <li>

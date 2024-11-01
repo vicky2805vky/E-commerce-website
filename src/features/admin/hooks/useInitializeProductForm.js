@@ -1,20 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useAddProductContext } from "../services/contexts/AddProductContext";
-import { filterProductById } from "features/product/utils/filterProductById";
-import useReduxData from "hooks/useReduxData";
+import { useProductManagerContext } from "../services/contexts/ProductManagerContext";
+import { findProductById } from "features/product/utils/findProductById";
+import useStoreData from "hooks/useStoreData";
 import { useEffect } from "react";
-import { addProductActions } from "../services/reducers/addProductReducer";
+import { productManagerActions } from "../services/reducers/productManagerReducer";
 
-function useInitForm() {
-  const { dispatch } = useAddProductContext();
-  const { products } = useReduxData();
+function useInitializeProductForm() {
+  const { dispatch } = useProductManagerContext();
+  const { products } = useStoreData();
   const { id } = useParams();
   useEffect(() => {
     if (!id) {
-      dispatch({ type: addProductActions.resetState });
+      dispatch({ type: productManagerActions.resetState });
       return;
     }
-    const filteredProduct = filterProductById(products, id);
+    const filteredProduct = findProductById(products, id);
 
     if (filteredProduct) {
       const initialFormData = {
@@ -36,19 +36,19 @@ function useInitForm() {
         (image) => image.imageURLs
       );
       dispatch({
-        type: addProductActions.setFormData,
+        type: productManagerActions.setFormData,
         payload: initialFormData,
       });
       dispatch({
-        type: addProductActions.setImageVariations,
+        type: productManagerActions.setImageVariations,
         payload: initialImageVariations,
       });
       dispatch({
-        type: addProductActions.setUploadedImages,
+        type: productManagerActions.setUploadedImages,
         payload: initialImages,
       });
     }
   }, [id]);
 }
 
-export default useInitForm;
+export default useInitializeProductForm;

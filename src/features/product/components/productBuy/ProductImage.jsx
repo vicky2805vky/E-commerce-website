@@ -6,14 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../stylesheets/ProductImage.css";
 
 import useAddToCart from "../../hooks/useAddToCart";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 import { useNavigate } from "react-router-dom";
 import { pushNotification } from "utils/pushNotification";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 
-const ProductImage = ({ product, imageSet }) => {
+const ProductImage = ({ product, currentImageIndex }) => {
   const addToCart = useAddToCart();
-  const { isLoggedIn } = useReduxData();
+  const { isUserLoggedIn } = useStoreData();
   const navigate = useNavigate();
 
   var settings = {
@@ -31,7 +31,7 @@ const ProductImage = ({ product, imageSet }) => {
     <div className="image flex justify-center items-center f-column">
       <div className="image-box">
         <Slider {...settings}>
-          {product.images[imageSet]?.imageURLs?.map((imageURL, i) => {
+          {product.images[currentImageIndex]?.imageURLs?.map((imageURL, i) => {
             return (
               <PhotoProvider key={i}>
                 <PhotoView src={imageURL}>
@@ -50,12 +50,12 @@ const ProductImage = ({ product, imageSet }) => {
         <button
           className="button-3"
           onClick={() => {
-            if (!isLoggedIn) {
+            if (!isUserLoggedIn) {
               navigate("/profile");
               pushNotification("please login to continue");
               return;
             }
-            addToCart(product, imageSet);
+            addToCart(product, currentImageIndex);
           }}
         >
           Add to cart&nbsp;{<FaCartShopping />}

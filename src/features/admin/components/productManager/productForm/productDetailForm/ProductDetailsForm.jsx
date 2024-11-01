@@ -1,9 +1,9 @@
 import InputWithLabel from "components/InputWithLabel";
 import { FORM_ELEMENTS } from "constants/constants";
-import useReduxData from "hooks/useReduxData";
+import useStoreData from "hooks/useStoreData";
 
 const ProductDetailsForm = ({ style }) => {
-  const { categories } = useReduxData();
+  const { categories } = useStoreData();
   return (
     <div className={`${style} max-h-full overflow-scroll`}>
       {FORM_ELEMENTS.map((element, i) => {
