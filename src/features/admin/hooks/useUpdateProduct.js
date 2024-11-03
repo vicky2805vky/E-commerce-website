@@ -1,4 +1,3 @@
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
 import { storage } from "configs/firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,10 +15,12 @@ import {
 } from "../utils/updateProductUtils";
 
 const useUpdateProduct = () => {
-  const { state } = useProductManagerContext();
-  const { productImageVariants, uploadedProductImages, productFormData } =
-    state;
-  const { products } = useStoreData();
+  const {
+    productImageVariants,
+    uploadedProductImages,
+    productFormData,
+    products,
+  } = useStoreData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -27,9 +28,11 @@ const useUpdateProduct = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
 
+    const productFormDataCopy = { ...productFormData };
+
     if (
       !validateForm(
-        productFormData,
+        productFormDataCopy,
         productImageVariants,
         uploadedProductImages
       )
@@ -39,21 +42,27 @@ const useUpdateProduct = () => {
     try {
       const imageData = await uploadImages(
         uploadedProductImages,
-        productFormData,
+        productFormDataCopy,
         productImageVariants,
         storage
       );
 
-      deleteAllImages(productFormData);
+      deleteAllImages(productFormDataCopy);
 
-      await saveProductToFirestore(productFormData, imageData);
+      await saveProductToFirestore(productFormDataCopy, imageData);
 
-      updateStoreProduct(productFormData, imageData, products, id, dispatch);
+      updateStoreProduct(
+        productFormDataCopy,
+        imageData,
+        products,
+        id,
+        dispatch
+      );
 
       navigate("/admin/products");
       pushNotification("Product updated successfully", true);
 
-      deleteNonExistingImages(productFormData, imageData);
+      deleteNonExistingImages(productFormDataCopy, imageData);
       return true;
     } catch (error) {
       console.error("Error updating product: ", error);

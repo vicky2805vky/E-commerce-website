@@ -1,11 +1,11 @@
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
-import { deletePreviewImage } from "features/admin/utils/imageFileInputUtils";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import { useDispatch } from "react-redux";
+import { deleteUploadedProductImage } from "services/slices/adminProductSlice";
 
 const ImagePreview = ({ file, mapIndex }) => {
-  const { state, dispatch } = useProductManagerContext();
+  const dispatch = useDispatch();
   const imageSrc = typeof file === "object" ? URL.createObjectURL(file) : file;
   return (
     <div className="min-w-[90%] object-cover flex bg-black/50 relative">
@@ -17,7 +17,7 @@ const ImagePreview = ({ file, mapIndex }) => {
       <IoIosRemoveCircle
         className="absolute right-1 top-1 cursor-pointer -scale-125"
         onClick={() => {
-          deletePreviewImage(state, dispatch, mapIndex);
+          dispatch(deleteUploadedProductImage(mapIndex));
         }}
       />
     </div>

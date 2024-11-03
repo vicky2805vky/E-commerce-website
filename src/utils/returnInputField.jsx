@@ -1,113 +1,45 @@
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
-import { productManagerActions } from "features/admin/services/reducers/productManagerReducer";
-
-export const returnInputField = (type, label, optionalParameters = {}) => {
-  const inputStyle =
+export const returnInputField = (inputAttributes) => {
+  const inputStyles =
     "py-2 px-4 rounded-lg bg-transparent border-solid border text-[--main-color] border-[--main-color] w-full";
 
-  const { state, dispatch } = useProductManagerContext();
-  const { productFormData } = state;
-
-  const { options, ref, onChange, value } = optionalParameters;
-
   const inputProps = {
-    className: inputStyle,
-    name: label,
+    className: `${inputStyles} ${inputAttributes.extraStyles || ""}`,
+    placeholder: inputAttributes.name,
     required: true,
-    value: label in productFormData ? productFormData[label] : value,
-    onChange:
-      label in productFormData
-        ? (e) => {
-            productFormData[label] =
-              parseFloat(e.target.value) || e.target.value;
-            dispatch({
-              type: productManagerActions.setFormData,
-              payload: productFormData,
-            });
-          }
-        : onChange,
+    ...inputAttributes,
   };
+  const selectOptions = inputAttributes.selectOptions;
+  delete inputProps.extraStyles;
+  delete inputProps.selectOptions;
 
-  switch (type) {
+  switch (inputAttributes.type) {
     case "text-area":
-      return (
-        <textarea
-          placeholder={label}
-          {...inputProps}
-          spellCheck="false"
-          className={inputStyle + " h-40"}
-        ></textarea>
-      );
+      return <textarea spellCheck="false" {...inputProps}></textarea>;
 
     case "select":
       return (
-        <select
-          {...inputProps}
-          disabled={window.location.href.split("/").at(-1) === "edit"}
-          className={`${inputStyle} disabled:opacity-65 disabled:cursor-not-allowed`}
-        >
+        <select {...inputProps}>
           <option value="">select</option>
-          {options.map((option, i) => (
-            <option value={option} key={i}>
-              {option}
+          {selectOptions.map((selectOption, i) => (
+            <option key={i} value={selectOption}>
+              {selectOption}
             </option>
           ))}
         </select>
-      );
-
-    case "file":
-      return (
-        <input
-          type="file"
-          id="file"
-          accept=".png,.jpg,.jpeg"
-          multiple
-          className="absolute opacity-1 pointer-events-none -top-20 opacity-0"
-          ref={ref}
-          onChange={onChange}
-        />
       );
 
     case "color":
       return (
         <input
           type="color"
-          className="cursor-pointer"
-          ref={ref}
-          value={value}
-          onChange={onChange}
-          required
-        />
-      );
-
-    case "number":
-      return (
-        <input
-          type="number"
-          placeholder={label}
-          min={0}
-          max={label === "rating" ? 5 : undefined}
-          step={0.01}
           {...inputProps}
+          className={inputAttributes.extraStyles}
         />
       );
+    case "number":
+      return <input type="number" min={0} {...inputProps} />;
 
     default:
-      const valueExceptions = ["color", "category", "icon", "name"];
-      return (
-        <input
-          {...inputProps}
-          type={type}
-          placeholder={label}
-          id={label}
-          ref={ref}
-          onChange={inputProps.onChange || onChange}
-          value={
-            valueExceptions.includes(label)
-              ? productFormData[label] || value || ""
-              : undefined
-          }
-        />
-      );
+      return <input {...inputProps} />;
   }
 };

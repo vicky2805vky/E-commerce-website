@@ -1,34 +1,40 @@
 import InputWithLabel from "components/InputWithLabel";
 import { FLEX_CENTER } from "constants/tailwindConstants";
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
-import {
-  changeColorCode,
-  changeColorName,
-} from "features/admin/utils/imageColorInputUtils";
+import useStoreData from "hooks/useStoreData";
+import { useDispatch } from "react-redux";
+import { setProductImageVariants } from "services/slices/adminProductSlice";
 
 const ImageColorInputs = () => {
-  const { state, dispatch, colorInputRef, colorCodeInputRef } =
-    useProductManagerContext();
-  const { productImageVariants, currentImageIndex } = state;
+  const { productImageVariants, currentImageIndex } = useStoreData();
+  const dispatch = useDispatch();
+  const handleChange = (e, key) => {
+    const newImageVariant = { ...productImageVariants[currentImageIndex] };
+    newImageVariant[key] = e.target.value;
+
+    dispatch(setProductImageVariants(newImageVariant));
+  };
+
   return (
     <div className={`${FLEX_CENTER} h-1/6`}>
       <InputWithLabel
-        label={"color"}
-        optionalParameters={{
-          ref: colorInputRef,
-          value: productImageVariants[currentImageIndex]?.color,
-          onChange: () => {
-            changeColorName(state, dispatch, colorInputRef);
+        label={"color name"}
+        attributes={{
+          type: "text",
+          name: "color",
+          value: productImageVariants[currentImageIndex].color,
+          onChange: (e) => {
+            handleChange(e, "color");
           },
         }}
       />
       <InputWithLabel
-        type={"color"}
-        optionalParameters={{
-          ref: colorCodeInputRef,
-          value: productImageVariants[currentImageIndex]?.code,
-          onChange: () => {
-            changeColorCode(state, dispatch, colorCodeInputRef);
+        attributes={{
+          type: "color",
+          name: "",
+          extraStyles: "cursor-pointer",
+          value: productImageVariants[currentImageIndex].code,
+          onChange: (e) => {
+            handleChange(e, "code");
           },
         }}
       />

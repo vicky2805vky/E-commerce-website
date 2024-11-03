@@ -1,25 +1,29 @@
 import { THUMBNAIL_STYLES } from "constants/tailwindConstants";
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
-import {
-  changeThumbnailFocus,
-  deleteThumbnail,
-} from "features/admin/utils/thumbnailUtils";
+import useStoreData from "hooks/useStoreData";
 import { FaImages, FaTrash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import {
+  deleteProductImageVariant,
+  setCurrentImageIndex,
+} from "services/slices/adminProductSlice";
+import { pushNotification } from "utils/pushNotification";
 
 const ImageThumbnail = ({ thisImage }) => {
-  const { state, dispatch, colorInputRef } = useProductManagerContext();
-
+  const { productImageVariants, uploadedProductImages, currentImageIndex } =
+    useStoreData();
+  const dispatch = useDispatch();
   return (
-    <div
-      className="flex gap-1"
-      onClick={() => {
-        colorInputRef.current.focus();
-      }}
-    >
+    <div className="flex gap-1">
       <div
         className={`${THUMBNAIL_STYLES} justify-start  gap-4 text-nowrap  flex-1`}
         onClick={() => {
-          changeThumbnailFocus(state, dispatch, thisImage.id);
+          if (
+            productImageVariants.length !== uploadedProductImages.length &&
+            thisImage.id !== productImageVariants[currentImageIndex].id
+          ) {
+            return pushNotification("please upload an image");
+          }
+          dispatch(setCurrentImageIndex(thisImage.id));
         }}
         style={{ backgroundColor: thisImage.code + "55" }}
       >
@@ -29,7 +33,7 @@ const ImageThumbnail = ({ thisImage }) => {
       <div
         className={`${THUMBNAIL_STYLES} justify-center`}
         onClick={() => {
-          deleteThumbnail(state, dispatch, thisImage.id);
+          dispatch(deleteProductImageVariant(thisImage.id));
         }}
       >
         <FaTrash />

@@ -1,13 +1,14 @@
 import InputWithLabel from "components/InputWithLabel";
 import { FLEX_CENTER_COL, THUMBNAIL_STYLES } from "constants/tailwindConstants";
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
 import { BsCloudUpload } from "react-icons/bs";
 import ImagePreview from "./ImagePreview";
-import { displayUploadedImage } from "features/admin/utils/imageFileInputUtils";
+import { useDispatch } from "react-redux";
+import useStoreData from "hooks/useStoreData";
+import { addUploadedProductImages } from "services/slices/adminProductSlice";
 
 const ImageFileInput = () => {
-  const { state, dispatch } = useProductManagerContext();
-  const { currentImageIndex, uploadedProductImages } = state;
+  const { currentImageIndex, uploadedProductImages } = useStoreData();
+  const dispatch = useDispatch();
   return (
     <div
       className={`border-dashed ${FLEX_CENTER_COL} gap-2 max-h-full relative`}
@@ -16,7 +17,7 @@ const ImageFileInput = () => {
       }}
       onDrop={(e) => {
         e.preventDefault();
-        displayUploadedImage(e.dataTransfer.files, state, dispatch);
+        dispatch(addUploadedProductImages([...e.dataTransfer.files]));
       }}
     >
       <BsCloudUpload className="text-9xl text-blue-500" />
@@ -34,11 +35,16 @@ const ImageFileInput = () => {
       </label>
 
       <InputWithLabel
-        type="file"
-        label={""}
-        optionalParameters={{
+        className={" relative"}
+        attributes={{
+          type: "file",
+          id: "file",
+          accept: ".png,.jpg,.jpeg",
+          multiple: true,
+          required: false,
+          className: "hidden",
           onChange: (e) => {
-            displayUploadedImage(e.target.files, state, dispatch);
+            dispatch(addUploadedProductImages([...e.target.files]));
           },
         }}
       />

@@ -1,13 +1,15 @@
 import { FaPlus } from "react-icons/fa";
 import ImageThumbnail from "../ImageThumbnail";
 import { FLEX_CENTER } from "constants/tailwindConstants";
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
-import { createNewItem } from "features/admin/utils/UploadedProductsListUtils";
+import { useDispatch } from "react-redux";
+import useStoreData from "hooks/useStoreData";
+import { addProductImageVariants } from "services/slices/adminProductSlice";
+import { pushNotification } from "utils/pushNotification";
 
 const UploadedProductsList = () => {
-  const { state, dispatch, colorInputRef } = useProductManagerContext();
+  const { productImageVariants, uploadedProductImages } = useStoreData();
 
-  const { productImageVariants } = state;
+  const dispatch = useDispatch();
 
   return (
     <div className=" flex flex-col gap-2 max-h-full">
@@ -15,7 +17,10 @@ const UploadedProductsList = () => {
         type="button"
         className={`border border-solid ${FLEX_CENTER} text-nowrap p-3 rounded-lg cursor-pointer hover:bg-white/35 hover:text-black transition-colors`}
         onClick={() => {
-          createNewItem(state, dispatch, colorInputRef);
+          if (productImageVariants.length !== uploadedProductImages.length) {
+            return pushNotification("please upload an image");
+          }
+          dispatch(addProductImageVariants());
         }}
       >
         add variation&nbsp;

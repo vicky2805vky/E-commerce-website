@@ -4,19 +4,19 @@ import UploadImages from "./productDetailForm/imageUpload/UploadImages";
 import ProductDetailsForm from "./productDetailForm/ProductDetailsForm";
 import useInitializeProductForm from "features/admin/hooks/useInitializeProductForm";
 import useUpdateProduct from "features/admin/hooks/useUpdateProduct";
-import { useProductManagerContext } from "features/admin/services/contexts/ProductManagerContext";
-import { productManagerActions } from "features/admin/services/reducers/productManagerReducer";
+import { useDispatch } from "react-redux";
+import { resetAdminProductState } from "services/slices/adminProductSlice";
 
 const EditProducts = () => {
-  const { dispatch } = useProductManagerContext();
   const updateProduct = useUpdateProduct();
+  const dispatch = useDispatch();
   useInitializeProductForm();
   return (
     <form
       className={`w-full flex h-full gap-4 p-5 flex-wrap overflow-scroll ${TYPOGRAPHY_XS}`}
       onSubmit={async (e) => {
         const updateStatus = await updateProduct(e);
-        updateStatus && dispatch({ type: productManagerActions.resetState });
+        // updateStatus && dispatch(resetAdminProductState());
       }}
     >
       <UploadImages style={GLASS_MORPH_BG} />

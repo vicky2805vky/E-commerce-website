@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite --port 3000 --open",
-    "build": "vite build",
+    "build": "node --max-old-space-size=4096 node_modules/.bin/vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
