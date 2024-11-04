@@ -13,7 +13,7 @@ const Cart = () => {
         iconName={"RiLoginBoxLine"}
         buttonText="login"
       >
-        please To login to access cart items
+        please login to access cart items
       </RedirectPage>
     );
 
