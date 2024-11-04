@@ -31,7 +31,7 @@ export const postCategory = createAsyncThunk(
   "category/post",
   async (data, thunkApi) => {
     try {
-      await setDoc(doc(db, CATEGORY_COLLECTION, data.category), data);
+      await setDoc(doc(db, CATEGORY_COLLECTION, data.name), data);
       return data;
     } catch (error) {
       thunkApi.rejectWithValue(error);
@@ -43,7 +43,7 @@ export const updateCategory = createAsyncThunk(
   "category/update",
   async (data, thunkApi) => {
     try {
-      await setDoc(doc(db, CATEGORY_COLLECTION, data.category), data);
+      await setDoc(doc(db, CATEGORY_COLLECTION, data.name), data);
       return data;
     } catch (error) {
       thunkApi.rejectWithValue(error);

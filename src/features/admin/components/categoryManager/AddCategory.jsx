@@ -11,14 +11,14 @@ const AddCategory = () => {
     e.preventDefault();
 
     const doesCategoryAlreadyExist = categories.some(
-      (category) => category.category.toLowerCase() === name.toLowerCase()
+      (category) => category.name.toLowerCase() === name.toLowerCase()
     );
 
     if (doesCategoryAlreadyExist)
       return pushNotification("category already exists");
 
     const data = {
-      category: name,
+      name,
       icon,
     };
 

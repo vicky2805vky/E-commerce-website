@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 
 const CategoryForm = ({ handleSubmit, category }) => {
-  const [name, setName] = useState(category?.category || "");
+  const [name, setName] = useState(category?.name || "");
   const [icon, setIcon] = useState(category?.icon || "");
 
   return (
@@ -21,8 +21,8 @@ const CategoryForm = ({ handleSubmit, category }) => {
       className={GLASS_MORPH_BG + " max-w-[600px] mx-auto"}
     >
       <InputWithLabel
-        label={"category"}
-        optionalParameters={{
+        attributes={{
+          name: "name",
           value: name,
           onChange: (e) => {
             setName(e.target.value);
@@ -31,7 +31,8 @@ const CategoryForm = ({ handleSubmit, category }) => {
       />
       <InputWithLabel
         label={"icon"}
-        optionalParameters={{
+        attributes={{
+          name: "icon",
           value: icon,
           onChange: (e) => {
             setIcon(e.target.value);

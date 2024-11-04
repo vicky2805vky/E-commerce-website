@@ -27,7 +27,7 @@ const categorySlice = createSlice({
       .addCase(postCategory.fulfilled, (state, action) => {
         state.categories.push({
           ...action.payload,
-          id: action.payload.category,
+          id: action.payload.name,
         });
       })
       .addCase(postCategory.rejected, (state, action) => {
@@ -36,9 +36,9 @@ const categorySlice = createSlice({
       .addCase(updateCategory.fulfilled, (state, action) => {
         state.categories = [
           ...state.categories.filter(
-            (category) => category.category !== action.payload.category
+            (category) => category.name !== action.payload.name
           ),
-          action.payload,
+          { id: action.payload.name, ...action.payload },
         ];
       })
       .addCase(updateCategory.rejected, (state, action) => {

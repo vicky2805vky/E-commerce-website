@@ -10,7 +10,7 @@ const CategoryManager = () => {
     <ManagerLayout
       managerName={"category"}
       managerData={categories}
-      columns={["category", "icon"]}
+      columns={["name", "icon"]}
       deleteFunction={(data) => {
         dispatch(deleteCategory(data));
       }}

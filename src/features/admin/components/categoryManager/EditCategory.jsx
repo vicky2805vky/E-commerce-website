@@ -12,8 +12,7 @@ const EditCategory = () => {
   const handleSubmit = (e, name, icon) => {
     e.preventDefault();
     const data = {
-      id: name,
-      category: name,
+      name,
       icon,
     };
     updateCategory(data);
