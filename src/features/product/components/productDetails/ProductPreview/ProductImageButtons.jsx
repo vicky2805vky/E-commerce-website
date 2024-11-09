@@ -1,5 +1,4 @@
 import useAddToCart from "features/product/hooks/useAddToCart";
-import useStoreData from "hooks/useStoreData";
 import { FaCartShopping, FaMoneyBillWave } from "react-icons/fa6";
 
 const ProductImageButtons = ({ product, currentImageIndex }) => {

@@ -10,11 +10,11 @@ const ProductImage = ({ product, currentImageIndex }) => {
           product={product}
           currentImageIndex={currentImageIndex}
         />
-        <ProductImageButtons
-          product={product}
-          currentImageIndex={currentImageIndex}
-        />
       </div>
+      <ProductImageButtons
+        product={product}
+        currentImageIndex={currentImageIndex}
+      />
     </div>
   );
 };
