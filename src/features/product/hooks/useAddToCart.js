@@ -3,12 +3,19 @@ import useStoreData from "hooks/useStoreData";
 import { pushNotification } from "utils/pushNotification";
 import { useDispatch } from "react-redux";
 import { addCartItem, increaseProductQuantity } from "services/api/userCartApi";
+import { useNavigate } from "react-router-dom";
 
 const useAddToCart = () => {
-  const { cartItems } = useStoreData();
+  const { cartItems, isUserLoggedIn } = useStoreData();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (product, selectedImageIndex) => {
+    if (!isUserLoggedIn) {
+      navigate("/profile");
+      pushNotification("please login to continue");
+      return;
+    }
     const cartItemIndex = cartItems.findIndex((item) => {
       return (
         item.id === product.id &&

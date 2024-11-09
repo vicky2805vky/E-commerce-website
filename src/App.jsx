@@ -10,7 +10,7 @@ import useStoreData from "hooks/useStoreData";
 import useInitializeApp from "hooks/useInitializeApp";
 import useAuthListener from "hooks/useAuthListener";
 import AppRouter from "components/AppRouter";
-import Modal from "components/Modal";
+import Modal from "components/modal/Modal";
 
 function App() {
   const { products } = useStoreData();
@@ -23,14 +23,7 @@ function App() {
     return (
       <>
         <Header />
-        <RedirectPage
-          imageName={"offline"}
-          buttonText={"retry"}
-          destination={0}
-          iconName={"HiStatusOffline"}
-        >
-          It seems you are offline
-        </RedirectPage>
+        <RedirectPage redirectionType={"offline"} />
       </>
     );
 

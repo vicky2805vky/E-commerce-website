@@ -5,6 +5,7 @@ import { toggleTheme } from "services/slices/appSlice";
 
 import { useDispatch } from "react-redux";
 import useStoreData from "hooks/useStoreData";
+import Label from "components/ui/Label";
 
 const ToggleTheme = () => {
   const { theme } = useStoreData();
@@ -18,9 +19,10 @@ const ToggleTheme = () => {
           dispatch(toggleTheme());
         }}
       />
-      <label htmlFor="toggle-theme" className="theme-icon">
-        {theme === "light" ? <FaSun /> : <BsFillMoonStarsFill />}
-      </label>
+      <Label
+        inputId={"toggle-theme"}
+        labelText={theme === "light" ? <FaSun /> : <BsFillMoonStarsFill />}
+      />
     </div>
   );
 };

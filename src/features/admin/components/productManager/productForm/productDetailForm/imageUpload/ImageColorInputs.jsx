@@ -31,7 +31,7 @@ const ImageColorInputs = () => {
         attributes={{
           type: "color",
           name: "",
-          extraStyles: "cursor-pointer",
+          className: "cursor-pointer",
           value: productImageVariants[currentImageIndex].code,
           onChange: (e) => {
             handleChange(e, "code");

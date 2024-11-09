@@ -1,48 +1,24 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import { LuBaggageClaim } from "react-icons/lu";
-import {
-  FLEX_BETWEEN,
-  TYPOGRAPHY_3XL,
-  TYPOGRAPHY_LG,
-  TYPOGRAPHY_SM,
-} from "constants/tailwindConstants";
 import useStoreData from "hooks/useStoreData";
-import { BiSolidCategory } from "react-icons/bi";
+import AdminNavCard from "./components/AdminNavCard";
 
 const Admin = () => {
   const { products, categories } = useStoreData();
   return (
     <div className="h-full overflow-scroll">
       <div className="flex [&>*]:flex-1 [&>*]:min-w-[200px] [&>*]:max-w-[400px] flex-wrap gap-3 h-36">
-        <Link
-          to={"products"}
-          className={` ${FLEX_BETWEEN} p-3 `}
-          style={{
-            background: "var(--primary-bg-gradient)",
-            borderRadius: "2em 0",
-          }}
-        >
-          <p className={TYPOGRAPHY_SM}>
-            products <b className={TYPOGRAPHY_LG}>{products.length}</b>
-          </p>
-          <LuBaggageClaim className={TYPOGRAPHY_3XL} />
-        </Link>
-        <Link
-          to={"categories"}
-          className={` ${FLEX_BETWEEN} p-3 `}
-          style={{
-            background: "var(--primary-bg-gradient)",
-            borderRadius: "2em 0",
-          }}
-        >
-          <p className={TYPOGRAPHY_SM}>
-            categories <b className={TYPOGRAPHY_LG}>{categories.length}</b>
-          </p>
-          <BiSolidCategory className={TYPOGRAPHY_3XL} />
-        </Link>
+        <AdminNavCard
+          label={"products"}
+          destination={"products"}
+          totatItems={products.length}
+          iconName={"LuBaggageClaim"}
+        />
+        <AdminNavCard
+          label={"categories"}
+          destination={"categories"}
+          totatItems={categories.length}
+          iconName={"BiSolidCategory"}
+        />
       </div>
-      <Outlet />
     </div>
   );
 };

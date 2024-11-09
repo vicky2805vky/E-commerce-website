@@ -19,3 +19,6 @@ export const MANAGER_BUTTON =
   " w-fit mx-auto p-2 rounded-full cursor-pointer " + FLEX_CENTER;
 export const MANAGER_ROW =
   "cart-product-card flex justify-between items-center w-11/12 [&_*]:flex-1 p-3";
+
+export const INPUT_STYLES =
+  "py-2 px-4 rounded-lg bg-transparent border-solid border text-[--main-color] border-[--main-color] w-full";

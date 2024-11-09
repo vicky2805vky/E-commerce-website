@@ -1,17 +1,15 @@
-import { returnInputField } from "utils/returnInputField";
+import { memo } from "react";
+import InputField from "./InputField";
+import Label from "./ui/Label";
 
-const InputWithLabel = ({ label, attributes, className }) => {
+const InputWithLabel = ({ label, attributes, className = "" }) => {
   return (
     <div
-      className={`flex items-center relative mb-3 [&>*]:flex-1 ${
-        className ? className : ""
-      }`}
+      className={`flex items-center  relative mb-3 [&>*]:flex-1 ${className}`}
     >
-      {attributes.type !== "text-area" && (
-        <label>{label || attributes.name}</label>
-      )}
-      {returnInputField(attributes)}
+      {label !== null && <Label labelText={label || attributes.name} />}
+      <InputField inputAttributes={attributes} />
     </div>
   );
 };
-export default InputWithLabel;
+export default memo(InputWithLabel);

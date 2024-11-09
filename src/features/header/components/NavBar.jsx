@@ -1,26 +1,17 @@
 import { FaCartShopping, FaUser } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 
-import SearchBar from "./SearchBar";
 import NavigationLink from "./navLink/NavigationLink";
 import ToggleTheme from "./navLink/ToggleTheme";
 
 import useStoreData from "hooks/useStoreData";
+import NavBarLogo from "./navLink/NavBarLogo";
 
 const NavBar = () => {
-  const { isUserLoggedIn, theme } = useStoreData();
+  const { isUserLoggedIn } = useStoreData();
 
   return (
     <nav className="a-i-c">
-      <section className="a-i-c">
-        <Link to="/" className="flex justify-center items-center logo">
-          <img
-            src={new URL(`../images/logo-${theme}.png`, import.meta.url)}
-            alt="S-Mart"
-          />
-        </Link>
-        <SearchBar />
-      </section>
+      <NavBarLogo />
       <ul>
         <li>
           <NavigationLink

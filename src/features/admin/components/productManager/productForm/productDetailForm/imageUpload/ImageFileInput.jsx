@@ -35,6 +35,7 @@ const ImageFileInput = () => {
       </label>
 
       <InputWithLabel
+        label={null}
         className={" relative"}
         attributes={{
           type: "file",

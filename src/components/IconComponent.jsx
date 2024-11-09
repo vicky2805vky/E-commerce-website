@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { findIconWithName } from "features/admin/utils/categoryManagerUtils";
+import useFetchIcon from "hooks/useFetchIcon";
 import { IoMdWarning } from "react-icons/io";
 
 const IconComponent = ({ iconName, className }) => {
-  const [Icon, setIcon] = useState(null);
+  const Icon = useFetchIcon(iconName);
 
-  useEffect(() => {
-    const fetchIcon = async () => {
-      if (!iconName) return;
-
-      try {
-        const icon = await findIconWithName(iconName);
-        setIcon(() => icon);
-      } catch (error) {
-        setIcon(() => IoMdWarning);
-      }
-    };
-
-    fetchIcon();
-  }, [iconName]);
-
-  if (!Icon) return <IoMdWarning className={className} />;
+  if (!iconName || !Icon) return <IoMdWarning className={className} />;
 
   return <Icon className={className} />;
 };

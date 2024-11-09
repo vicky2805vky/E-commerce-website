@@ -16,6 +16,7 @@ const SearchBar = () => {
       <input
         ref={inputRef}
         type="text"
+        name="search box"
         placeholder="search..."
         onKeyDown={(e) => {
           if (e.key === "Enter") {

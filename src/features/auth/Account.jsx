@@ -1,11 +1,11 @@
+import AuthForm from "./components/authForm/AuthForm";
 import Profile from "./components/profile/Profile";
-import SignIn from "./components/signin/SignIn";
 
 import useStoreData from "hooks/useStoreData";
 
 const Account = () => {
   const { isUserLoggedIn } = useStoreData();
-  return <>{isUserLoggedIn ? <Profile /> : <SignIn />}</>;
+  return <>{isUserLoggedIn ? <Profile /> : <AuthForm />}</>;
 };
 
 export default Account;

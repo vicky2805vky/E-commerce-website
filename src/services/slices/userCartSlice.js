@@ -93,6 +93,7 @@ const userCartSlice = createSlice({
             item.images.color !== action.payload.images.color
         );
         state.cartQuantity--;
+        pushNotification("Item Removed From Your Cart", true);
       })
       .addCase(deleteCartProduct.rejected, (state, action) => {
         pushNotification(

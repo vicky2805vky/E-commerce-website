@@ -5,31 +5,14 @@ import useStoreData from "hooks/useStoreData";
 
 const Cart = () => {
   const { cartQuantity, isUserLoggedIn } = useStoreData();
-  if (!isUserLoggedIn)
-    return (
-      <RedirectPage
-        destination="/profile"
-        imageName="login"
-        iconName={"RiLoginBoxLine"}
-        buttonText="login"
-      >
-        please To login to access cart items
-      </RedirectPage>
-    );
+  if (!isUserLoggedIn) return <RedirectPage redirectionType={"login"} />;
 
   return (
     <div className="cart ">
       {cartQuantity !== 0 && isUserLoggedIn ? (
         <NonEmptyCart />
       ) : (
-        <RedirectPage
-          destination="/"
-          imageName="empty-cart"
-          iconName={"TbShoppingCartExclamation"}
-          buttonText="shop now"
-        >
-          Your cart is empty
-        </RedirectPage>
+        <RedirectPage redirectionType={"emptyCart"} />
       )}
     </div>
   );

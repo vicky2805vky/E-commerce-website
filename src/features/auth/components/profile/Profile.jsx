@@ -39,7 +39,7 @@ const Profile = () => {
         >
           sign out
         </button>
-        <Link className="button-3" to={"/delete"}>
+        <Link className="button-3" to={"/user/delete"}>
           delete
         </Link>
       </div>

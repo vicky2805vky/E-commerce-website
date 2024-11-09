@@ -1,73 +1,50 @@
-export const FORM_ELEMENTS = [
-  {
-    name: "name",
-    type: "text",
+export const REDIRECT_MAP = {
+  offline: {
+    imageName: "offline",
+    buttonText: "retry",
+    destination: 0,
+    iconName: "HiStatusOffline",
+    message: "It seems you are offline",
   },
-  {
-    name: "category",
-    type: "select",
+  pageNotFound: {
+    destination: "/",
+    imageName: "404",
+    buttonText: "go home",
+    iconName: "TbError404",
+    message: "",
   },
-  {
-    name: "description",
-    type: "text-area",
+  deleteAccount: {
+    destination: "/",
+    imageName: "delete",
+    iconName: "RiUserUnfollowFill",
+    buttonText: "go home",
+    message: "Your Account Deleted Successfully",
   },
-  {
-    name: "mrp",
-    type: "number",
+  emptyCart: {
+    destination: "/",
+    imageName: "empty-cart",
+    iconName: "TbShoppingCartExclamation",
+    buttonText: "shop now",
+    message: "Your cart is empty",
   },
-  {
-    name: "price",
-    type: "number",
+  login: {
+    destination: "/profile",
+    imageName: "login",
+    iconName: "RiLoginBoxLine",
+    buttonText: "login",
+    message: "please To login to access cart items",
   },
-  {
-    name: "rating",
-    type: "number",
-  },
-];
-// export const FORM_ELEMENTS = [
-//   {
-//     name: "name",
-//     type: "text",
-//     optionalParameters: {
-//       value: "",
-//     },
-//   },
-//   {
-//     name: "category",
-//     type: "select",
-//     optionalParameters: {
-//       value: "",
-//       options: [],
-//     },
-//   },
-//   {
-//     name: "description",
-//     type: "text-area",
-//     optionalParameters: {
-//       value: "",
-//     },
-//   },
-//   {
-//     name: "mrp",
-//     type: "number",
-//     optionalParameters: {
-//       value: "",
-//     },
-//   },
-//   {
-//     name: "price",
-//     type: "number",
-//     optionalParameters: {
-//       value: "",
-//     },
-//   },
-//   {
-//     name: "rating",
-//     type: "number",
-//     optionalParameters: {
-//       value: "",
-//     },
-//   },
-// ];
+};
 
 export const ADMINS = ["DcC6ajUeFse5J6RF2x7Jy2xC5z42"];
+
+export const SLIDER_SETTINGS = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  swipeToSlide: true,
+  className: "slider",
+};

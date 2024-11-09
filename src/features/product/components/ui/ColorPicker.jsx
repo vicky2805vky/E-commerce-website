@@ -13,11 +13,7 @@ const ColorPicker = ({ images, setCurrentImageIndex }) => {
           title={image.color}
           key={image.id}
           onClick={(e) => {
-            setCurrentImageIndex(image.id);
-            document.querySelectorAll("#color").forEach((color) => {
-              color.classList.remove("border-solid");
-            });
-            e.target.classList.add("border-solid");
+            ChangeImageSet(e, setCurrentImageIndex);
           }}
         ></div>
       ))}
@@ -26,3 +22,11 @@ const ColorPicker = ({ images, setCurrentImageIndex }) => {
 };
 
 export default ColorPicker;
+
+const ChangeImageSet = (e, setCurrentImageIndex) => {
+  setCurrentImageIndex(image.id);
+  document.querySelectorAll("#color").forEach((color) => {
+    color.classList.remove("border-solid");
+  });
+  e.target.classList.add("border-solid");
+};

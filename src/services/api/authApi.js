@@ -113,7 +113,6 @@ export const reauthenticateWithGoogle = createAsyncThunk(
       if (currentUserId !== user.uid) {
         return thunkApi.rejectWithValue("invalid user account");
       } else {
-        console.log("hi");
         navigate("/delete-confirmation");
       }
     } catch (error) {
