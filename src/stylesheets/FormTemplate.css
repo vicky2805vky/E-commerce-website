@@ -34,7 +34,7 @@
 .form .check-box {
   font-size: var(--fs-s);
 }
-.form .forgot-password:hover {
+.form .forgot-password a:hover {
   color: lightseagreen;
   text-decoration: underline;
 }

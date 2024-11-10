@@ -1,6 +1,3 @@
-import { auth } from "configs/firebase";
-RedirectPage;
-
 import Header from "features/header/Header";
 import RedirectPage from "features/redirect/RedirectPage";
 import LoadingScreen from "components/LoadingScreen";
@@ -17,7 +14,7 @@ function App() {
 
   useAuthListener();
 
-  useInitializeApp(auth.currentUser);
+  useInitializeApp();
 
   if (!window.navigator.onLine)
     return (

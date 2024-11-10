@@ -12,11 +12,5 @@ export const prepareInputProps = (inputAttributes) => {
   delete inputProps.extraStyles;
   delete inputProps.selectOptions;
 
-  for (const key in inputProps) {
-    if (!Boolean(inputProps[key] && key !== "value")) {
-      delete inputProps[key];
-    }
-  }
-
   return { inputProps, selectOptions };
 };

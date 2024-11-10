@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 
-import { deleteAccount, signOutUser } from "services/api/authApi";
+import { signOutUser } from "services/api/authApi";
 
 import "../../stylesheets/Profile.css";
 
 import { useDispatch } from "react-redux";
-import useStoreData from "hooks/useStoreData";
 import { auth } from "configs/firebase";
 
 const Profile = () => {
-  const { user } = useStoreData();
   const dispatch = useDispatch();
 
   return (
@@ -27,9 +25,11 @@ const Profile = () => {
         }}
       />
       <p className="name">
-        {user.displayName || auth.currentUser.displayName || "guest"}
+        {auth.currentUser?.displayName ||
+          auth.currentUser.displayName ||
+          "guest"}
       </p>
-      <p>email: {user.email}</p>
+      <p>email: {auth.currentUser?.email}</p>
       <div className="flex justify-center items-center gap">
         <button
           className="button-3"

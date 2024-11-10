@@ -6,12 +6,16 @@ import "../../stylesheets/ProductDetails.css";
 import { getStars } from "../../utils/getStars.jsx";
 import ColorPicker from "../ui/ColorPicker";
 
-const ProductDetails = ({ product, setCurrentImageIndex }) => {
+const ProductDetails = ({
+  product,
+  currentImageIndex,
+  setCurrentImageIndex,
+}) => {
   const stars = getStars(product.rating);
 
   return (
     <div className="product-info-box">
-      <p className="product-name">{product.name}</p>
+      <p className="product-name">{`${product.name} (${product.images[currentImageIndex].color})`}</p>
       <p className="rating">
         {product.rating} {stars.map((star) => star)}
       </p>

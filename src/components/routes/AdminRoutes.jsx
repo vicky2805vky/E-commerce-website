@@ -6,14 +6,12 @@ import AddCategory from "features/admin/components/categoryManager/AddCategory";
 import CategoryManager from "features/admin/components/categoryManager/CategoryManager";
 import EditCategory from "features/admin/components/categoryManager/EditCategory";
 import ProductManager from "features/admin/components/productManager/ProductManager";
-import useStoreData from "hooks/useStoreData";
 import { Route, Routes } from "react-router-dom";
 import FallBackRoute from "./FallBackRoute";
+import { auth } from "configs/firebase";
 
 const AdminRoutes = () => {
-  const { user } = useStoreData();
-
-  if (!ADMINS.includes(user?.uid)) {
+  if (!ADMINS.includes(auth.currentUser?.uid)) {
     return <FallBackRoute />;
   }
 

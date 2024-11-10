@@ -13,7 +13,7 @@ const ColorPicker = ({ images, setCurrentImageIndex }) => {
           title={image.color}
           key={image.id}
           onClick={(e) => {
-            ChangeImageSet(e, setCurrentImageIndex);
+            ChangeImageSet(e, image, setCurrentImageIndex);
           }}
         ></div>
       ))}
@@ -23,7 +23,7 @@ const ColorPicker = ({ images, setCurrentImageIndex }) => {
 
 export default ColorPicker;
 
-const ChangeImageSet = (e, setCurrentImageIndex) => {
+const ChangeImageSet = (e, image, setCurrentImageIndex) => {
   setCurrentImageIndex(image.id);
   document.querySelectorAll("#color").forEach((color) => {
     color.classList.remove("border-solid");

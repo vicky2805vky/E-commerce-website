@@ -3,7 +3,7 @@ import useCartCalculation from "../../hooks/useCartCalculation";
 const CartSummary = () => {
   const calculations = useCartCalculation();
   return (
-    <div className="cart-summary-container">
+    <div className="cart-summary-container mb-5">
       <p>CART SUMMARY</p>
       <table>
         <tbody>

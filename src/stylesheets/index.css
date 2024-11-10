@@ -18,11 +18,11 @@
 
 body {
   width: 100%;
-  min-height: 100vh;
   padding: 5vh 5vw;
   color: var(--main-color);
   overflow-x: hidden;
   background: var(--main-bg-gradient);
+  background-attachment: fixed;
 }
 
 button {

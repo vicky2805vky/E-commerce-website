@@ -24,6 +24,7 @@ const Product = () => {
         <ProductDetails
           product={product}
           setCurrentImageIndex={setCurrentImageIndex}
+          currentImageIndex={currentImageIndex}
         />
       </div>
     );

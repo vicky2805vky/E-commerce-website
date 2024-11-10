@@ -7,12 +7,11 @@ import "../../stylesheets/DeleteAccount.css";
 import { useNavigate } from "react-router-dom";
 import FormTemplate from "components/formTemplate/FormTemplate";
 import DeleteAccountFormHeader from "./deleteaccountForm/DeleteAccountFormHeader";
-import useStoreData from "hooks/useStoreData";
+import { auth } from "configs/firebase";
 
 const DeleteAccountForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useStoreData();
 
   return (
     <div className="delete-account f-column">
@@ -25,7 +24,7 @@ const DeleteAccountForm = () => {
         <FormTemplate.Email />
         <FormTemplate.Password />
         <FormTemplate.Condition text={"I want to delete my account."} />
-        {user.providerData[0].providerId === "google.com" ? (
+        {auth.currentUser?.providerData[0].providerId === "google.com" ? (
           <FormTemplate.GoogleSubmit method={"re-authenticate"} />
         ) : (
           <FormTemplate.Submit method={"re-authenticate"} />
