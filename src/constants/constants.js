@@ -11,7 +11,7 @@ export const REDIRECT_MAP = {
     imageName: "404",
     buttonText: "go home",
     iconName: "TbError404",
-    message: "",
+    message: "Pa ge not found",
   },
   deleteAccount: {
     destination: "/",
