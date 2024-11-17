@@ -53,15 +53,22 @@
   padding: 0.5em;
 }
 
-.form-active {
+.form:first-child {
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transform: translate(-500px);
 }
-.form:nth-child(2).form-active {
+.form:first-child.form-active {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translate(0px);
+}
+.form:nth-child(2) {
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transform: translate(500px);
 }
-
+.form:nth-child(2).form-active {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translate(0px);
+}
 .form:nth-child(3) {
   position: relative;
   top: 300px;
@@ -69,4 +76,5 @@
 .form:nth-child(3).form-active {
   position: relative;
   transform: translateY(-280px);
+  transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }

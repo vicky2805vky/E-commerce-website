@@ -10,7 +10,7 @@ const SignUpForm = () => {
       onSubmit={(formDetails) => {
         dispatch(signUpUserWithEmail(formDetails));
       }}
-      className={"form-active"}
+      className="hidden"
     >
       <FormTemplate.UserName />
       <FormTemplate.Email />

@@ -11,6 +11,7 @@ const SignInForm = () => {
       onSubmit={(formDetails) => {
         dispatch(signInUserWithEmail(formDetails));
       }}
+      className={"form-active"}
     >
       <FormTemplate.Email />
       <FormTemplate.Password />
@@ -19,7 +20,7 @@ const SignInForm = () => {
           href=""
           onClick={(e) => {
             e.preventDefault();
-            switchForm(0);
+            switchForm(0, "changePassword");
           }}
         >
           Forgot password?

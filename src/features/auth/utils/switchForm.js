@@ -4,36 +4,34 @@ export const switchForm = (inset, type) => {
   const titles = document.querySelectorAll(".title-text");
   const switchIndicators = document.getElementById("switch-indicator");
 
-  if (type === "login") {
-    forms[0].classList.remove("form-active");
-    forms[1].classList.add("form-active");
-    forms[2].classList.remove("form-active");
+  const formTypes = {
+    login: 0,
+    signup: 1,
+    changePassword: 2,
+  };
+  const formContainerHeights = [250, 280, 150];
 
-    titles[0].classList.remove("form-active");
-    titles[1].classList.add("form-active");
-    titles[2].classList.remove("form-active");
+  const activeForm = formTypes[type];
 
-    formContainer.style.height = "250px";
-  } else if (type === "sign up") {
-    forms[0].classList.add("form-active");
-    forms[1].classList.remove("form-active");
-    forms[2].classList.remove("form-active");
+  forms[activeForm].classList.remove("hidden");
 
-    titles[0].classList.add("form-active");
-    titles[1].classList.remove("form-active");
-    titles[2].classList.remove("form-active");
+  titles[activeForm].classList.add("form-active");
 
-    formContainer.style.height = "300px";
-  } else {
-    forms[0].classList.add("form-active");
-    forms[1].classList.add("form-active");
-    forms[2].classList.add("form-active");
+  setTimeout(() => {
+    forms[activeForm].classList.add("form-active");
+  }, 0); // For transition to work properly
 
-    titles[0].classList.add("form-active");
-    titles[1].classList.add("form-active");
-    titles[2].classList.add("form-active");
+  for (const key in formTypes) {
+    if (formTypes[key] !== activeForm) {
+      titles[formTypes[key]].classList.remove("form-active");
+      forms[formTypes[key]].classList.remove("form-active");
 
-    formContainer.style.height = "150px";
+      setTimeout(() => {
+        forms[formTypes[key]].classList.add("hidden");
+      }, 500);
+    }
   }
+
+  formContainer.style.height = `${formContainerHeights[activeForm]}px`;
   switchIndicators.style.inset = inset;
 };

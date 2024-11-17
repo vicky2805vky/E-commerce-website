@@ -10,6 +10,7 @@ const ResetPasswordForm = () => {
       onSubmit={(formDetails) => {
         dispatch(resetPassword(formDetails.email));
       }}
+      className="hidden"
     >
       <FormTemplate.Email />
       <FormTemplate.Submit method={"change password"} />

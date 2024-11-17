@@ -39,7 +39,7 @@ const FormComponent = ({ onSubmit, className, children }) => {
         e.preventDefault();
         onSubmit(formData);
       }}
-      className={`form f-column ${className}`}
+      className={`form flex flex-col ${className}`}
     >
       {children}
     </form>

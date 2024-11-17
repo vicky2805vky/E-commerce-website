@@ -6,7 +6,7 @@ const AuthFormSwitch = () => {
       <div
         className="wh-100"
         onClick={() => {
-          switchForm("0 50% 0 0", "sign up");
+          switchForm("0 50% 0 0", "signup");
         }}
       >
         sign up

@@ -62,12 +62,23 @@
   transition: height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 .login-page .form-container > * {
-  display: flex;
   position: absolute;
   width: 100%;
 }
 
 .title-text:nth-child(2).form-active {
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translate(0px);
+}
+.title-text:first-child.form-active {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translate(0px);
+}
+.title-text:nth-child(2) {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transform: translate(500px);
+}
+.title-text:first-child {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translate(-500px);
 }
