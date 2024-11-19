@@ -34,7 +34,7 @@ export const uploadImages = async (
           if (url instanceof File) {
             const storageRef = ref(
               storage,
-              `${productFormData.category}/${productFormData.name}/${productFormData.name}_${productImageVariants[i].color}/${url.name}`
+              `${productFormData.category}/${productFormData.name}/${url.name}`
             );
             await uploadBytes(storageRef, url);
             return await getDownloadURL(storageRef);

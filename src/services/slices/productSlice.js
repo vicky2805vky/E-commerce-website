@@ -33,6 +33,7 @@ const productSlice = createSlice({
         state.products = state.products.filter(
           (item) => item.id != action.payload.id
         );
+        pushNotification("product deleted successfully", true);
       })
       .addCase(deleteProduct.rejected, (_, action) => {
         pushNotification(

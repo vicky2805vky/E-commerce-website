@@ -42,22 +42,21 @@ export const updateStoreProduct = (
 };
 
 export const deleteNonExistingImages = async (productFormData, imageData) => {
-  imageData.map(async (imageSet) => {
-    const listRef = ref(
-      storage,
-      `${productFormData.category}/${productFormData.name}/${productFormData.name}_${imageSet.color}/`
-    );
-    const allImages = await listAll(listRef);
+  let imageLinks = [];
+  imageData.map((imageSet) => {
+    imageSet.imageURLs.map((link) => imageLinks.push(link));
+  });
+  const listRef = ref(
+    storage,
+    `${productFormData.category}/${productFormData.name}`
+  );
+  const allImages = await listAll(listRef);
 
-    let allImageLinks = [];
-
-    allImages.items.map(async (item) => {
-      const itemRef = ref(storage, item.fullPath);
-      const link = await getDownloadURL(itemRef);
-      allImageLinks.push(link);
-      if (!imageSet.imageURLs.includes(link)) {
-        await deleteObject(itemRef);
-      }
-    });
+  allImages.items.map(async (item) => {
+    const itemRef = ref(storage, item.fullPath);
+    const link = await getDownloadURL(itemRef);
+    if (!imageLinks.includes(link)) {
+      await deleteObject(itemRef);
+    }
   });
 };
