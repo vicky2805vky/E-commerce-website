@@ -67,6 +67,6 @@ const formElements = [
     type: "number",
     name: "rating",
     max: 5,
-    step: 0.01,
+    step: 0.1,
   },
 ];

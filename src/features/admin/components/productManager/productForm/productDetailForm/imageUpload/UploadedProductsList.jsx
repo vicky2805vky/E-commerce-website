@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import useStoreData from "hooks/useStoreData";
 import { addProductImageVariants } from "services/slices/adminProductSlice";
 import { pushNotification } from "utils/pushNotification";
+import { focusColorNameInput } from "features/admin/utils/thumbnailUtils";
 
 const UploadedProductsList = () => {
   const { productImageVariants, uploadedProductImages } = useStoreData();
@@ -21,6 +22,7 @@ const UploadedProductsList = () => {
             return pushNotification("please upload an image");
           }
           dispatch(addProductImageVariants());
+          focusColorNameInput();
         }}
       >
         add variation&nbsp;

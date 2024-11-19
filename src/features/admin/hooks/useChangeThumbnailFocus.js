@@ -2,6 +2,7 @@ import useStoreData from "hooks/useStoreData";
 import { useDispatch } from "react-redux";
 import { setCurrentImageIndex } from "services/slices/adminProductSlice";
 import { pushNotification } from "utils/pushNotification";
+import { focusColorNameInput } from "../utils/thumbnailUtils";
 
 const useChangeThumbnailFocus = (imageVariant) => {
   const { productImageVariants, uploadedProductImages, currentImageIndex } =
@@ -15,6 +16,7 @@ const useChangeThumbnailFocus = (imageVariant) => {
       return pushNotification("please upload an image");
     }
     dispatch(setCurrentImageIndex(imageVariant.id));
+    focusColorNameInput();
   };
 };
 

@@ -21,6 +21,7 @@ const ImageColorInputs = () => {
         attributes={{
           type: "text",
           name: "color",
+          id: "color-name",
           value: productImageVariants[currentImageIndex].color,
           onChange: (e) => {
             handleChange(e, "color");
