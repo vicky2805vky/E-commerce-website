@@ -11,13 +11,11 @@ const ProductDetails = ({
   currentImageIndex,
   setCurrentImageIndex,
 }) => {
-  const stars = getStars(product.rating);
-
   return (
     <div className="product-info-box">
       <p className="product-name">{`${product.name} (${product.images[currentImageIndex].color})`}</p>
       <p className="rating">
-        {product.rating} {stars.map((star) => star)}
+        {product.rating} {getStars(product.rating)}
       </p>
       <PriceDetails product={product} />
       <div>

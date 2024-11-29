@@ -6,22 +6,33 @@ import useInitializeProductForm from "features/admin/hooks/useInitializeProductF
 import useUpdateProduct from "features/admin/hooks/useUpdateProduct";
 import { useDispatch } from "react-redux";
 import { resetAdminProductState } from "services/slices/adminProductSlice";
+import { useForm } from "react-hook-form";
+import LoadingScreen from "components/LoadingScreen";
 
 const EditProducts = () => {
   const updateProduct = useUpdateProduct();
   const dispatch = useDispatch();
   useInitializeProductForm();
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm();
+
+  const onSubmit = async () => {
+    const updateStatus = await updateProduct();
+    updateStatus && dispatch(resetAdminProductState());
+  };
   return (
-    <form
-      className={`w-full flex h-full gap-4 p-5 flex-wrap overflow-scroll ${TYPOGRAPHY_XS}`}
-      onSubmit={async (e) => {
-        const updateStatus = await updateProduct(e);
-        updateStatus && dispatch(resetAdminProductState());
-      }}
-    >
-      <UploadImages style={GLASS_MORPH_BG} />
-      <ProductDetailsForm style={GLASS_MORPH_BG} />
-    </form>
+    <>
+      {isSubmitting && <LoadingScreen loader="sendLoader" text="processing" />}
+      <form
+        className={`w-full flex h-full gap-4 p-5 flex-wrap overflow-scroll ${TYPOGRAPHY_XS}`}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <UploadImages style={GLASS_MORPH_BG} />
+        <ProductDetailsForm style={GLASS_MORPH_BG} />
+      </form>
+    </>
   );
 };
 

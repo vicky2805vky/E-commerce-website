@@ -7,7 +7,12 @@ import { setProducts } from "services/slices/productSlice";
 
 export const deleteAllImages = async (productFormData) => {
   const allImageRef = await getDocs(
-    collection(db, PRODUCT_COLLECTION, productFormData.name, "images")
+    collection(
+      db,
+      PRODUCT_COLLECTION,
+      productFormData.name.replaceAll(" ", "-"),
+      "images"
+    )
   );
   const allImages = allImageRef.docs.map((doc) => {
     return doc.data();

@@ -20,9 +20,7 @@ const usePostProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const postProduct = async (e) => {
-    e.preventDefault();
-
+  const postProduct = async () => {
     const productFormDataCopy = { ...productFormData };
     const productImageVariantsCopy = [...productImageVariants];
     const uploadedProductImagesCopy = [...uploadedProductImages];

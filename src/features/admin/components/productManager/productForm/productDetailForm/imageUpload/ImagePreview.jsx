@@ -8,7 +8,12 @@ const ImagePreview = ({ file, mapIndex }) => {
   const dispatch = useDispatch();
   const imageSrc = typeof file === "object" ? URL.createObjectURL(file) : file;
   return (
-    <div className="min-w-[90%] object-cover flex bg-black/50 relative">
+    <div
+      className="min-w-full object-cover flex bg-black/50 relative"
+      style={{
+        scrollSnapAlign: "start",
+      }}
+    >
       <PhotoProvider>
         <PhotoView src={imageSrc}>
           <img className="cursor-zoom-in mx-auto" src={imageSrc} alt="" />

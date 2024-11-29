@@ -18,20 +18,10 @@ const SearchBar = () => {
         type="text"
         name="search box"
         placeholder="search..."
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            filterProducts(inputRef.current.value);
-          }
-        }}
-      />
-      <button
-        className="flex justify-center align-middle button-4"
-        onClick={() => {
+        onChange={() => {
           filterProducts(inputRef.current.value);
         }}
-      >
-        <FaMagnifyingGlass />
-      </button>
+      />
     </div>
   );
 };

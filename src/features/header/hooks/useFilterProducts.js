@@ -15,9 +15,12 @@ const useFilterProducts = () => {
       navigate("/");
     }
     if (searchQuery !== "") {
-      const searchProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      const searchProducts = products.filter((product) => {
+        const productNameWithCategory = product.name + product.category;
+        return productNameWithCategory
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+      });
       dispatch(setFilteredProducts(searchProducts));
     } else {
       dispatch(setFilteredProducts(products));

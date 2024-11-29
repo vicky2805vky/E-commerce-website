@@ -14,12 +14,15 @@ const RedirectPage = ({ redirectionType }) => {
       <div className={`message ${FLEX_CENTER_COL} gap-3`}>
         <IconComponent iconName={iconName} className={TYPOGRAPHY_2XL} />
         <p>{message}</p>
-        <Link to={destination} className="button-2">
-          {buttonText}
-        </Link>
+        {destination !== null && (
+          <Link to={destination} className="button-2">
+            {buttonText}
+          </Link>
+        )}
       </div>
     </div>
   );
 };
 
 export default RedirectPage;
+1;

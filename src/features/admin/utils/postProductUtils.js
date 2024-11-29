@@ -18,6 +18,7 @@ export const validateForm = (
     .split("\n")
     .map((sentence) => sentence.trim())
     .filter(Boolean);
+  productFormData.name = productFormData.name.trim();
   return true;
 };
 
@@ -53,14 +54,20 @@ export const uploadImages = async (
 
 export const saveProductToFirestore = async (productFormData, imageData) => {
   await setDoc(
-    doc(db, PRODUCT_COLLECTION, productFormData.name),
+    doc(db, PRODUCT_COLLECTION, productFormData.name.replaceAll(" ", "-")),
     productFormData
   );
 
   await Promise.all(
     imageData.map((data, i) =>
       setDoc(
-        doc(db, `${PRODUCT_COLLECTION}/${productFormData.name}/images/${i}`),
+        doc(
+          db,
+          `${PRODUCT_COLLECTION}/${productFormData.name.replaceAll(
+            " ",
+            "-"
+          )}/images/${i}`
+        ),
         data
       )
     )

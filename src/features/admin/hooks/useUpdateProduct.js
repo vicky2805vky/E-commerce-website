@@ -25,9 +25,7 @@ const useUpdateProduct = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const updateProduct = async (e) => {
-    e.preventDefault();
-
+  const updateProduct = async () => {
     const productFormDataCopy = { ...productFormData };
 
     if (
