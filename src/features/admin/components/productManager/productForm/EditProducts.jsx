@@ -24,7 +24,7 @@ const EditProducts = () => {
   };
   return (
     <>
-      {isSubmitting && <LoadingScreen loader="sendLoader" text="processing" />}
+      {isSubmitting && <LoadingScreen loader="edit" text="updating" />}
       <form
         className={`w-full flex h-full gap-4 p-5 flex-wrap overflow-scroll ${TYPOGRAPHY_XS}`}
         onSubmit={handleSubmit(onSubmit)}

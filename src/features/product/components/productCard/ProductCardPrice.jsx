@@ -1,14 +1,17 @@
-import { Link } from "react-router-dom";
-import PriceDetails from "../PriceDetails";
+import { FLEX_BETWEEN } from "constants/tailwindConstants";
+import { getStars } from "features/product/utils/getStars";
+import { addCommaToNumber } from "utils/addCommaToNumber";
 
 const ProductCardPrice = ({ product }) => {
   return (
-    <section className="product-price-details a-i-c">
-      <PriceDetails product={product} />
-      <Link to={`/product/${product.id}`} className="btn-link">
-        <button className="button-1">view&nbsp;&rarr;</button>
-      </Link>
-    </section>
+    <div className={FLEX_BETWEEN}>
+      <p>
+        {product.rating} {getStars(product.rating)}
+      </p>
+      <p className="[font-size:var(--fs-l)] font-bold">
+        &#8377;{addCommaToNumber(product.price)}
+      </p>
+    </div>
   );
 };
 export default ProductCardPrice;

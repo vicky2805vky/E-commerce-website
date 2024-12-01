@@ -1,8 +1,13 @@
-const ProductCardImage = ({ product }) => {
+const ProductCardImage = ({ product, imageSet }) => {
   return (
-    <div className="image-box flex justify-center items-center">
-      <img src={product.images[0].imageURLs[0]} alt={product.name + "image"} />
-    </div>
+    <>
+      <p className="[font-size:var(--fs-xl)] font-bold">{product.name}</p>
+      <img
+        className="w-6/12 mx-auto block"
+        src={product.images[imageSet].imageURLs[0]}
+        alt=""
+      />
+    </>
   );
 };
 export default ProductCardImage;

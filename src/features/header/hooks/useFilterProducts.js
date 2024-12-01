@@ -19,7 +19,7 @@ const useFilterProducts = () => {
         const productNameWithCategory = product.name + product.category;
         return productNameWithCategory
           .toLowerCase()
-          .includes(searchQuery.toLowerCase());
+          .includes(searchQuery.toLowerCase().trim());
       });
       dispatch(setFilteredProducts(searchProducts));
     } else {
