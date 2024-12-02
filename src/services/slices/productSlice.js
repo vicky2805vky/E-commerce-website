@@ -4,7 +4,7 @@ import { deleteProduct, getProducts } from "../api/productsApi";
 import { pushNotification } from "utils/pushNotification";
 
 const initialState = {
-  products: [],
+  products: null,
   filteredProducts: [],
 };
 

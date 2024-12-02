@@ -8,6 +8,7 @@ import useStoreData from "hooks/useStoreData";
 
 import { findProductById } from "../../utils/findProductById";
 import { useState } from "react";
+import ProductShimmerUi from "../ui/shimmer/productPage/ProductShimmerUi";
 
 const Product = () => {
   const { id } = useParams();
@@ -16,6 +17,8 @@ const Product = () => {
   const product = findProductById(products, id);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  if (products === null) return <ProductShimmerUi />;
 
   if (product) {
     return (

@@ -8,7 +8,7 @@ import {
 import { pushNotification } from "utils/pushNotification";
 
 const initialState = {
-  categories: [],
+  categories: null,
 };
 
 const categorySlice = createSlice({
@@ -30,7 +30,7 @@ const categorySlice = createSlice({
           id: action.payload.name,
         });
       })
-      .addCase(postCategory.rejected, (state, action) => {
+      .addCase(postCategory.rejected, (_, action) => {
         pushNotification(action.payload.message);
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
@@ -41,7 +41,7 @@ const categorySlice = createSlice({
           { id: action.payload.name, ...action.payload },
         ];
       })
-      .addCase(updateCategory.rejected, (state, action) => {
+      .addCase(updateCategory.rejected, (_, action) => {
         console.error(action.payload);
         pushNotification(action.payload.message);
       })
@@ -51,7 +51,7 @@ const categorySlice = createSlice({
         );
         pushNotification("category deleted successfully", true);
       })
-      .addCase(deleteCategory.rejected, (state, action) => {
+      .addCase(deleteCategory.rejected, (_, action) => {
         console.error(action.payload);
         pushNotification(action.payload.message);
       });

@@ -1,5 +1,5 @@
 import { GLASS_MORPH_BG, TYPOGRAPHY_XS } from "constants/tailwindConstants";
-import React from "react";
+
 import UploadImages from "./productDetailForm/imageUpload/UploadImages";
 import ProductDetailsForm from "./productDetailForm/ProductDetailsForm";
 import useInitializeProductForm from "features/admin/hooks/useInitializeProductForm";

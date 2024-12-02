@@ -25,7 +25,7 @@ const FormTemplate = (props) => {
 
 export default FormTemplate;
 
-const FormComponent = ({ onSubmit, className, children }) => {
+const FormComponent = ({ onSubmit, className = "", children }) => {
   const { name, email, password } = useFormContext();
 
   const formData = {

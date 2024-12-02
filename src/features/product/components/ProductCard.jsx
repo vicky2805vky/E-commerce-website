@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <section
-      className="[background:var(--secondary-bg-gradient)] p-10 rounded-3xl flex flex-col gap-10 scale-90 hover:scale-95 product-card"
+      className="[background:var(--secondary-bg-gradient)] p-10 rounded-3xl flex flex-col gap-10 scale-90 hover:scale-95"
       key={product.id}
       style={{
         transition: "transform var(--transition)",

@@ -47,7 +47,7 @@ export const ADMINS = ["DcC6ajUeFse5J6RF2x7Jy2xC5z42"];
 export const SLIDER_SETTINGS = {
   dots: true,
   infinite: true,
-  speed: 500,
+  speed: 700,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,

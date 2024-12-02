@@ -1,5 +1,6 @@
 import useStoreData from "hooks/useStoreData";
 import AdminNavCard from "./components/AdminNavCard";
+import { RxReload } from "react-icons/rx";
 
 const Admin = () => {
   const { products, categories } = useStoreData();
@@ -9,13 +10,21 @@ const Admin = () => {
         <AdminNavCard
           label={"products"}
           destination={"products"}
-          totatItems={products.length}
+          totatItems={
+            products ? products.length : <RxReload className="animate-spin" />
+          }
           iconName={"LuBaggageClaim"}
         />
         <AdminNavCard
           label={"categories"}
           destination={"categories"}
-          totatItems={categories.length}
+          totatItems={
+            categories ? (
+              categories.length
+            ) : (
+              <RxReload className="animate-spin" />
+            )
+          }
           iconName={"BiSolidCategory"}
         />
       </div>

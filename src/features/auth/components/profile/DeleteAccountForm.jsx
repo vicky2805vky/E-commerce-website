@@ -17,6 +17,7 @@ const DeleteAccountForm = () => {
     <div className="delete-account f-column">
       <DeleteAccountFormHeader />
       <FormTemplate
+        className={"not-form"}
         onSubmit={(formDetails) =>
           handleSubmit(formDetails, dispatch, navigate)
         }

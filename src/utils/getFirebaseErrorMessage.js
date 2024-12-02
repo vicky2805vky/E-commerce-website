@@ -5,7 +5,7 @@ export const getFirebaseErrorMessage = (error) => {
     "auth/user-disabled": "Your account is disabled. Contact support.",
     "auth/wrong-password": "Incorrect password. Please try again.",
     "auth/email-already-in-use": "Email already in use. Please log in.",
-    "auth/weak-password": "Weak password. Use a stronger one.",
+    "auth/weak-password": "password must contain atleast 6 characters",
     "auth/too-many-requests": "Too many attempts. Try again later.",
     "auth/network-request-failed": "Network error. Check your connection.",
     "auth/operation-not-allowed": "Operation not allowed. Contact support.",

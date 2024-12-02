@@ -42,7 +42,6 @@ const authSlice = createSlice({
       .addCase(signInUserWithEmail.rejected, (state, action) => {
         const errMessage = getFirebaseErrorMessage(action.payload);
         pushNotification(errMessage);
-        pushNotification("logged in successfully", true);
       })
       .addCase(signInUserWithGoogle.fulfilled, (state, action) => {
         state.isUserLoggedIn = true;

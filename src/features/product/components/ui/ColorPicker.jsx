@@ -1,5 +1,3 @@
-import React from "react";
-
 const ColorPicker = ({ images, setCurrentImageIndex }) => {
   return (
     <div className="a-i-c gap-2">

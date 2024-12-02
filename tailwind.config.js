@@ -4,8 +4,6 @@ export default {
   corePlugins: {
     preflight: false,
   },
-  theme: {
-    extend: {},
-  },
+  theme: {},
   plugins: [],
 };

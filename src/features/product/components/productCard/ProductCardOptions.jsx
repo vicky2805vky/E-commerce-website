@@ -9,7 +9,7 @@ const ProductCardOptions = ({ product, setImageSet }) => {
           return (
             <div
               key={i}
-              className="w-5 h-5  rounded-[7px] cursor-pointer border border-solid"
+              className="w-5 h-5  rounded-[7px] cursor-pointer"
               style={{ background: imageSet.code }}
               onMouseOver={() => {
                 setImageSet(i);

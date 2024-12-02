@@ -6,9 +6,11 @@ import "../../stylesheets/Profile.css";
 
 import { useDispatch } from "react-redux";
 import { auth } from "configs/firebase";
+import useModal from "hooks/useModal";
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const modal = useModal();
 
   return (
     <div className="account flex justify-center items-center f-column gap">
@@ -34,7 +36,7 @@ const Profile = () => {
         <button
           className="button-3"
           onClick={() => {
-            dispatch(signOutUser());
+            modal(() => dispatch(signOutUser()));
           }}
         >
           sign out

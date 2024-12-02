@@ -1,5 +1,6 @@
 import ManagerLayoutHeader from "./ManagerLayoutHeader";
 import ManagerLayoutBody from "./ManagerLayoutBody";
+import ManagerLayoutShimmerUi from "features/admin/ui/ManagerLayoutShimmerUi";
 
 const ManagerLayout = ({
   managerName,
@@ -7,6 +8,10 @@ const ManagerLayout = ({
   managerData,
   deleteFunction,
 }) => {
+  if (managerData === null)
+    return (
+      <ManagerLayoutShimmerUi columns={columns} managerName={managerName} />
+    );
   return (
     <div className={"flex flex-col items-center w-full gap-0 h-full "}>
       <ManagerLayoutHeader managerName={managerName} columns={columns} />

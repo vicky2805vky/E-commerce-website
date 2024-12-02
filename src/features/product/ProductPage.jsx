@@ -4,10 +4,13 @@ import ProductCard from "./components/ProductCard";
 import "./stylesheets/ProductPage.css";
 
 import useStoreData from "hooks/useStoreData";
+import ProductCardShimmerUi from "./components/ui/shimmer/productCard/ProductCardShimmerUi";
 
 const ProductPage = () => {
-  const { filteredProducts } = useStoreData();
-  if (filteredProducts.length === 0) {
+  const { filteredProducts, products } = useStoreData();
+  if (products === null || filteredProducts === null) {
+    return <ProductCardShimmerUi />;
+  } else if (filteredProducts.length === 0) {
     return <RedirectPage redirectionType={"noResult"} />;
   }
   return (

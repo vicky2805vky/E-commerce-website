@@ -5,7 +5,7 @@ import {
   TYPOGRAPHY_LG,
   TYPOGRAPHY_SM,
 } from "constants/tailwindConstants";
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 const AdminNavCard = ({ label, destination, totatItems, iconName }) => {

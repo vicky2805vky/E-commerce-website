@@ -1,15 +1,17 @@
 import { MANAGER_BUTTON, MANAGER_ROW } from "constants/tailwindConstants";
-
 import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
-const ManagerLayoutHeader = ({ managerName, columns }) => {
+const ManagerLayoutHeaderShimmerUi = ({ managerName, columns }) => {
   return (
     <>
-      <Link to={"add"} className={MANAGER_BUTTON + " bg-green-400 mb-3 p-3"}>
+      <div
+        className={
+          MANAGER_BUTTON + " text-[transparent] bg-gray-300 mb-3 p-3 shimmer"
+        }
+      >
         <FaPlus /> &nbsp;
         <p> Add {managerName}</p>
-      </Link>
+      </div>
       <div className={MANAGER_ROW}>
         {columns.map((column, i) => (
           <p key={i}>{column}</p>
@@ -22,4 +24,4 @@ const ManagerLayoutHeader = ({ managerName, columns }) => {
   );
 };
 
-export default ManagerLayoutHeader;
+export default ManagerLayoutHeaderShimmerUi;

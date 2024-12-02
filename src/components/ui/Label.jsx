@@ -1,5 +1,3 @@
-import React from "react";
-
 const Label = ({ inputId, labelText = "" }) => {
   return (
     <label htmlFor={inputId || labelText.replaceAll(" ", "-")}>

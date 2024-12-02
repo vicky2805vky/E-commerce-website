@@ -61,7 +61,7 @@
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transform: translate(0px);
 }
-.form:nth-child(2) {
+.form:nth-child(2):not(.not-form) {
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transform: translate(500px);
 }

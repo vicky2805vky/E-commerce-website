@@ -11,7 +11,7 @@ import {
 import { pushNotification } from "utils/pushNotification";
 
 const initialState = {
-  cartItems: [],
+  cartItems: null,
   cartQuantity: 0,
 };
 
@@ -65,7 +65,7 @@ const userCartSlice = createSlice({
             : item
         );
       })
-      .addCase(increaseProductQuantity.rejected, (state, action) => {
+      .addCase(increaseProductQuantity.rejected, (_, action) => {
         pushNotification(
           `${action.payload.name || "error"}: ${action.payload.message}`
         );
@@ -95,7 +95,7 @@ const userCartSlice = createSlice({
         state.cartQuantity--;
         pushNotification("Item Removed From Your Cart", true);
       })
-      .addCase(deleteCartProduct.rejected, (state, action) => {
+      .addCase(deleteCartProduct.rejected, (_, action) => {
         pushNotification(
           `${action.payload.name || "error"}: ${action.payload.message}`
         );
