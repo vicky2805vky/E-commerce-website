@@ -24,12 +24,9 @@ const ProductCard = ({ product }) => {
         y: 0,
         scale: 0.95,
       }}
-      whileTap={{
-        scale: 0.85,
-      }}
       transition={{ type: "spring", duration: 0.5 }}
       viewport={{ once: true }}
-      className="[background:var(--secondary-bg-gradient)] p-10 rounded-3xl flex flex-col gap-10 scale-90 hover:scale-95"
+      className="flex scale-90 flex-col gap-10 rounded-3xl p-10 [background:var(--secondary-bg-gradient)] hover:scale-95"
       key={product.id}
     >
       <ProductCardImage product={product} imageSet={imageSet} />

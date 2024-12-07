@@ -3,11 +3,15 @@ import useStoreData from "./useStoreData";
 
 const useGemini = () => {
   const { products } = useStoreData();
+  if (!products) return;
+  const allProductDetails = products.map(
+    (product, i) =>
+      `product ${i + 1}: \nname: ${product.name}\ncategory: ${product.category}\nmrp: ${product.mrp}\nselling price: ${product.price}\nrating: ${product.rating}\ncolor options: ${product.images.map((image) => image.color).join(", ")} \ndescription: ${product.description.join("\n")}\n`,
+  );
+
   return async (input) => {
     if (!input) return;
-    const prompt = `hello Gemini! these are the products that are present in my e commerce website \n\n${JSON.stringify(
-      products
-    )}\nAnd this is the user input for searching the product\nsearch query: "${input}"\ngive me all the products related to the search query that is given by the user which are presented in the list the output should be in the format given below\n"Apple MacBook Air Apple M3, Apple Macbook Air Apple M1, Infinix y3 max, Infinix zerobook 13, MSI Thin A15, colorful p15, dell g15, dell inspiration 3520, lenovo ideapad slim 3i, lenovo legion pro"\nDon't add any extra sentence to the output, since I am going to use your output to directly filter the data. Try not to send any wrong products, for example if the query has the word mobile don't laptops in the output.  All the output names should be same as the names given in the list. If there is no product matches the search query the send me 0`;
+    const prompt = `Hello Gemini! Below is the product data from my e-commerce website. Your task is to filter products based on the user's search query.\n\nProducts List:\n${allProductDetails.join("\n")}\n\nUser Search Query: "${input}"\n\nInstructions:\n1. Return a comma-separated list of product names that match the search query.\n2. Ensure the names are exactly as listed in the product data, with all letters in lowercase.\n3. If the query includes a **price range** (e.g., "under 30000," "below 50k," "between 20k and 40k"):\n   - Only include products whose **selling price** falls within the specified range.\n   - Ignore products outside the price range.\n   - Consider "k" as 1,000 (e.g., "30k" = 30,000).\n4. Include only relevant products:\n   - For category-specific queries (e.g., "mobile"), exclude unrelated items.\n   - For general terms like "gaming devices," include all relevant gaming products (laptops, mobiles, accessories).\n5. If no products match the query or price range, return "0" without extra text or newlines.\n\nOutput Example:\n\"apple macbook air apple m3, apple macbook air apple m1, infinix y3 max, infinix zerobook 13\"\n\nRules:\n- Do not include additional text, explanations, or formatting in the output.\n- Ensure the output is precise and consistent.`;
 
     const response = await runGemini(prompt);
     return response.response.candidates[0].content.parts[0].text;

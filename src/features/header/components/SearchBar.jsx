@@ -1,45 +1,39 @@
 import { useEffect, useRef } from "react";
 
-import { FaMagnifyingGlass } from "react-icons/fa6";
-
 import "../stylesheets/SearchBar.css";
 
-import useFilterProducts from "../hooks/useFilterProducts";
-import { useLocation } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
-import runGemini from "configs/gemini";
-import useGemini from "hooks/useGemini";
+import { useForm } from "react-hook-form";
+
+import useAiSearch from "../hooks/useAiSearch";
+import useSetFilteredProduct from "../hooks/useSetFilteredProduct";
 
 const SearchBar = () => {
-  const inputRef = useRef();
-  const location = useLocation();
-  const filterProducts = useFilterProducts();
-  const callGemini = useGemini();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { isSubmitting },
+  } = useForm();
 
-  useEffect(() => {
-    if (location.pathname !== "/") inputRef.current.value = "";
-  }, [location.pathname]);
+  const searchValue = watch("search");
+
+  const searchWithAi = useAiSearch();
+
+  useSetFilteredProduct(searchValue, setValue);
+
   return (
-    <div className="search-box">
+    <form className="search-box" onSubmit={handleSubmit(searchWithAi)}>
       <input
-        ref={inputRef}
         type="text"
-        name="search box"
         placeholder="search..."
-        onChange={() => {
-          filterProducts(inputRef.current.value);
-        }}
+        readOnly={isSubmitting}
+        {...register("search")}
       />
-      <button
-        className="button-4"
-        onClick={async () => {
-          const response = await callGemini(inputRef.current.value);
-          console.log(response);
-        }}
-      >
-        <FaSearch />
+      <button type="submit" className="button-4" disabled={isSubmitting}>
+        ai
       </button>
-    </div>
+    </form>
   );
 };
 

@@ -4,7 +4,7 @@
   margin-right: var(--gap);
 }
 
-header input {
+.search-box input {
   margin: auto;
   width: clamp(80px, 20vw, 200px);
   height: clamp(10px, 8vw, 30px);

@@ -6,7 +6,6 @@ import Account from "features/auth/Account";
 import { Route, Routes } from "react-router-dom";
 import FallBackRoute from "./FallBackRoute";
 import PageTransition from "components/ui/transitions/PageTransition";
-import AiSearch from "features/aiSearch/AiSearch";
 
 const PublicRoutes = () => {
   return (
@@ -16,14 +15,6 @@ const PublicRoutes = () => {
         element={
           <PageTransition>
             <ProductPage />
-          </PageTransition>
-        }
-      />
-      <Route
-        path="/search/ai"
-        element={
-          <PageTransition>
-            <AiSearch />
           </PageTransition>
         }
       />
