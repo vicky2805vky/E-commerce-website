@@ -19,7 +19,7 @@ export const switchForm = (inset, type) => {
 
   setTimeout(() => {
     forms[activeForm].classList.add("form-active");
-  }, 0); // For transition to work properly
+  }, 15); // For transition to work properly
 
   for (const key in formTypes) {
     if (formTypes[key] !== activeForm) {

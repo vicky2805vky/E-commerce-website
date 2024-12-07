@@ -14,6 +14,8 @@ import {
 import "stylesheets/FormTemplate.css";
 
 import FormContext, { useFormContext } from "services/context/FormContext";
+import { useForm } from "react-hook-form";
+import LoadingScreen from "components/LoadingScreen";
 
 const FormTemplate = (props) => {
   return (
@@ -33,16 +35,23 @@ const FormComponent = ({ onSubmit, className = "", children }) => {
     email,
     password,
   };
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm();
+  const submitHandler = () => {
+    onSubmit(formData);
+  };
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit(formData);
-      }}
-      className={`form flex flex-col ${className}`}
-    >
-      {children}
-    </form>
+    <>
+      {isSubmitting && <LoadingScreen loader="send" text="processing" />}
+      <form
+        onSubmit={handleSubmit(submitHandler)}
+        className={`form flex flex-col ${className}`}
+      >
+        {children}
+      </form>
+    </>
   );
 };
 

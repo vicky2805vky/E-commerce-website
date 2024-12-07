@@ -20,8 +20,10 @@ const userCartSlice = createSlice({
   initialState,
   reducers: {
     clearCart: (state) => {
-      state.cartItems.length = 0;
-      state.cartQuantity = 0;
+      if (state.cartItems) {
+        state.cartItems.length = 0;
+        state.cartQuantity = 0;
+      }
     },
     setCartQuantity: (state, action) => {
       state.cartQuantity = action.payload;

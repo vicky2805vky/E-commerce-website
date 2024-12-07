@@ -16,7 +16,7 @@ const ProductCardImage = ({ product, imageSet }) => {
         src={product.images[imageSet].imageURLs[0]}
         alt=""
         onLoad={() => {
-          document.getElementById(placeholderImageId).remove();
+          document.getElementById(placeholderImageId)?.remove();
           document.getElementById(productImageId).classList.remove("hidden");
         }}
       />

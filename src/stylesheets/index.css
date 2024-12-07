@@ -19,6 +19,7 @@
 body {
   width: 100%;
   padding: 5vh 5vw;
+  overflow-x: hidden;
   color: var(--main-color);
   background: var(--main-bg-gradient);
   background-attachment: fixed;
