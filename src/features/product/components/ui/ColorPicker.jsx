@@ -1,9 +1,11 @@
 const ColorPicker = ({ images, setCurrentImageIndex }) => {
   return (
     <div className="a-i-c gap-2">
-      {images.map((image) => (
+      {images.map((image, i) => (
         <div
-          className="w-7 h-7 rounded-lg cursor-pointer border-white transition-all"
+          className={`w-7 h-7 rounded-lg cursor-pointer border-white transition-all ${
+            i ? "" : "border-solid"
+          }`}
           id="color"
           style={{
             backgroundColor: image.code,

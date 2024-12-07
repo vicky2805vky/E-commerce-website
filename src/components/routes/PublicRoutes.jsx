@@ -5,14 +5,52 @@ import ProductPage from "features/product/ProductPage";
 import Account from "features/auth/Account";
 import { Route, Routes } from "react-router-dom";
 import FallBackRoute from "./FallBackRoute";
+import PageTransition from "components/ui/transitions/PageTransition";
+import AiSearch from "features/aiSearch/AiSearch";
 
 const PublicRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<ProductPage />} />
-      <Route path="/product/:id" element={<Product />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/profile" element={<Account />} />
+      <Route
+        path="/"
+        element={
+          <PageTransition>
+            <ProductPage />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/search/ai"
+        element={
+          <PageTransition>
+            <AiSearch />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/product/:id"
+        element={
+          <PageTransition>
+            <Product />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/cart"
+        element={
+          <PageTransition>
+            <Cart />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <PageTransition>
+            <Account />
+          </PageTransition>
+        }
+      />
       <Route path="/delete-confirmation" element={<DeleteConfirm />} />
       <Route path="*" element={<FallBackRoute />} />
     </Routes>

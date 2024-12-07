@@ -6,6 +6,8 @@ import useInitializeApp from "hooks/useInitializeApp";
 import useAuthListener from "hooks/useAuthListener";
 import AppRouter from "components/AppRouter";
 import Modal from "components/modal/Modal";
+import { useEffect } from "react";
+import runGemini from "configs/gemini";
 
 function App() {
   useAuthListener();
@@ -23,7 +25,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div style={{ width: "100%", height: "calc(85vh - 51px)" }}>
+      <div
+        className="overflow-x-hidden overflow-y-visible"
+        style={{ width: "100%", height: "calc(85vh - 51px)" }}
+      >
         <AppRouter />
         <ToastNotification />
         <Modal />
