@@ -11,6 +11,9 @@ const useFilterProducts = () => {
   const navigate = useNavigate();
 
   return (searchQuery) => {
+    if (!products) {
+      return;
+    }
     if (window.location.pathname != "/") {
       navigate("/");
     }

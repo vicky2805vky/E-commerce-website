@@ -6,7 +6,7 @@ const useGemini = () => {
   if (!products) return;
   const allProductDetails = products.map(
     (product, i) =>
-      `product ${i + 1}: \nname: ${product.name}\ncategory: ${product.category}\nmrp: ${product.mrp}\nselling price: ${product.price}\nrating: ${product.rating}\ncolor options: ${product.images.map((image) => image.color).join(", ")} \ndescription: ${product.description.join("\n")}\n`,
+      `product ${i + 1}: \nname: ${product.name}\ncategory: ${product.category}\nmrp: ${product.mrp}\nselling price: ${product.price}\nrating: ${product.rating}\ncolor options: ${product.images.map((image) => `${image.color}(${image.code})`).join(", ")} \ndescription: ${product.description.join("\n")}\n`,
   );
 
   return async (input) => {

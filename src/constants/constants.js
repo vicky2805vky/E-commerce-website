@@ -40,6 +40,12 @@ export const REDIRECT_MAP = {
     buttonText: "login",
     message: "please To login to access cart items",
   },
+  aiSearch: {
+    destination: null,
+    imageName: "aisearch",
+    iconName: "MdScreenSearchDesktop",
+    message: "ai is searching. please wait.",
+  },
 };
 
 export const ADMINS = ["DcC6ajUeFse5J6RF2x7Jy2xC5z42"];

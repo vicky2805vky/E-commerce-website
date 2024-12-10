@@ -9,8 +9,8 @@ const RedirectPage = ({ redirectionType }) => {
   const { imageName, destination, iconName, buttonText, message } =
     REDIRECT_MAP[redirectionType];
   return (
-    <div className="redirect-page flex justify-center items-center">
-      <img src={new URL(`./images/${imageName}.png`, import.meta.url)} />
+    <div className="redirect-page flex items-center justify-center">
+      <img src={`/redirectImages/${imageName}.png`} />
       <div className={`message ${FLEX_CENTER_COL} gap-3`}>
         <IconComponent iconName={iconName} className={TYPOGRAPHY_2XL} />
         <p>{message}</p>

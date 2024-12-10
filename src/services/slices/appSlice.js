@@ -6,6 +6,7 @@ const initialState = {
     task: () => {},
   },
   theme: localStorage.getItem("theme") || "light",
+  searchStatus: "none",
 };
 
 const appSlice = createSlice({
@@ -27,10 +28,17 @@ const appSlice = createSlice({
         localStorage.setItem("theme", "light");
       }
     },
+    setSearchStatus: (state, action) => {
+      state.searchStatus = action.payload;
+    },
   },
 });
 
 export default appSlice.reducer;
 
-export const { setModalVisibility, setModalTask, toggleTheme } =
-  appSlice.actions;
+export const {
+  setModalVisibility,
+  setModalTask,
+  toggleTheme,
+  setSearchStatus,
+} = appSlice.actions;

@@ -12,9 +12,7 @@ const useSetFilteredProduct = (searchValue, setValue) => {
   const { products } = useStoreData();
 
   useEffect(() => {
-    if (searchValue) {
-      filterProducts(searchValue);
-    }
+    filterProducts(searchValue);
   }, [searchValue]);
 
   useEffect(() => {
