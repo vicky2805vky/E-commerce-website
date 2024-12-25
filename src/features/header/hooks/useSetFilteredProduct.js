@@ -5,7 +5,7 @@ import useFilterProducts from "../hooks/useFilterProducts";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-const useSetFilteredProduct = (searchValue, setValue) => {
+const useSetFilteredProduct = (searchValue) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const filterProducts = useFilterProducts();
@@ -16,8 +16,8 @@ const useSetFilteredProduct = (searchValue, setValue) => {
   }, [searchValue]);
 
   useEffect(() => {
-    if (location.pathname !== "/") {
-      setValue("search", "");
+    if (location.pathname !== "/shop") {
+      document.getElementById("search").value = "";
       dispatch(setFilteredProducts(products));
     }
   }, [location.pathname]);

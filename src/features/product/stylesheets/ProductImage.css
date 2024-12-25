@@ -13,19 +13,18 @@
 }
 
 .slider div {
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55) !important;
   margin-bottom: 10px;
 }
-.slick-dots {
+.product-buy-page .slick-dots {
   display: flex !important;
   justify-content: space-evenly;
   bottom: 0 !important;
 }
-.slick-dots li button::before {
+.product-buy-page .slick-dots li button::before {
   font-size: var(--fs-xs);
   transition: 0.5s ease-in !important;
   color: var(--main-color) !important;
 }
-.slick-dots li.slick-active button::before {
+.product-buy-page .slick-dots li.slick-active button::before {
   font-size: var(--fs-s);
 }

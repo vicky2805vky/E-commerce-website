@@ -5,14 +5,22 @@ import ToggleTheme from "./navLink/ToggleTheme";
 
 import useStoreData from "hooks/useStoreData";
 import NavBarLogo from "./navLink/NavBarLogo";
+import { GiShoppingBag } from "react-icons/gi";
 
 const NavBar = () => {
   const { isUserLoggedIn } = useStoreData();
 
   return (
-    <nav className="a-i-c">
+    <nav className="a-i-c nav">
       <NavBarLogo />
-      <ul>
+      <ul className="nav-ul">
+        <li>
+          <NavigationLink
+            destination={"/shop"}
+            icon={<GiShoppingBag />}
+            label={"shop"}
+          />
+        </li>
         <li>
           <NavigationLink
             destination={"/profile"}

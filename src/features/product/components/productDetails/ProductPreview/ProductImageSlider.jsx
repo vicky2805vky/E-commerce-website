@@ -7,13 +7,13 @@ import { SLIDER_SETTINGS } from "constants/constants";
 
 const ProductImageSlider = ({ product, currentImageIndex }) => {
   return (
-    <Slider {...SLIDER_SETTINGS}>
+    <Slider {...SLIDER_SETTINGS} className="slider">
       {product.images[currentImageIndex]?.imageURLs?.map((imageURL, i) => {
         return (
           <PhotoProvider key={i}>
             <PhotoView src={imageURL}>
               <img
-                className="cursor-zoom-in !w-full"
+                className="!w-full cursor-zoom-in"
                 src={imageURL}
                 alt={product.name}
               />

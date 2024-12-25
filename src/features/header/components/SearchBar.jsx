@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 import "../stylesheets/SearchBar.css";
 
 import { useForm } from "react-hook-form";
@@ -20,15 +18,20 @@ const SearchBar = () => {
 
   const searchWithAi = useAiSearch();
 
-  useSetFilteredProduct(searchValue, setValue);
+  useSetFilteredProduct(searchValue);
 
   return (
-    <form className="search-box" onSubmit={handleSubmit(searchWithAi)}>
+    <form
+      className="search-box flex items-center"
+      onSubmit={handleSubmit(searchWithAi)}
+    >
       <input
         type="text"
+        id="search"
         placeholder="search..."
         readOnly={isSubmitting}
         {...register("search")}
+        required
       />
       <button type="submit" className="button-4" disabled={isSubmitting}>
         ai

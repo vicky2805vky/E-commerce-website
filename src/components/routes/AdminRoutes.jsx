@@ -11,19 +11,19 @@ import FallBackRoute from "./FallBackRoute";
 import { auth } from "configs/firebase";
 
 const AdminRoutes = () => {
-  if (!ADMINS.includes(auth.currentUser?.uid)) {
-    return <FallBackRoute />;
-  }
+  // if (!ADMINS.includes(auth.currentUser?.uid)) {
+  //   return <FallBackRoute />;
+  // }
 
   return (
     <Routes>
       <Route path="/" element={<Admin />} />
       <Route path="/products" element={<ProductManager />} />
-      <Route path="/products/:id/edit" element={<EditProducts />} />
+      <Route path="/products/:id" element={<EditProducts />} />
       <Route path="/products/add" element={<AddProducts />} />
       <Route path="/categories" element={<CategoryManager />} />
       <Route path="/categories/add" element={<AddCategory />} />
-      <Route path="/categories/:id/edit" element={<EditCategory />} />
+      <Route path="/categories/:id" element={<EditCategory />} />
       <Route path="*" element={<FallBackRoute />} />
     </Routes>
   );

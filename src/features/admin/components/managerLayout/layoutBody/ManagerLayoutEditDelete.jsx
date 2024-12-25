@@ -9,7 +9,7 @@ const ManagerLayoutEditDelete = ({ data, deleteFunction }) => {
   return (
     <>
       <div>
-        <Link to={`${data.id}/edit`} className={"bg-blue-400" + MANAGER_BUTTON}>
+        <Link to={`${data.id}`} className={"bg-blue-400" + MANAGER_BUTTON}>
           <FaRegEdit />
         </Link>
       </div>

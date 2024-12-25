@@ -87,8 +87,8 @@
   transform: translateY(2px);
 }
 .button-4 {
-  width: clamp(10px, 8vw, 30px);
-  height: clamp(10px, 8vw, 30px);
+  width: clamp(10px, 6vw, 30px);
+  height: clamp(10px, 6vw, 30px);
   font-size: var(--fs-s);
   color: black;
   background: var(--primary-bg-color);

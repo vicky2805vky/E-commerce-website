@@ -4,14 +4,14 @@ header {
   color: var(--main-color);
 }
 
-nav {
+.nav {
   justify-content: space-between;
   background: var(--primary-bg-gradient);
   border-radius: 30px;
   padding: 5px var(--gap);
 }
 
-nav section {
+.nav section {
   padding: 1%;
   flex-grow: 2;
   gap: clamp(20px, 5vw, 60px);
@@ -20,10 +20,10 @@ nav section {
 .logo {
   font-size: var(--fs-l);
   font-weight: var(--fw-bold);
-  width: clamp(60px, 10vw, 100px);
+  width: clamp(50px, 10vw, 100px);
 }
 
-header ul {
+header .nav-ul {
   flex-grow: 1;
   display: flex;
   justify-content: space-around;

@@ -19,7 +19,7 @@ const ProductCardOptions = ({ product, setImageSet }) => {
           );
         })}
       </div>
-      <Link to={`product/${product.id}`} className="button-1">
+      <Link to={`/shop/${product.id}`} className="button-1">
         view
       </Link>
     </div>

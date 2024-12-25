@@ -58,5 +58,6 @@ export const SLIDER_SETTINGS = {
   slidesToScroll: 1,
   autoplay: true,
   swipeToSlide: true,
-  className: "slider",
+  pauseOnHover: false,
+  pauseOnFocus: true,
 };

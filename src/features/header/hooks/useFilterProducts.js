@@ -14,8 +14,8 @@ const useFilterProducts = () => {
     if (!products) {
       return;
     }
-    if (window.location.pathname != "/") {
-      navigate("/");
+    if (window.location.pathname != "/shop") {
+      navigate("/shop");
     }
     if (searchQuery !== "") {
       const searchProducts = products.filter((product) => {
