@@ -6,7 +6,7 @@ import { setSearchStatus } from "services/slices/appSlice";
 import { setFilteredProducts } from "services/slices/productSlice";
 
 const useAiSearch = () => {
-  const { products, searchStatus } = useStoreData();
+  const { products } = useStoreData();
   const callGemini = useGemini();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const useAiSearch = () => {
     );
     dispatch(setFilteredProducts(filteredProducts));
     dispatch(setSearchStatus("none"));
-    navigate("/");
+    navigate("/shop");
   };
 };
 

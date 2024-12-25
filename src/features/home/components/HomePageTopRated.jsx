@@ -1,10 +1,11 @@
 import { TYPOGRAPHY_LG } from "constants/tailwindConstants";
 import useStoreData from "hooks/useStoreData";
 import TopRatedCard from "./TopRatedCard";
+import TopRatedShimmerUi from "./shimmerUi/TopRatedShimmerUi";
 
 const HomePageTopRated = () => {
   const { products } = useStoreData();
-  if (!products) return;
+  if (!products) return <TopRatedShimmerUi />;
   const topRatedProducts = products.filter((product) => product.rating > 4.5);
 
   return (

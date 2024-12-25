@@ -10,7 +10,6 @@ const SearchBar = () => {
     register,
     handleSubmit,
     watch,
-    setValue,
     formState: { isSubmitting },
   } = useForm();
 

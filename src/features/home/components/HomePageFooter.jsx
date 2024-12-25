@@ -1,4 +1,3 @@
-import React from "react";
 import { FaDiscord, FaFacebookF, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
