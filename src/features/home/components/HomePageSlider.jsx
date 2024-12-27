@@ -1,5 +1,6 @@
 import { SLIDER_SETTINGS } from "constants/constants";
 import { FLEX_CENTER_COL } from "constants/tailwindConstants";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 const bannerContents = [
@@ -47,7 +48,9 @@ const HomePageSlider = () => {
                 {content.title}
               </p>
               <p className="hidden text-base md:block">{content.subTitle}</p>
-              <button className="button-1">shop now</button>
+              <Link to={"/shop"} className="button-1">
+                shop now
+              </Link>
             </div>
           </div>
         );

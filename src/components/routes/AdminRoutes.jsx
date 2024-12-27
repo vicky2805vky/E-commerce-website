@@ -11,9 +11,9 @@ import FallBackRoute from "./FallBackRoute";
 import { auth } from "configs/firebase";
 
 const AdminRoutes = () => {
-  // if (!ADMINS.includes(auth.currentUser?.uid)) {
-  //   return <FallBackRoute />;
-  // }
+  if (!ADMINS.includes(auth.currentUser?.uid)) {
+    return <FallBackRoute />;
+  }
 
   return (
     <Routes>
